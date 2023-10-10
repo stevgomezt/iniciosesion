@@ -40,10 +40,10 @@ def login():
                 login_user(logged_user)
                 return redirect(url_for('home'))
             else:
-                flash("Invalid password...")
+                flash("Error de contraseña...")
                 return render_template('auth/login.html')
         else:
-            flash("User not found...")
+            flash("El usuario no existe...")
             return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
