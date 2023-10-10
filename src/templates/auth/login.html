@@ -1,37 +1,61 @@
-{% extends './base.html' %}
+{% extends './base.html' %} {% block title %}Login{% endblock %} {% block
+customCSS %} {% endblock %} {% block body %}
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="#" class="sign-in-form">
+                    <h2 class="title">iniciar sesión</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Usuario" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Contraseña" />
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
+                    <p class="social-text">Visita nuestras redes sociales</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-{% block title %}Login{% endblock %}
-
-{% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-{% endblock %}
-
-{% block body %}
-<form class="form-signin" action="/login" method="POST">
-    <img class="mb-4" src="{{ url_for('static', filename='img/logo.png') }}" alt="" width="100" height="60">
-    {% with messages = get_flashed_messages() %}
-
-    {% if messages %}
-    <br />
-    {% for message in messages %}
-    <div class="alert alert-primary alert-dismissible" role="alert">
-        <strong>{{ message }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3><img src="/img/emergia.svg" alt="" /></h3>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing
+                        elit. Iure, perferendis minus quod, mollitia odit
+                        blanditiis debitis nulla minima eius quae, neque
+                        consequuntur quis esse quidem? Voluptate expedita
+                        aperiam incidunt repudiandae.
+                    </p>
+                    <!--<button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>-->
+                </div>
+                <img
+                    src="{{ url_for('static', filename='img/log.svg') }}"
+                    class="image"
+                    alt=""
+                />
+            </div>
+        </div>
     </div>
-    {% endfor %}
-    {% endif %}
-
-    {% endwith %}
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <div class="form-floating">
-        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-        <label for="username">Username</label>
-    </div>
-    <div class="form-floating mt-2">
-        <input type="password" class="form-control" name="password" placeholder="Password">
-        <label for="password">Password</label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-</form>
+</body>
 {% endblock %}
