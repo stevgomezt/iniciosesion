@@ -12,11 +12,11 @@ input {
 }
 
 .container {
-    position: relative;
-    width: 100%;
-    background-color: #fff;
-    min-height: 100vh;
-    overflow: hidden;
+    position: relative !important;
+    width: 100% !important;
+    background-color: #fff !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
 }
 
 .forms-container {
@@ -168,7 +168,8 @@ form.sign-in-form {
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
-    background-image: linear-gradient(-45deg, #522db2 0%, #522db200 100%);
+    /* background-image: linear-gradient(-45deg, #522db2 0%, #522db200 100%); */
+    background-image: linear-gradient(-45deg, #ededed 0%, #ededed 100%);
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
