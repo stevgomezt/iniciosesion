@@ -60,6 +60,11 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/pac')
+def pac():
+    return render_template('pac.html')
+
+
 @app.route('/protected')
 @login_required
 def protected():
