@@ -56,11 +56,13 @@ def logout():
 
 
 @app.route('/home')
+@login_required
 def home():
     return render_template('home.html')
 
 
 @app.route('/pac')
+@login_required
 def pac():
     return render_template('pac.html')
 
