@@ -31,7 +31,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
-                <a href="#"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
+                <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
                     <h6 style="color: #522db2; font-weight: bold">
                         Sesión activa, admin
                     </h6>
@@ -40,10 +40,10 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto active" href="#hero">Home</a>
+                        <a class="nav-link scrollto" href="home">Home</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" href="agregar_asesor">PAC</a>
+                        <a class="nav-link scrollto active" href="">PAC</a>
                     </li>
                     <li>
                         <a class="nav-link scrollto" href="asesores">Asesores</a>
@@ -59,6 +59,7 @@
                             Cerrar sesión<i class="bi bi-box-arrow-left"
                                 style="font-size: 20px; color: #d7411d"></i></a>
                     </li>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -68,28 +69,6 @@
     <!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1>Lorem ipsum dolor sit amet.</h1>
-                    <h2>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Accusantium velit tempore voluptas veniam ill.
-                    </h2>
-                    <div class="d-flex">
-                        <!-- <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
-                        <a href="https://www.youtube.com/watch?v=XgP3yivwQZU&ab_channel=emergiacc"
-                            class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Ver
-                                Video</span></a>
-                    </div>
-                </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img">
-                    <img src="{{ url_for('static', filename='img/hero-img.png') }}" class="img-fluid animated" alt="" />
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- End Hero -->
 
     <main id="main">
@@ -118,6 +97,35 @@
         <!-- End Team Section -->
 
         <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-title">
+                    <span>PAC</span>
+                    <h2>PAC</h2>
+                    <p>Registro de colaborador</p>
+                </div>
+
+                <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
+                    <form action="{{ url_for('guardar_asesor') }}" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            {{ form.nombre(class="form-control", placeholder="nombre") }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio</label>
+                            {{ form.precio(class="form-control", placeholder="precio") }}
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-outline-primary" type="submit">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
         <!-- End Contact Section -->
     </main>
     <!-- End #main -->

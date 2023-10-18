@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
-
 from config import config
+import basedatos
+
+from flask_wtf import FlaskForm
+from wtforms import StringField, IntegerField
+from wtforms.validators import DataRequired
 
 # Models:
 from models.ModelUser import ModelUser
@@ -61,16 +65,43 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/pac')
+@app.route('/asesores')
 @login_required
-def pac():
-    return render_template('pac.html')
+def asesores():
+    return render_template('asesores.html')
 
 
 @app.route('/protected')
 @login_required
 def protected():
     return "<h1>Esta es una vista protegida, solo para usuarios autenticados.</h1>"
+
+
+# CRUD
+# Add Asesor
+class FormAdd(FlaskForm):
+    nombre = StringField('Nombre', validators=[DataRequired()])
+    precio = IntegerField('Precio', validators=[DataRequired()])
+
+
+@app.route('/agregar_asesor')
+@login_required
+def agregar_asesor():
+    form = FormAdd()  # Crea una instancia de tu formulario
+    return render_template("agregar_asesor.html", form=form)
+
+
+@app.route('/guardar_asesor', methods=['POST'])
+def guardar_asesor():
+    nombre = request.form['nombre']
+    precio = request.form['precio']
+    try:
+        basedatos.insertar_asesor(nombre, precio)
+    except Exception as e:
+        print(f"Ha ocurrido el error {e}")
+    finally:
+        return redirect('/agregar_asesor')
+# End Add Asesor
 
 
 def status_401(error):
