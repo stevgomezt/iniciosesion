@@ -71,6 +71,8 @@ def protected():
     return "<h1>Esta es una vista protegida, solo para usuarios autenticados.</h1>"
 
 # Add Asesor
+
+
 class FormAdd(FlaskForm):
     nombre = StringField('Nombre', validators=[DataRequired()])
     precio = IntegerField('Precio', validators=[DataRequired()])
@@ -108,6 +110,20 @@ def asesores():
     finally:
         return render_template('asesores.html', asesores=asesores)
 # End Listar Asesor
+
+# Eliminar Asesor
+
+
+@ app.route("/eliminar_articulo", methods=['POST'])
+def eliminar_articulo():
+    try:
+        basedatos.eliminar_articulo(request.form['id'])
+    except Exception as e:
+        print(f"Ha ocurrido el error {e}")
+    finally:
+
+        return redirect("/asesores")
+# End Eliminar Asesor
 
 
 def status_401(error):

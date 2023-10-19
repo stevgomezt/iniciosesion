@@ -29,7 +29,6 @@
 {% block body %}
 
 <body>
-    <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
@@ -65,40 +64,9 @@
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
-            <!-- .navbar -->
         </div>
     </header>
-    <!-- End Header -->
-
-    <!-- ======= Hero Section ======= -->
-    <!-- End Hero -->
-
     <main id="main">
-        <!-- ======= Featured Services Section ======= -->
-        <!-- End Featured Services Section -->
-
-        <!-- ======= About Section ======= -->
-        <!-- End About Section -->
-
-        <!-- ======= Counts Section ======= -->
-        <!-- End Counts Section -->
-
-        <!-- ======= Services Section ======= -->
-        <!-- End Services Section -->
-
-        <!-- ======= Portfolio Section ======= -->
-        <!-- End Portfolio Section -->
-
-        <!-- ======= Testimonials Section ======= -->
-        <!-- End Testimonials Section -->
-
-        <!-- ======= Cta Section ======= -->
-        <!-- End Cta Section -->
-
-        <!-- ======= Team Section ======= -->
-        <!-- End Team Section -->
-
-        <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-title">
@@ -106,17 +74,14 @@
                     <h2>PAC</h2>
                     <p>Registro de colaborador</p>
                 </div>
-
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
-
-
-
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Precio</th>
+                                <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,23 +90,21 @@
                                 <td>{{ asesor[0] }}</td>
                                 <td>{{ asesor[1] }}</td>
                                 <td>{{ asesor[2] }}</td>
+                                <td>
+                                    <form action="{{url_for('eliminar_articulo', id=asesor[0])}}" method="POST">
+                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                        <input type="hidden" name="id" value="{{asesor[0]}}" />
+                                        <button class="btn btn-outline-danger">Eliminar</button>
+                                    </form>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-
-
-
-
-
                 </div>
             </div>
         </section>
-        <!-- End Contact Section -->
     </main>
-    <!-- End #main -->
-
-    <!-- ======= Footer ======= -->
     <footer id="footer">
         <div class="footer-top">
             <div class="container"></div>
@@ -156,11 +119,8 @@
             </div>
         </div>
     </footer>
-    <!-- End Footer -->
-
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
-
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -180,7 +140,6 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 </body>
-
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -199,6 +158,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}
