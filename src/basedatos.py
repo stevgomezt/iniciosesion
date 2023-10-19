@@ -20,14 +20,14 @@ def insertar_asesor(nombre, precio):
         conexion.close()
 
 
-def listar_articulos():
+def listar_asesores():
     conexion = dame_conexion()
-    articulos = []
+    asesores = []
     with conexion.cursor() as cursor:
         cursor.execute("SELECT id, nombre, precio FROM articulos")
-        articulos = cursor.fetchall()
+        asesores = cursor.fetchall()
         conexion.close()
-        return articulos
+        return asesores
 
 
 def eliminar_articulo(id):

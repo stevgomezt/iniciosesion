@@ -65,19 +65,11 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/asesores')
-@login_required
-def asesores():
-    return render_template('asesores.html')
-
-
 @app.route('/protected')
 @login_required
 def protected():
     return "<h1>Esta es una vista protegida, solo para usuarios autenticados.</h1>"
 
-
-# CRUD
 # Add Asesor
 class FormAdd(FlaskForm):
     nombre = StringField('Nombre', validators=[DataRequired()])
@@ -102,6 +94,20 @@ def guardar_asesor():
     finally:
         return redirect('/agregar_asesor')
 # End Add Asesor
+
+
+# Listar Asesor
+@ app.route('/')
+@ app.route('/asesores')
+@login_required
+def asesores():
+    try:
+        asesores = basedatos.listar_asesores()
+    except Exception as e:
+        print(f"Ha ocurrido el error {e}")
+    finally:
+        return render_template('asesores.html', asesores=asesores)
+# End Listar Asesor
 
 
 def status_401(error):
