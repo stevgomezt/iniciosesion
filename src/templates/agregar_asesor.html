@@ -106,22 +106,209 @@
                 </div>
 
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="{{ url_for('guardar_asesor') }}" method="post">
+                    <form action="{{ url_for('guardar_asesor') }}" method="post" class="php-email-form">
                         {{ form.hidden_tag() }}
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            {{ form.nombre(class="form-control", placeholder="nombre") }}
+                        <div class="row">
+                            <!-- Columna 1 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 1: Información
+                                        Personal</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="numero_documento">Documento de identificación:</label>
+                                    {{ form.numero_documento (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre y apellidos:</label>
+                                    {{ form.nombre (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad">Edad:</label>
+                                    {{ form.edad (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="genero">Género:</label>
+                                    {{ form.genero (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado_civil">Estado civil:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                            </div>
+
+                            <!-- Columna 2 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 2: Datos Personales</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="campo1">Nivel de estudios:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo2">Estrato:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo3">Número de hijos:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo4">Personas a cargo:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo5">Correo electrónico:</label>
+                                    {{ form.estado_civil (class="form-control") }}
+                                </div>
+                            </div>
+                            <!-- Columna 3 -->
+                            <!-- <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 3: Experiencia
+                                        Laboral</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="campo5">Experiencia en call center:</label>
+                                    <input type="text" class="form-control" id="campo5" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo1">Área de experiencia:</label>
+                                    <input type="text" class="form-control" id="campo1" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo2">Tiempo de experiencia en ventas:</label>
+                                    <input type="text" class="form-control" id="campo2" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo3">Experiencia general:</label>
+                                    <input type="text" class="form-control" id="campo3" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo4">Otra área de experiencia:</label>
+                                    <input type="text" class="form-control" id="campo4" required />
+                                </div>
+                            </div> -->
                         </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            {{ form.precio(class="form-control", placeholder="precio") }}
+                        <!-- <div class="container-button">
+                            <div class="fileUpload btn button-30">
+                                <span>Adjuntar perfil</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-paperclip" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+                                </svg>
+                                <input id="uploadBtn" type="file" class="upload" accept="application/pdf"
+                                    onchange="onloader()" />
+                            </div>
+                            <input class="fileUploadRuta" id="uploadFile" placeholder="Ningún archivo seleccionado"
+                                readonly disabled />
+                        </div> -->
+                        <br />
+
+                        <button type="submit" id="btn-resultados" class="button-30">
+                            <span>Ver resultados</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                class="bi bi-bookmark-check bi-paperclip" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                <path
+                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                            </svg>
+                        </button>
+                    </form>
+                    <!-- <form action="{{ url_for('guardar_asesor') }}" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="row">
+                            
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 1: Información
+                                        Personal</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="numero_documento">Documento de identificación:</label>
+                                    {{ form.numero_documento (class="form-control") }}required
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre y apellidos:</label>
+                                    {{ form.nombre (class="form-control") }}required
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad">Edad:</label>
+                                    {{ form.edad (class="form-control") }}required
+                                </div>
+                                <div class="form-group">
+                                    <label for="genero">Género::</label>
+                                    {{ form.genero (class="form-control") }}required
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado_civil">Estado civil:</label>
+                                    {{ form.estado_civil (class="form-control") }}required
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 2: Datos Personales</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="campo1">Nivel de estudios:</label>
+                                    <input type="text" class="form-control" id="campo1" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo2">Estrato:</label>
+                                    <input type="text" class="form-control" id="campo2" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo3">Número de hijos:</label>
+                                    <input type="text" class="form-control" id="campo3" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo4">Personas a cargo:</label>
+                                    <input type="text" class="form-control" id="campo4" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo5">Correo electrónico:</label>
+                                    <input type="text" class="form-control" id="campo5" required />
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 3: Experiencia
+                                        Laboral</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="campo5">Experiencia en call center:</label>
+                                    <input type="text" class="form-control" id="campo5" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo1">Área de experiencia:</label>
+                                    <input type="text" class="form-control" id="campo1" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo2">Tiempo de experiencia en ventas:</label>
+                                    <input type="text" class="form-control" id="campo2" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo3">Experiencia general:</label>
+                                    <input type="text" class="form-control" id="campo3" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="campo4">Otra área de experiencia:</label>
+                                    <input type="text" class="form-control" id="campo4" required />
+                                </div>
+                            </div>
                         </div>
+
                         <div class="mb-3">
                             <button class="btn btn-outline-primary" type="submit">
                                 Guardar
                             </button>
                         </div>
-                    </form>
+                    </form> -->
 
                 </div>
             </div>

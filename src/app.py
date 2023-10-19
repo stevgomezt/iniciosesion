@@ -74,8 +74,12 @@ def protected():
 
 
 class FormAdd(FlaskForm):
-    nombre = StringField('Nombre', validators=[DataRequired()])
-    precio = IntegerField('Precio', validators=[DataRequired()])
+    numero_documento = IntegerField(
+        'numero_documento', validators=[DataRequired()])
+    nombre = StringField('nombre', validators=[DataRequired()])
+    edad = IntegerField('edad', validators=[DataRequired()])
+    genero = StringField('genero', validators=[DataRequired()])
+    estado_civil = StringField('estado_civil', validators=[DataRequired()])
 
 
 @app.route('/agregar_asesor')
@@ -87,14 +91,18 @@ def agregar_asesor():
 
 @app.route('/guardar_asesor', methods=['POST'])
 def guardar_asesor():
+    numero_documento = request.form['numero_documento']
     nombre = request.form['nombre']
-    precio = request.form['precio']
+    edad = request.form['edad']
+    genero = request.form['genero']
+    estado_civil = request.form['estado_civil']
     try:
-        basedatos.insertar_asesor(nombre, precio)
+        basedatos.insertar_asesor(
+            numero_documento, nombre, edad, genero, estado_civil)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:
-        return redirect('/agregar_asesor')
+        return redirect('/asesores')
 # End Add Asesor
 
 
@@ -114,23 +122,23 @@ def asesores():
 # Editar Asesor
 
 
-@ app.route("/editar_articulo/<int:id>")
-def editar_articulo(id):
+@ app.route("/editar_asesor/<int:id>")
+def editar_asesor(id):
     try:
-        asesor = basedatos.obtener_articulo(id)
+        asesor = basedatos.obtener_asesor(id)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:
-        return render_template("editar_articulo.html", asesor=asesor)
+        return render_template("editar_asesor.html", asesor=asesor)
 
 
-@ app.route("/actualizar_articulo", methods=['POST'])
-def actualizar_articulo():
+@ app.route("/actualizar_asesor", methods=['POST'])
+def actualizar_asesor():
     id = request.form["id"]
     nombre = request.form["nombre"]
     precio = request.form["precio"]
     try:
-        basedatos.actualizar_articulo(id, nombre, precio)
+        basedatos.actualizar_asesor(id, nombre, precio)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:

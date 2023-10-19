@@ -10,12 +10,12 @@ def dame_conexion():
         db='flask_login')
 
 
-def insertar_asesor(nombre, precio):
+def insertar_asesor(numero_documento, nombre, edad, genero, estado_civil):
 
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
         cursor.execute(
-            "INSERT INTO articulos(nombre,precio) VALUES (%s, %s)", (nombre, precio))
+            "INSERT INTO asesores(numero_documento, nombre, edad, genero, estado_civil) VALUES (%s, %s, %s, %s, %s)", (numero_documento, nombre, edad, genero, estado_civil))
         conexion.commit()
         conexion.close()
 
@@ -38,7 +38,7 @@ def eliminar_articulo(id):
         conexion.close()
 
 
-def obtener_articulo(id):
+def obtener_asesor(id):
     conexion = dame_conexion()
     asesor = None
     with conexion.cursor() as cursor:
@@ -49,7 +49,7 @@ def obtener_articulo(id):
         return asesor
 
 
-def actualizar_articulo(id, nombre, precio):
+def actualizar_asesor(id, nombre, precio):
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
         cursor.execute(

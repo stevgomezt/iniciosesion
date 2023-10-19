@@ -44,7 +44,7 @@
                         <a class="nav-link scrollto" href="home">Home</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" href="">PAC</a>
+                        <a class="nav-link scrollto" href="agregar_asesor">PAC</a>
                     </li>
                     <li>
                         <a class="nav-link scrollto active" href="asesores">Asesores</a>
@@ -92,7 +92,7 @@
                                 <td>{{ asesor[1] }}</td>
                                 <td>{{ asesor[2] }}</td>
                                 <td>
-                                    <a href="{{ url_for('editar_articulo', id=asesor[0]) }}"
+                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
                                         class="btn btn-outline-primary">Editar</a>
                                 </td>
                                 <td>

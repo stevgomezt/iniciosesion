@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2023 a las 00:50:37
+-- Tiempo de generación: 20-10-2023 a las 00:45:31
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,7 +38,76 @@ CREATE TABLE `articulos` (
 --
 
 INSERT INTO `articulos` (`id`, `nombre`, `precio`) VALUES
-(1, '45', 45);
+(36, 'steven', 99999),
+(37, 'juanjo', 7777);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asesores`
+--
+
+CREATE TABLE `asesores` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `numero_documento` int(11) NOT NULL,
+  `nombre` text DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `genero` text DEFAULT NULL,
+  `estado_civil` text DEFAULT NULL,
+  `correo` text DEFAULT NULL,
+  `telefono` int(11) DEFAULT NULL,
+  `nivel_estudios` text DEFAULT NULL,
+  `estrato` int(11) DEFAULT NULL,
+  `num_hijos` int(11) DEFAULT NULL,
+  `personas_cargo` int(11) DEFAULT NULL,
+  `experiencia` int(11) DEFAULT NULL,
+  `area_experiencia` int(11) DEFAULT NULL,
+  `tiempo_ventas` int(11) DEFAULT NULL,
+  `experiencia_general` int(11) DEFAULT NULL,
+  `otra_area_experiencia` text DEFAULT NULL,
+  `nombre_asesor` text DEFAULT NULL,
+  `perfil_natural_r` int(11) DEFAULT NULL,
+  `perfil_natural_e` int(11) DEFAULT NULL,
+  `perfil_natural_p` int(11) DEFAULT NULL,
+  `perfil_natural_n` int(11) DEFAULT NULL,
+  `perfil_natural_a` int(11) DEFAULT NULL,
+  `perfil_natural_r_ie` int(11) DEFAULT NULL,
+  `perfil_natural_e_ie` int(11) DEFAULT NULL,
+  `perfil_natural_p_ie` int(11) DEFAULT NULL,
+  `perfil_natural_n_ie` int(11) DEFAULT NULL,
+  `perfil_natural_a_ie` int(11) DEFAULT NULL,
+  `intensidad_perfil_natural` int(11) DEFAULT NULL,
+  `energia_natural` int(11) DEFAULT NULL,
+  `perfil_adaptado_r` int(11) DEFAULT NULL,
+  `perfil_adaptado_e` int(11) DEFAULT NULL,
+  `perfil_adaptado_p` int(11) DEFAULT NULL,
+  `perfil_adaptado_n` int(11) DEFAULT NULL,
+  `perfil_adaptado_a` int(11) DEFAULT NULL,
+  `perfil_adaptado_r_ie` int(11) DEFAULT NULL,
+  `perfil_adaptado_e_ie` int(11) DEFAULT NULL,
+  `perfil_adaptado_p_ie` int(11) DEFAULT NULL,
+  `perfil_adaptado_n_ie` int(11) DEFAULT NULL,
+  `perfil_adaptado_a_ie` int(11) DEFAULT NULL,
+  `toma_decisiones_adaptado` int(11) DEFAULT NULL,
+  `intensidad_perfil_adaptado` int(11) DEFAULT NULL,
+  `energia_adaptado` int(11) DEFAULT NULL,
+  `equilibrio_de_energia` int(11) DEFAULT NULL,
+  `modificacion_perfil` int(11) DEFAULT NULL,
+  `tiempo_formulario` int(11) DEFAULT NULL,
+  `unidad_tiempo` text DEFAULT NULL,
+  `color` text DEFAULT NULL,
+  `nombre_perfil` text DEFAULT NULL,
+  `eje_dominante` text DEFAULT NULL,
+  `perfil` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `asesores`
+--
+
+INSERT INTO `asesores` (`id`, `numero_documento`, `nombre`, `edad`, `genero`, `estado_civil`, `correo`, `telefono`, `nivel_estudios`, `estrato`, `num_hijos`, `personas_cargo`, `experiencia`, `area_experiencia`, `tiempo_ventas`, `experiencia_general`, `otra_area_experiencia`, `nombre_asesor`, `perfil_natural_r`, `perfil_natural_e`, `perfil_natural_p`, `perfil_natural_n`, `perfil_natural_a`, `perfil_natural_r_ie`, `perfil_natural_e_ie`, `perfil_natural_p_ie`, `perfil_natural_n_ie`, `perfil_natural_a_ie`, `intensidad_perfil_natural`, `energia_natural`, `perfil_adaptado_r`, `perfil_adaptado_e`, `perfil_adaptado_p`, `perfil_adaptado_n`, `perfil_adaptado_a`, `perfil_adaptado_r_ie`, `perfil_adaptado_e_ie`, `perfil_adaptado_p_ie`, `perfil_adaptado_n_ie`, `perfil_adaptado_a_ie`, `toma_decisiones_adaptado`, `intensidad_perfil_adaptado`, `energia_adaptado`, `equilibrio_de_energia`, `modificacion_perfil`, `tiempo_formulario`, `unidad_tiempo`, `color`, `nombre_perfil`, `eje_dominante`, `perfil`) VALUES
+(1, 111111, '111111', 111, '111', '111', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 22222222, '22222', 22222, '22222', '222', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -134,6 +203,13 @@ ALTER TABLE `articulos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `asesores`
+--
+ALTER TABLE `asesores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `numero_documento` (`numero_documento`);
+
+--
 -- Indices de la tabla `contacts`
 --
 ALTER TABLE `contacts`
@@ -154,7 +230,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `articulos`
 --
 ALTER TABLE `articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `asesores`
+--
+ALTER TABLE `asesores`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `contacts`
