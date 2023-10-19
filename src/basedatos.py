@@ -40,13 +40,13 @@ def eliminar_articulo(id):
 
 def obtener_articulo(id):
     conexion = dame_conexion()
-    articulo = None
+    asesor = None
     with conexion.cursor() as cursor:
         cursor.execute(
             "SELECT id, nombre, precio FROM articulos WHERE id = %s", (id))
-        articulo = cursor.fetchone()
+        asesor = cursor.fetchone()
         conexion.close()
-        return articulo
+        return asesor
 
 
 def actualizar_articulo(id, nombre, precio):

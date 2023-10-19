@@ -111,8 +111,35 @@ def asesores():
         return render_template('asesores.html', asesores=asesores)
 # End Listar Asesor
 
-# Eliminar Asesor
+# Editar Asesor
 
+
+@ app.route("/editar_articulo/<int:id>")
+def editar_articulo(id):
+    try:
+        asesor = basedatos.obtener_articulo(id)
+    except Exception as e:
+        print(f"Ha ocurrido el error {e}")
+    finally:
+        return render_template("editar_articulo.html", asesor=asesor)
+
+
+@ app.route("/actualizar_articulo", methods=['POST'])
+def actualizar_articulo():
+    id = request.form["id"]
+    nombre = request.form["nombre"]
+    precio = request.form["precio"]
+    try:
+        basedatos.actualizar_articulo(id, nombre, precio)
+    except Exception as e:
+        print(f"Ha ocurrido el error {e}")
+    finally:
+        return redirect("/asesores")
+
+# End Editar Asesor
+
+
+# Eliminar Asesor
 
 @ app.route("/eliminar_articulo", methods=['POST'])
 def eliminar_articulo():
