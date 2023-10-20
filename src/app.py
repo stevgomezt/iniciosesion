@@ -164,10 +164,27 @@ def editar_asesor(id):
 @ app.route("/actualizar_asesor", methods=['POST'])
 def actualizar_asesor():
     id = request.form["id"]
-    nombre = request.form["nombre"]
-    precio = request.form["precio"]
+    numero_documento = request.form['numero_documento']
+    nombre = request.form['nombre']
+    edad = request.form['edad']
+    genero = request.form['genero']
+    estado_civil = request.form['estado_civil']
+
+    correo = request.form['correo']
+    telefono = request.form['telefono']
+    nivel_estudios = request.form['nivel_estudios']
+    estrato = request.form['estrato']
+    num_hijos = request.form['num_hijos']
+    personas_cargo = request.form['personas_cargo']
+
+    experiencia = request.form['experiencia']
+    area_experiencia = request.form['area_experiencia']
+    tiempo_ventas = request.form['tiempo_ventas']
+    experiencia_general = request.form['experiencia_general']
+    otra_area_experiencia = request.form['otra_area_experiencia']
     try:
-        basedatos.actualizar_asesor(id, nombre, precio)
+        basedatos.actualizar_asesor(id, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato,
+                                    num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:

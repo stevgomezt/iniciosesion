@@ -107,24 +107,116 @@
 
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
 
-                    <form action="{{url_for('actualizar_asesor')}}" method="post">
+                    <form action="{{url_for('actualizar_asesor')}}" method="post" class="php-email-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="id" value="{{asesor[0]}}">
-                        <div class="mb-3">
-                            <label for="codigo" class="form-label">Codigo</label>
-                            <input type="text" name="id" id="codigo" value="{{asesor[0]}}" class="form-control"
-                                placeholder="codigo" readonly />
+
+                        <div class="row">
+                            <!-- Columna 1 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 1: Información
+                                        Personal</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="numero_documento" class="form-label">Numero_documento</label>
+                                    <input type="text" name="numero_documento" id="numero_documento"
+                                        value="{{asesor[1]}}" class="form-control" placeholder="numero_documento" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" value="{{asesor[2]}}"
+                                        class="form-control" placeholder="nombre" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="edad" class="form-label">Edad</label>
+                                    <input type="text" name="edad" id="edad" value="{{asesor[3]}}" class="form-control"
+                                        placeholder="edad" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="genero" class="form-label">Genero</label>
+                                    <input type="text" name="genero" id="genero" value="{{asesor[4]}}"
+                                        class="form-control" placeholder="genero" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="estado_civil" class="form-label">Estado_civil</label>
+                                    <input type="text" name="estado_civil" id="estado_civil" value="{{asesor[5]}}"
+                                        class="form-control" placeholder="estado_civil" required />
+                                </div>
+                            </div>
+                            <!-- Columna 2 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 2: Datos Personales</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="correo" class="form-label">Correo</label>
+                                    <input type="text" name="correo" id="correo" value="{{asesor[6]}}"
+                                        class="form-control" placeholder="correo" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" class="form-label">Telefono</label>
+                                    <input type="text" name="telefono" id="telefono" value="{{asesor[7]}}"
+                                        class="form-control" placeholder="telefono" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="nivel_estudios" class="form-label">Nivel_estudios</label>
+                                    <input type="text" name="nivel_estudios" id="nivel_estudios" value="{{asesor[8]}}"
+                                        class="form-control" placeholder="nivel_estudios" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="estrato" class="form-label">Estrato</label>
+                                    <input type="text" name="estrato" id="estrato" value="{{asesor[9]}}"
+                                        class="form-control" placeholder="estrato" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="num_hijos" class="form-label">Num_hijos</label>
+                                    <input type="text" name="num_hijos" id="num_hijos" value="{{asesor[10]}}"
+                                        class="form-control" placeholder="num_hijos" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="personas_cargo" class="form-label">Personas_cargo</label>
+                                    <input type="text" name="personas_cargo" id="personas_cargo" value="{{asesor[11]}}"
+                                        class="form-control" placeholder="personas_cargo" />
+                                </div>
+                            </div>
+                            <!-- Columna 3 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 3: Experiencia
+                                        Laboral</strong>
+                                </h6>
+                                <div class="form-group">
+                                    <label for="experiencia" class="form-label">Experiencia</label>
+                                    <input type="text" name="experiencia" id="experiencia" value="{{asesor[12]}}"
+                                        class="form-control" placeholder="experiencia" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="area_experiencia" class="form-label">Area_experiencia</label>
+                                    <input type="text" name="area_experiencia" id="area_experiencia"
+                                        value="{{asesor[13]}}" class="form-control" placeholder="area_experiencia"
+                                        required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="tiempo_ventas" class="form-label">Tiempo_ventas</label>
+                                    <input type="text" name="tiempo_ventas" id="tiempo_ventas" value="{{asesor[14]}}"
+                                        class="form-control" placeholder="tiempo_ventas" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="experiencia_general" class="form-label">Experiencia_general</label>
+                                    <input type="text" name="experiencia_general" id="experiencia_general"
+                                        value="{{asesor[15]}}" class="form-control" placeholder="experiencia_general"
+                                        required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="otra_area_experiencia" class="form-label">Otra_area_experiencia</label>
+                                    <input type="text" name="otra_area_experiencia" id="otra_area_experiencia"
+                                        value="{{asesor[15]}}" class="form-control" placeholder="otra_area_experiencia"
+                                        required />
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" name="nombre" id="nombre" value="{{asesor[1]}}" class="form-control"
-                                placeholder="nombre" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="precio" class="form-label">Precio</label>
-                            <input type="text" name="precio" id="precio" value="{{asesor[2]}}" class="form-control"
-                                placeholder="precio" required />
-                        </div>
+
                         <div class="mb-3">
 
                             <button class="btn btn-outline-primary" type="submit">
