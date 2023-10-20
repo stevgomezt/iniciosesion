@@ -78,19 +78,29 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
+                                <th style="display: none;">Codigo</th>
+                                <th>numero_documento</th>
+                                <th>nombre</th>
+                                <th>edad</th>
+                                <th>genero</th>
+                                <th>estado_civil</th>
+                                <th>correo</th>
+                                <th>telefono</th>
+                                <th>nivel_estudios</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for asesor in asesores %}
                             <tr>
-                                <td>{{ asesor[0] }}</td>
+                                <td style="display: none;">{{ asesor[0] }}</td>
                                 <td>{{ asesor[1] }}</td>
                                 <td>{{ asesor[2] }}</td>
+                                <td>{{ asesor[3] }}</td>
+                                <td>{{ asesor[4] }}</td>
+                                <td>{{ asesor[5] }}</td>
+                                <td>{{ asesor[6] }}</td>
+                                <td>{{ asesor[7] }}</td>
+                                <td>{{ asesor[8] }}</td>
                                 <td>
                                     <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
                                         class="btn btn-outline-primary">Editar</a>

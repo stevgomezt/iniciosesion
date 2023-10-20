@@ -24,7 +24,7 @@ def listar_asesores():
     conexion = dame_conexion()
     asesores = []
     with conexion.cursor() as cursor:
-        cursor.execute("SELECT id, nombre, precio FROM articulos")
+        cursor.execute("SELECT id, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia FROM asesores")
         asesores = cursor.fetchall()
         conexion.close()
         return asesores
@@ -33,7 +33,7 @@ def listar_asesores():
 def eliminar_articulo(id):
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
-        cursor.execute("DELETE FROM articulos WHERE id = %s", (id))
+        cursor.execute("DELETE FROM asesores WHERE id = %s", (id))
         conexion.commit()
         conexion.close()
 
