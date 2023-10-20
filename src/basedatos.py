@@ -10,12 +10,12 @@ def dame_conexion():
         db='flask_login')
 
 
-def insertar_asesor(numero_documento, nombre, edad, genero, estado_civil):
+def insertar_asesor(numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia):
 
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
         cursor.execute(
-            "INSERT INTO asesores(numero_documento, nombre, edad, genero, estado_civil) VALUES (%s, %s, %s, %s, %s)", (numero_documento, nombre, edad, genero, estado_civil))
+            "INSERT INTO asesores(numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia))
         conexion.commit()
         conexion.close()
 

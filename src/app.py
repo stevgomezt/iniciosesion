@@ -81,6 +81,22 @@ class FormAdd(FlaskForm):
     genero = StringField('genero', validators=[DataRequired()])
     estado_civil = StringField('estado_civil', validators=[DataRequired()])
 
+    correo = StringField('correo', validators=[DataRequired()])
+    telefono = StringField('telefono', validators=[DataRequired()])
+    nivel_estudios = StringField('nivel_estudios', validators=[DataRequired()])
+    estrato = StringField('estrato', validators=[DataRequired()])
+    num_hijos = StringField('num_hijos', validators=[DataRequired()])
+    personas_cargo = StringField('personas_cargo', validators=[DataRequired()])
+
+    experiencia = StringField('experiencia', validators=[DataRequired()])
+    area_experiencia = StringField(
+        'area_experiencia', validators=[DataRequired()])
+    tiempo_ventas = StringField('tiempo_ventas', validators=[DataRequired()])
+    experiencia_general = StringField(
+        'experiencia_general', validators=[DataRequired()])
+    otra_area_experiencia = StringField(
+        'otra_area_experiencia', validators=[DataRequired()])
+
 
 @app.route('/agregar_asesor')
 @login_required
@@ -96,9 +112,22 @@ def guardar_asesor():
     edad = request.form['edad']
     genero = request.form['genero']
     estado_civil = request.form['estado_civil']
+
+    correo = request.form['correo']
+    telefono = request.form['telefono']
+    nivel_estudios = request.form['nivel_estudios']
+    estrato = request.form['estrato']
+    num_hijos = request.form['num_hijos']
+    personas_cargo = request.form['personas_cargo']
+
+    experiencia = request.form['experiencia']
+    area_experiencia = request.form['area_experiencia']
+    tiempo_ventas = request.form['tiempo_ventas']
+    experiencia_general = request.form['experiencia_general']
+    otra_area_experiencia = request.form['otra_area_experiencia']
     try:
         basedatos.insertar_asesor(
-            numero_documento, nombre, edad, genero, estado_civil)
+            numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:
