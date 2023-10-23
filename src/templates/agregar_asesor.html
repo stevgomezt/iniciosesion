@@ -112,8 +112,7 @@
                             <!-- Columna 1 -->
                             <div class="col-md-4">
                                 <h6>
-                                    <strong>Categoría 1: Información
-                                        Personal</strong>
+                                    <strong>Categoría 1: Perfil Personal y Académicol</strong>
                                 </h6>
                                 <div class="form-group">
                                     <label for="numero_documento">Documento de identificación:</label>
@@ -135,16 +134,16 @@
                                     <label for="estado_civil">Estado civil:</label>
                                     {{ form.estado_civil (class="form-control") }}
                                 </div>
-                            </div>
-                            <!-- Columna 2 -->
-                            <div class="col-md-4">
-                                <h6>
-                                    <strong>Categoría 2: Datos Personales</strong>
-                                </h6>
                                 <div class="form-group">
                                     <label for="nivel_estudios">Nivel de estudios:</label>
                                     {{ form.nivel_estudios (class="form-control") }}
                                 </div>
+                            </div>
+                            <!-- Columna 2 -->
+                            <div class="col-md-4">
+                                <h6>
+                                    <strong>Categoría 2: Datos de Contacto y Familiares</strong>
+                                </h6>
                                 <div class="form-group">
                                     <label for="estrato">Estrato:</label>
                                     {{ form.estrato (class="form-control") }}
@@ -194,7 +193,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="container-button">
+                        <h6 style="margin-bottom: 15px; margin-top: 15px;">
+                            <strong>Categoria 4: Perfil PDA</strong>
+                        </h6>
+                        <div class="container-button">
                             <div class="fileUpload btn button-30">
                                 <span>Adjuntar perfil</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
@@ -207,10 +209,10 @@
                             </div>
                             <input class="fileUploadRuta" id="uploadFile" placeholder="Ningún archivo seleccionado"
                                 readonly disabled />
-                        </div> -->
+                        </div>
                         <br />
 
-                        <button type="submit" id="btn-resultados" class="button-30">
+                        <button type="submit" id="btn-resultados" class="button-30" style="display: none;">
                             <span>Ver resultados</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
                                 class="bi bi-bookmark-check bi-paperclip" viewBox="0 0 16 16">
