@@ -276,3 +276,14 @@ document.getElementById("uploadBtn").addEventListener("change", function () {
         btnResultados.style.display = "none"; // Ocultar el botón si no hay archivos seleccionados
     }
 });
+
+// Validaciones en template editar
+document
+    .getElementById("numero_documento")
+    .addEventListener("input", function () {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+
+document.getElementById("nombre").addEventListener("input", function () {
+    this.value = this.value.replace(/[^A-Za-z\s]+/g, "");
+});

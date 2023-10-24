@@ -74,8 +74,7 @@ def protected():
 
 
 class FormAdd(FlaskForm):
-    numero_documento = IntegerField(
-        'numero_documento', validators=[DataRequired()])
+    numero_documento = IntegerField('numero_documento', validators=[DataRequired()])
     nombre = StringField('nombre', validators=[DataRequired()])
     edad = IntegerField('edad', validators=[DataRequired()])
     genero = StringField('genero', validators=[DataRequired()])
@@ -84,15 +83,15 @@ class FormAdd(FlaskForm):
     correo = StringField('correo', validators=[DataRequired()])
     telefono = StringField('telefono', validators=[DataRequired()])
     nivel_estudios = StringField('nivel_estudios', validators=[DataRequired()])
-    estrato = StringField('estrato', validators=[DataRequired()])
-    num_hijos = StringField('num_hijos', validators=[DataRequired()])
-    personas_cargo = StringField('personas_cargo', validators=[DataRequired()])
+    estrato = IntegerField('estrato', validators=[DataRequired()])
+    num_hijos = IntegerField('num_hijos', validators=[DataRequired()])
+    personas_cargo = IntegerField('personas_cargo', validators=[DataRequired()])
 
-    experiencia = StringField('experiencia', validators=[DataRequired()])
+    experiencia = IntegerField('experiencia', validators=[DataRequired()])
     area_experiencia = StringField(
         'area_experiencia', validators=[DataRequired()])
-    tiempo_ventas = StringField('tiempo_ventas', validators=[DataRequired()])
-    experiencia_general = StringField(
+    tiempo_ventas = IntegerField('tiempo_ventas', validators=[DataRequired()])
+    experiencia_general = IntegerField(
         'experiencia_general', validators=[DataRequired()])
     otra_area_experiencia = StringField(
         'otra_area_experiencia', validators=[DataRequired()])

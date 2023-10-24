@@ -84,18 +84,26 @@
                                 <h6>
                                     <strong>Categoría 1: Perfil Personal y Académicol</strong>
                                 </h6>
+
                                 <div class="form-group">
                                     <label for="numero_documento">Documento de identificación:</label>
-                                    {{ form.numero_documento (class="form-control") }}
+                                    {{ form.numero_documento (class="form-control", type="text", oninput="this.value =
+                                    this.value.replace(/[^0-9]/g, '')") }}
                                 </div>
+
                                 <div class="form-group">
                                     <label for="nombre">Nombre del asesor:</label>
-                                    {{ form.nombre (class="form-control") }}
+                                    {{ form.nombre (class="form-control", pattern="[A-Za-z\s]+", oninput="this.value =
+                                    this.value.replace(/[\d]/g, '')") }}
                                 </div>
+
+
                                 <div class="form-group">
                                     <label for="edad">Edad:</label>
-                                    {{ form.edad (class="form-control") }}
+                                    {{ form.edad(class="form-control", type="text", oninput="this.value =
+                                    this.value.replace(/[^0-9]/g, '')", maxlength="2") }}
                                 </div>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="genero">Género:</label>
                                     <div class="input-container">
@@ -108,6 +116,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="estado_civil">Estado civil:</label>
                                     <div class="input-container">
@@ -148,6 +157,7 @@
                                 <h6>
                                     <strong>Categoría 2: Datos de Contacto y Familiares</strong>
                                 </h6>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="estrato">Estrato:</label>
                                     <div class="input-container">
@@ -165,20 +175,27 @@
 
                                 <div class="form-group">
                                     <label for="num_hijos">Número de hijos:</label>
-                                    {{ form.num_hijos (class="form-control") }}
+                                    {{ form.num_hijos (class="form-control", type="text", oninput="this.value =
+                                    this.value.replace(/[^0-9]/g, '')", maxlength="2") }}
                                 </div>
+
                                 <div class="form-group">
                                     <label for="personas_cargo">Personas a cargo:</label>
-                                    {{ form.personas_cargo (class="form-control") }}
+                                    {{ form.personas_cargo (class="form-control", type="text", oninput="this.value =
+                                    this.value.replace(/[^0-9]/g, '')", maxlength="2") }}
                                 </div>
+
                                 <div class="form-group">
                                     <label for="correo">Correo electrónico:</label>
-                                    {{ form.correo (class="form-control") }}
+                                    {{ form.correo (class="form-control", type="email") }}
                                 </div>
+
                                 <div class="form-group">
                                     <label for="telefono">Teléfono:</label>
-                                    {{ form.telefono (class="form-control") }}
+                                    {{ form.telefono (class="form-control", type="text", oninput="this.value =
+                                    this.value.replace(/[^0-9]/g, '').substring(0, 10)", maxlength="10") }}
                                 </div>
+
                             </div>
                             <!-- Columna 3 -->
                             <div class="col-md-4">
