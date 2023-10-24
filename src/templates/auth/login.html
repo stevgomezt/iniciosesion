@@ -1,15 +1,13 @@
 {% extends './base.html' %} {% block title %}Login{% endblock %} {% block
 customCSS %} {% endblock %} {% block body %}
+
 <body>
     <div class="container">
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
                     <h3>
-                        <img
-                            src="{{ url_for('static', filename='img/emergia.svg') }}"
-                            alt=""
-                        />
+                        <img src="{{ url_for('static', filename='img/emergia.svg') }}" alt="" />
                     </h3>
                     <p style="color: #444444; text-align: justify">
                         Bienvenido a nuestra plataforma de Recursos Humanos, el
@@ -21,11 +19,7 @@ customCSS %} {% endblock %} {% block body %}
                         experiencia laboral.
                     </p>
                 </div>
-                <img
-                    src="{{ url_for('static', filename='img/log.svg') }}"
-                    alt=""
-                    class="image"
-                />
+                <img src="{{ url_for('static', filename='img/log.svg') }}" alt="" class="image" />
             </div>
         </div>
 
@@ -34,52 +28,25 @@ customCSS %} {% endblock %} {% block body %}
                 <form class="form-signin" action="/login" method="POST">
                     <h2 class="title">
                         iniciar sesión
-                        <img
-                            src="{{ url_for('static', filename='img/logodoble.png') }}"
-                            alt=""
-                            style="width: 60px"
-                        />
+                        <img src="{{ url_for('static', filename='img/logodoble.png') }}" alt="" style="width: 60px" />
                     </h2>
                     {% with messages = get_flashed_messages() %} {% if messages
                     %}
                     <br />
                     {% for message in messages %}
-                    <div
-                        class="alert alert-primary alert-dismissible"
-                        role="alert"
-                    >
+                    <div class="alert alert-primary alert-dismissible" role="alert">
                         <strong>{{ message }}</strong>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     {% endfor %} {% endif %} {% endwith %}
-                    <input
-                        type="hidden"
-                        name="csrf_token"
-                        value="{{ csrf_token() }}"
-                    />
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="username"
-                            name="username"
-                            placeholder="Username"
-                        />
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password"
-                            placeholder="Password"
-                        />
+                        <input type="password" class="form-control" name="password" placeholder="Password" />
                     </div>
                     <button class="btn solid" type="submit">Ingresar</button>
                     <p class="social-text">Visita nuestras redes sociales</p>
