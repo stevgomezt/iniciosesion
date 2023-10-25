@@ -74,7 +74,8 @@ def protected():
 
 
 class FormAdd(FlaskForm):
-    numero_documento = IntegerField('numero_documento', validators=[DataRequired()])
+    numero_documento = IntegerField(
+        'numero_documento', validators=[DataRequired()])
     nombre = StringField('nombre', validators=[DataRequired()])
     edad = IntegerField('edad', validators=[DataRequired()])
     genero = StringField('genero', validators=[DataRequired()])
@@ -85,7 +86,8 @@ class FormAdd(FlaskForm):
     nivel_estudios = StringField('nivel_estudios', validators=[DataRequired()])
     estrato = IntegerField('estrato', validators=[DataRequired()])
     num_hijos = IntegerField('num_hijos', validators=[DataRequired()])
-    personas_cargo = IntegerField('personas_cargo', validators=[DataRequired()])
+    personas_cargo = IntegerField(
+        'personas_cargo', validators=[DataRequired()])
 
     experiencia = IntegerField('experiencia', validators=[DataRequired()])
     area_experiencia = StringField(
@@ -95,6 +97,70 @@ class FormAdd(FlaskForm):
         'experiencia_general', validators=[DataRequired()])
     otra_area_experiencia = StringField(
         'otra_area_experiencia', validators=[DataRequired()])
+
+    # Datos adicionales
+
+    perfil_natural_r = IntegerField(
+        'perfil_natural_r', validators=[DataRequired()])
+    perfil_natural_e = IntegerField(
+        'perfil_natural_e', validators=[DataRequired()])
+    perfil_natural_p = IntegerField(
+        'perfil_natural_p', validators=[DataRequired()])
+    perfil_natural_n = IntegerField(
+        'perfil_natural_n', validators=[DataRequired()])
+    perfil_natural_a = IntegerField(
+        'perfil_natural_a', validators=[DataRequired()])
+    perfil_natural_r_ie = IntegerField(
+        'perfil_natural_r_ie', validators=[DataRequired()])
+    perfil_natural_e_ie = IntegerField(
+        'perfil_natural_e_ie', validators=[DataRequired()])
+    perfil_natural_p_ie = IntegerField(
+        'perfil_natural_p_ie', validators=[DataRequired()])
+    perfil_natural_n_ie = IntegerField(
+        'perfil_natural_n_ie', validators=[DataRequired()])
+    perfil_natural_a_ie = IntegerField(
+        'perfil_natural_a_ie', validators=[DataRequired()])
+    intensidad_perfil_natural = IntegerField(
+        'intensidad_perfil_natural', validators=[DataRequired()])
+    energia_natural = IntegerField(
+        'energia_natural', validators=[DataRequired()])
+    perfil_adaptado_r = IntegerField(
+        'perfil_adaptado_r', validators=[DataRequired()])
+    perfil_adaptado_e = IntegerField(
+        'perfil_adaptado_e', validators=[DataRequired()])
+    perfil_adaptado_p = IntegerField(
+        'perfil_adaptado_p', validators=[DataRequired()])
+    perfil_adaptado_n = IntegerField(
+        'perfil_adaptado_n', validators=[DataRequired()])
+    perfil_adaptado_a = IntegerField(
+        'perfil_adaptado_a', validators=[DataRequired()])
+    perfil_adaptado_r_ie = IntegerField(
+        'perfil_adaptado_r_ie', validators=[DataRequired()])
+    perfil_adaptado_e_ie = IntegerField(
+        'perfil_adaptado_e_ie', validators=[DataRequired()])
+    perfil_adaptado_p_ie = IntegerField(
+        'perfil_adaptado_p_ie', validators=[DataRequired()])
+    perfil_adaptado_n_ie = IntegerField(
+        'perfil_adaptado_n_ie', validators=[DataRequired()])
+    perfil_adaptado_a_ie = IntegerField(
+        'perfil_adaptado_a_ie', validators=[DataRequired()])
+    toma_decisiones_adaptado = IntegerField(
+        'toma_decisiones_adaptado', validators=[DataRequired()])
+    intensidad_perfil_adaptado = IntegerField(
+        'intensidad_perfil_adaptado', validators=[DataRequired()])
+    energia_adaptado = IntegerField(
+        'energia_adaptado', validators=[DataRequired()])
+    equilibrio_de_energia = IntegerField(
+        'equilibrio_de_energia', validators=[DataRequired()])
+    modificacion_perfil = IntegerField(
+        'modificacion_perfil', validators=[DataRequired()])
+    tiempo_formulario = IntegerField(
+        'tiempo_formulario', validators=[DataRequired()])
+    unidad_tiempo = IntegerField('unidad_tiempo', validators=[DataRequired()])
+    color = IntegerField('color', validators=[DataRequired()])
+    nombre_perfil = IntegerField('nombre_perfil', validators=[DataRequired()])
+    eje_dominante = IntegerField('eje_dominante', validators=[DataRequired()])
+    perfil = IntegerField('perfil', validators=[DataRequired()])
 
 
 @app.route('/agregar_asesor')
@@ -124,9 +190,44 @@ def guardar_asesor():
     tiempo_ventas = request.form['tiempo_ventas']
     experiencia_general = request.form['experiencia_general']
     otra_area_experiencia = request.form['otra_area_experiencia']
+
+    perfil_natural_r = request.form['perfil_natural_r']
+    perfil_natural_e = request.form['perfil_natural_e']
+    perfil_natural_p = request.form['perfil_natural_p']
+    perfil_natural_n = request.form['perfil_natural_n']
+    perfil_natural_a = request.form['perfil_natural_a']
+    perfil_natural_r_ie = request.form['perfil_natural_r_ie']
+    perfil_natural_e_ie = request.form['perfil_natural_e_ie']
+    perfil_natural_p_ie = request.form['perfil_natural_p_ie']
+    perfil_natural_n_ie = request.form['perfil_natural_n_ie']
+    perfil_natural_a_ie = request.form['perfil_natural_a_ie']
+    intensidad_perfil_natural = request.form['intensidad_perfil_natural']
+    energia_natural = request.form['energia_natural']
+    perfil_adaptado_r = request.form['perfil_adaptado_r']
+    perfil_adaptado_e = request.form['perfil_adaptado_e']
+    perfil_adaptado_p = request.form['perfil_adaptado_p']
+    perfil_adaptado_n = request.form['perfil_adaptado_n']
+    perfil_adaptado_a = request.form['perfil_adaptado_a']
+    perfil_adaptado_r_ie = request.form['perfil_adaptado_r_ie']
+    perfil_adaptado_e_ie = request.form['perfil_adaptado_e_ie']
+    perfil_adaptado_p_ie = request.form['perfil_adaptado_p_ie']
+    perfil_adaptado_n_ie = request.form['perfil_adaptado_n_ie']
+    perfil_adaptado_a_ie = request.form['perfil_adaptado_a_ie']
+    toma_decisiones_adaptado = request.form['toma_decisiones_adaptado']
+    intensidad_perfil_adaptado = request.form['intensidad_perfil_adaptado']
+    energia_adaptado = request.form['energia_adaptado']
+    equilibrio_de_energia = request.form['equilibrio_de_energia']
+    modificacion_perfil = request.form['modificacion_perfil']
+    tiempo_formulario = request.form['tiempo_formulario']
+    unidad_tiempo = request.form['unidad_tiempo']
+    color = request.form['color']
+    nombre_perfil = request.form['nombre_perfil']
+    eje_dominante = request.form['eje_dominante']
+    perfil = request.form['perfil']
+
     try:
         basedatos.insertar_asesor(
-            numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia)
+            numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, perfil_natural_r, perfil_natural_e, perfil_natural_p, perfil_natural_n, perfil_natural_a, perfil_natural_r_ie, perfil_natural_e_ie, perfil_natural_p_ie, perfil_natural_n_ie, perfil_natural_a_ie, intensidad_perfil_natural, energia_natural, perfil_adaptado_r, perfil_adaptado_e, perfil_adaptado_p, perfil_adaptado_n, perfil_adaptado_a, perfil_adaptado_r_ie, perfil_adaptado_e_ie, perfil_adaptado_p_ie, perfil_adaptado_n_ie, perfil_adaptado_a_ie, toma_decisiones_adaptado, intensidad_perfil_adaptado, energia_adaptado, equilibrio_de_energia, modificacion_perfil, tiempo_formulario, unidad_tiempo, color, nombre_perfil, eje_dominante, perfil)
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:

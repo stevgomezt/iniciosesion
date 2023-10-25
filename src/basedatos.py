@@ -10,12 +10,12 @@ def dame_conexion():
         db='flask_login')
 
 
-def insertar_asesor(numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia):
+def insertar_asesor(numero_documento,nombre,edad,genero,estado_civil,correo,telefono,nivel_estudios,estrato,num_hijos,personas_cargo,experiencia,area_experiencia,tiempo_ventas,experiencia_general,otra_area_experiencia,perfil_natural_r,perfil_natural_e,perfil_natural_p,perfil_natural_n,perfil_natural_a,perfil_natural_r_ie,perfil_natural_e_ie,perfil_natural_p_ie,perfil_natural_n_ie,perfil_natural_a_ie,intensidad_perfil_natural,energia_natural,perfil_adaptado_r,perfil_adaptado_e,perfil_adaptado_p,perfil_adaptado_n,perfil_adaptado_a,perfil_adaptado_r_ie,perfil_adaptado_e_ie,perfil_adaptado_p_ie,perfil_adaptado_n_ie,perfil_adaptado_a_ie,toma_decisiones_adaptado,intensidad_perfil_adaptado,energia_adaptado,equilibrio_de_energia,modificacion_perfil,tiempo_formulario,unidad_tiempo,color,nombre_perfil,eje_dominante,perfil):
 
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
         cursor.execute(
-            "INSERT INTO asesores(numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia))
+            "INSERT INTO asesores(numero_documento,nombre,edad,genero,estado_civil,correo,telefono,nivel_estudios,estrato,num_hijos,personas_cargo,experiencia,area_experiencia,tiempo_ventas,experiencia_general,otra_area_experiencia,perfil_natural_r,perfil_natural_e,perfil_natural_p,perfil_natural_n,perfil_natural_a,perfil_natural_r_ie,perfil_natural_e_ie,perfil_natural_p_ie,perfil_natural_n_ie,perfil_natural_a_ie,intensidad_perfil_natural,energia_natural,perfil_adaptado_r,perfil_adaptado_e,perfil_adaptado_p,perfil_adaptado_n,perfil_adaptado_a,perfil_adaptado_r_ie,perfil_adaptado_e_ie,perfil_adaptado_p_ie,perfil_adaptado_n_ie,perfil_adaptado_a_ie,toma_decisiones_adaptado,intensidad_perfil_adaptado,energia_adaptado,equilibrio_de_energia,modificacion_perfil,tiempo_formulario,unidad_tiempo,color,nombre_perfil,eje_dominante,perfil) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (numero_documento,nombre,edad,genero,estado_civil,correo,telefono,nivel_estudios,estrato,num_hijos,personas_cargo,experiencia,area_experiencia,tiempo_ventas,experiencia_general,otra_area_experiencia,perfil_natural_r,perfil_natural_e,perfil_natural_p,perfil_natural_n,perfil_natural_a,perfil_natural_r_ie,perfil_natural_e_ie,perfil_natural_p_ie,perfil_natural_n_ie,perfil_natural_a_ie,intensidad_perfil_natural,energia_natural,perfil_adaptado_r,perfil_adaptado_e,perfil_adaptado_p,perfil_adaptado_n,perfil_adaptado_a,perfil_adaptado_r_ie,perfil_adaptado_e_ie,perfil_adaptado_p_ie,perfil_adaptado_n_ie,perfil_adaptado_a_ie,toma_decisiones_adaptado,intensidad_perfil_adaptado,energia_adaptado,equilibrio_de_energia,modificacion_perfil,tiempo_formulario,unidad_tiempo,color,nombre_perfil,eje_dominante,perfil))
         conexion.commit()
         conexion.close()
 
@@ -47,15 +47,6 @@ def obtener_asesor(id):
         asesor = cursor.fetchone()
         conexion.close()
         return asesor
-
-
-# def actualizar_asesor(id, nombre, precio):
-#     conexion = dame_conexion()
-#     with conexion.cursor() as cursor:
-#         cursor.execute(
-#             "UPDATE articulos SET nombre = %s, precio = %s WHERE id = %s", (id, nombre, precio))
-#         conexion.commit()
-#         conexion.close()
 
 
 def actualizar_asesor(id, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia):
