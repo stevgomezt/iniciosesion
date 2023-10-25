@@ -102,11 +102,12 @@
                                     <input type="text" name="edad" id="edad" value="{{asesor[3]}}" class="form-control"
                                         placeholder="edad" required />
                                 </div>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="genero">Género:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="genero" id="genero" required>
-                                            <option value="" disabled selected>{{asesor[4]}}</option>
+                                            <option value="{{asesor[4]}}" selected>{{asesor[4]}}</option>
                                             <option value="masculino" {% if genero=='masculino' %}selected{% endif %}>
                                                 Masculino</option>
                                             <option value="femenino" {% if genero=='femenino' %}selected{% endif %}>
@@ -119,7 +120,7 @@
                                     <label class="label-titles" for="estado_civil">Estado civil:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="estado_civil" id="estado_civil" required>
-                                            <option value="" disabled selected>{{asesor[5]}}</option>
+                                            <option value="{{asesor[5]}}" selected>{{asesor[5]}}</option>
                                             <option value="soltero" {% if estado_civil=='soltero' %}selected{% endif %}>
                                                 Soltero/a</option>
                                             <option value="casado" {% if estado_civil=='casado' %}selected{% endif %}>
@@ -136,7 +137,7 @@
                                     <label class="label-titles" for="nivel_estudios">Nivel de estudios:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="nivel_estudios" id="nivel_estudios" required>
-                                            <option value="" disabled selected>{{asesor[8]}}</option>
+                                            <option value="{{asesor[8]}}" selected>{{asesor[8]}}</option>
                                             <option value="bachillerato" {% if nivel_estudios=='bachillerato'
                                                 %}selected{% endif %}>Bachillerato</option>
                                             <option value="tecnico" {% if nivel_estudios=='tecnico' %}selected{% endif
@@ -159,7 +160,7 @@
                                     <label class="label-titles" for="estrato">Estrato:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="estrato" id="estrato" required>
-                                            <option value="" disabled selected>{{asesor[9]}}</option>
+                                            <option value="{{asesor[9]}}" selected>{{asesor[9]}}</option>
                                             <option value="1" {% if estrato=='1' %}selected{% endif %}>1</option>
                                             <option value="2" {% if estrato=='2' %}selected{% endif %}>2</option>
                                             <option value="3" {% if estrato=='3' %}selected{% endif %}>3</option>
@@ -201,7 +202,7 @@
                                     <div class="input-container">
                                         <select class="form-control" name="experiencia_general" id="experiencia_general"
                                             required>
-                                            <option value="" disabled selected>{{asesor[15]}}</option>
+                                            <option value="{{asesor[15]}}" selected>{{asesor[15]}}</option>
                                             <option value="0" {% if experiencia_general=='0' %}selected{% endif %}>
                                                 0</option>
                                             <option value="1" {% if experiencia_general=='1' %}selected{% endif %}>
@@ -222,7 +223,7 @@
                                     <div class="input-container">
                                         <select class="form-control" name="area_experiencia" id="area_experiencia"
                                             required>
-                                            <option value="" disabled selected>{{asesor[13]}}</option>
+                                            <option value="{{asesor[13]}}" selected>{{asesor[13]}}</option>
                                             <option value="bo" {% if area_experiencia=='bo' %}selected{% endif %}>
                                                 BO
                                             </option>
@@ -246,7 +247,7 @@
                                         ventas:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="tiempo_ventas" id="tiempo_ventas" required>
-                                            <option value="" disabled selected>{{asesor[14]}}</option>
+                                            <option value="{{asesor[14]}}" selected>{{asesor[14]}}</option>
                                             <option value="0" {% if tiempo_ventas=='0' %}selected{% endif %}>0
                                             </option>
                                             <option value="1" {% if tiempo_ventas=='1' %}selected{% endif %}>1
@@ -267,7 +268,7 @@
                                         <label class="label-titles" for="experiencia">Años de experiencia:</label>
                                         <div class="input-container">
                                             <select class="form-control" name="experiencia" id="experiencia" required>
-                                                <option value="" disabled selected>{{asesor[12]}}</option>
+                                                <option value="{{asesor[12]}}" selected>{{asesor[12]}}</option>
                                                 <option value="0" {% if experiencia=='0' %}selected{% endif %}>0
                                                 </option>
                                                 <option value="1" {% if experiencia=='1' %}selected{% endif %}>1
@@ -290,7 +291,7 @@
                                     <div class="input-container">
                                         <select class="form-control" name="otra_area_experiencia"
                                             id="otra_area_experiencia" required>
-                                            <option value="" disabled selected>{{asesor[16]}}</option>option>
+                                            <option value="{{asesor[16]}}" selected>{{asesor[16]}}</option>option>
                                             <option value="areas administrativas" {% if
                                                 otra_area_experiencia=='areas administrativas' %}selected{% endif %}>
                                                 Áreas administrativas
