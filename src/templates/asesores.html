@@ -116,6 +116,27 @@
                         </tbody>
                     </table>
                 </div>
+
+                {% if total_pages > 1 %}
+                <div class="pagination">
+                    {% if page > 1 %}
+                    <a href="{{ url_for('asesores', page=1) }}">Primera</a>
+                    {% endif %}
+                    {% if page > 1 %}
+                    <a href="{{ url_for('asesores', page=page-1) }}">Anterior</a>
+                    {% endif %}
+                    <span class="current-page">Página {{ page }} de {{ total_pages }}, mostrando registros del {{ start_record }} al {{ end_record }}</span>
+                    {% if page < total_pages %} <a href="{{ url_for('asesores', page=page+1) }}">Siguiente</a>
+                        {% endif %}
+                        {% if page < total_pages %} <a href="{{ url_for('asesores', page=total_pages) }}">Última</a>
+                            {% endif %}
+                </div>
+                <p>Total de registros: {{ total_records }}</p>
+                {% endif %}
+                
+
+
+
             </div>
         </section>
     </main>

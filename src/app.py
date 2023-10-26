@@ -4,6 +4,9 @@ from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
 from config import config
 import basedatos
+from basedatos import count_asesores, listar_asesores
+import math
+from math import ceil
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
@@ -236,16 +239,41 @@ def guardar_asesor():
 
 
 # Listar Asesor
-@ app.route('/')
-@ app.route('/asesores')
+# @ app.route('/')
+# @ app.route('/asesores')
+# @login_required
+# def asesores():
+#     try:
+#         asesores = basedatos.listar_asesores()
+#     except Exception as e:
+#         print(f"Ha ocurrido el error {e}")
+#     finally:
+#         return render_template('asesores.html', asesores=asesores)
+# Define la cantidad de registros por página
+
+# ROWS_PER_PAGE = 10
+
+@app.route('/asesores')
 @login_required
 def asesores():
-    try:
-        asesores = basedatos.listar_asesores()
-    except Exception as e:
-        print(f"Ha ocurrido el error {e}")
-    finally:
-        return render_template('asesores.html', asesores=asesores)
+    page = int(request.args.get('page', 1))
+    per_page = 7
+
+    total_asesores = basedatos.count_asesores()
+    total_pages = math.ceil(total_asesores / per_page)
+
+    if page > total_pages:
+        return redirect(url_for('asesores', page=total_pages))
+
+    asesores = basedatos.listar_asesores(page, per_page)
+
+    # Realiza los cálculos antes de renderizar la plantilla
+    start_record = ((page - 1) * per_page) + 1
+    end_record = min(page * per_page, total_asesores)
+    total_records = count_asesores()
+
+    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records)
+
 # End Listar Asesor
 
 # Editar Asesor

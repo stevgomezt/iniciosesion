@@ -2,6 +2,7 @@
 C:\Users\sgomezt\Documents\Proyectos\flask-login-mysql
 virtualenv -p python3 env
 .\env\Scripts\activate
+deactivate
 pip install -r requirements.txt
 python .\src\app.py
 http://127.0.0.1:5000/
