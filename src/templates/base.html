@@ -3,18 +3,22 @@
 {% block head %}
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    {% block customCSS %} {% endblock %}
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
-
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logodoble.png') }}" />
-    <!-- Iconos -->
+    {% block customCSS %}{% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logodoble.png') }}">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 </head>
-{% endblock %} {% block body %} {% endblock %}
+{% endblock %}
+
+{% block body %}
+
+<body>
+    <!-- Aquí va el contenido de la página -->
+</body>
+{% endblock %}
 
 </html>

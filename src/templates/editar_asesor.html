@@ -1,41 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
 {% block head %}
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    {% block customCSS %} {% endblock %}
+    {% block customCSS %}{% endblock %}
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logodoble.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/logodoble.png') }}">
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet" />
+        rel="stylesheet">
     <!-- boxicons -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <!-- glightbox -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.css">
     <!-- swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
 </head>
-{% endblock %} {% block body %}
+{% endblock %}
+
+{% block body %}
 
 <body>
     <!-- ======= Header ======= -->
+    <!-- Header -->
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
-                <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
-                    <h6 style="color: #522db2; font-weight: bold">
-                        Sesión activa, admin
-                    </h6>
-                </a>
+                <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" /></a>
+                <h6 style="color: #522db2; font-weight: bold">
+                    Sesión activa, admin
+                </h6>
             </h1>
             <nav id="navbar" class="navbar">
                 <ul>
@@ -65,8 +69,9 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <main id="main">
-        <!-- ======= Edit Section ======= -->
+        <!-- Form Section -->
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-title">
@@ -74,9 +79,7 @@
                     <h2>PAC</h2>
                     <p>Registro de colaborador</p>
                 </div>
-
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
-
                     <form action="{{url_for('actualizar_asesor')}}" method="post" class="php-email-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="id" value="{{asesor[0]}}">
@@ -313,21 +316,20 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Submit Button -->
                         <div class="mb-3">
-
                             <button class="btn btn-outline-primary" type="submit">
-                                Guardar</button>
+                                Guardar
+                            </button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </section>
-        <!-- End Edit Section -->
+        <!-- End Form Section -->
     </main>
 
-    <!-- ======= Footer ======= -->
+    <!-- Footer -->
     <footer id="footer">
         <div class="footer-top">
             <div class="container"></div>
@@ -337,53 +339,24 @@
                 &copy; Copyright <strong><span>Emergia</span></strong>.
             </div>
             <div class="credits">
-                Designed by
-                <a href="#">Área de Analítica e inteligencia de negocios</a>
+                Designed by <a href="#">Área de Analítica e Inteligencia de Negocios</a>
             </div>
         </div>
     </footer>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-    <!-- bootstrap -->
+    <!-- JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-    <!-- boxicons -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <!-- glightbox -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
-    <!-- swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- purecounter -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <!-- isotope -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-    <!-- purecounterjs -->
     <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-    <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
-
-<!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-<!-- boxicons -->
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<!-- glightbox -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
-<!-- swiper -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<!-- purecounter -->
-<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<!-- isotope -->
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-<!-- purecounterjs -->
-<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}
+
+</html>

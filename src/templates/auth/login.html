@@ -1,5 +1,7 @@
-{% extends './base.html' %} {% block title %}Login{% endblock %} {% block
-customCSS %} {% endblock %} {% block body %}
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block customCSS %}{% endblock %}
+{% block body %}
 
 <body>
     <div class="container">
@@ -23,22 +25,24 @@ customCSS %} {% endblock %} {% block body %}
             </div>
         </div>
 
-        <div class="forms-container">
+        <div class "forms-container">
             <div class="signin-signup">
                 <form class="form-signin" action="/login" method="POST">
                     <h2 class="title">
                         iniciar sesión
                         <img src="{{ url_for('static', filename='img/logodoble.png') }}" alt="" style="width: 60px" />
                     </h2>
-                    {% with messages = get_flashed_messages() %} {% if messages
-                    %}
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
                     <br />
                     {% for message in messages %}
                     <div class="alert alert-primary alert-dismissible" role="alert">
                         <strong>{{ message }}</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    {% endfor %} {% endif %} {% endwith %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                     <div class="input-field">
                         <i class="fas fa-user"></i>
