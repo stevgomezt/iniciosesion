@@ -224,21 +224,24 @@ def guardar_asesor():
 @login_required
 def asesores():
     page = int(request.args.get('page', 1))
+    search = request.args.get('search', None)
     per_page = 7
 
-    total_asesores = basedatos.count_asesores()
+    total_asesores = basedatos.count_asesores(search)
     total_pages = math.ceil(total_asesores / per_page)
 
     if page > total_pages:
-        return redirect(url_for('asesores', page=total_pages))
+        # Pasar el término de búsqueda como argumento
+        return redirect(url_for('asesores', page=total_pages, search=search))
 
-    asesores = basedatos.listar_asesores_pages(page, per_page)
+    asesores = basedatos.listar_asesores_pages(page, per_page, search)
 
     start_record = ((page - 1) * per_page) + 1
     end_record = min(page * per_page, total_asesores)
-    total_records = count_asesores()
+    total_records = count_asesores(search)
 
-    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records)
+    # Pasar el término de búsqueda a la plantilla
+    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records, search=search)
 
 
 @app.route("/editar_asesor/<int:id>")

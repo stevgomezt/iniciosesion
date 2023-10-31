@@ -61,15 +61,23 @@ def actualizar_asesor(id, numero_documento, nombre, edad, genero, estado_civil, 
     conexion.close()
 
 
-def listar_asesores_pages(page, per_page):
+def listar_asesores_pages(page, per_page, search=None):
     conexion = dame_conexion()
     start = (page - 1) * per_page
     end = start + per_page
-    query = "SELECT * FROM asesores LIMIT %s, %s"
+    if search:
+        query = """SELECT * FROM asesores 
+                   WHERE numero_documento LIKE %s OR nombre LIKE %s
+                   LIMIT %s, %s"""
+        search_pattern = "%" + search + "%"
+        params = (search_pattern, search_pattern, start, per_page)
+    else:
+        query = "SELECT * FROM asesores LIMIT %s, %s"
+        params = (start, per_page)
     asesores = []
     try:
         with conexion.cursor() as cursor:
-            cursor.execute(query, (start, per_page))
+            cursor.execute(query, params)
             asesores = cursor.fetchall()
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
@@ -78,17 +86,29 @@ def listar_asesores_pages(page, per_page):
         return asesores
 
 
-def count_asesores():
+def count_asesores(search=None):
     conexion = dame_conexion()
+    if search:
+        query = """SELECT COUNT(*) FROM asesores 
+                   WHERE numero_documento LIKE %s OR nombre LIKE %s"""
+        search_pattern = "%" + search + "%"
+        params = (search_pattern, search_pattern)
+    else:
+        query = "SELECT COUNT(*) FROM asesores"
+        params = ()
     try:
         with conexion.cursor() as cursor:
-            cursor.execute("SELECT COUNT(*) FROM asesores")
+            cursor.execute(query, params)
             total_records = cursor.fetchone()[0]
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:
         conexion.close()
         return total_records
+    
+    
+    
+
 
 
 if __name__ == '__main__':
