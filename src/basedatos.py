@@ -61,7 +61,7 @@ def actualizar_asesor(id, numero_documento, nombre, edad, genero, estado_civil, 
     conexion.close()
 
 
-def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niveles_estudios=None, generos=None):
+def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niveles_estudios=None, generos=None, areas_experiencia=None):
     conexion = dame_conexion()
     start = (page - 1) * per_page
     end = start + per_page
@@ -96,6 +96,12 @@ def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niv
             ",".join(["%s"] * len(generos)) + ")"
         params.extend(generos)
 
+    # Si hay areas de experiencia seleccionados, añadir condiciones para area_experiencia
+    if areas_experiencia:
+        query += " AND area_experiencia IN (" + \
+            ",".join(["%s"] * len(areas_experiencia)) + ")"
+        params.extend(areas_experiencia)
+
     # Añadir la cláusula LIMIT para la paginación
     query += " LIMIT %s, %s"
     params.extend([start, per_page])
@@ -112,7 +118,7 @@ def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niv
         return asesores
 
 
-def count_asesores(search=None, estados_civiles=None, niveles_estudios=None, generos=None):
+def count_asesores(search=None, estados_civiles=None, niveles_estudios=None, generos=None, areas_experiencia=None):
     conexion = dame_conexion()
 
     # Lista para almacenar los parámetros de la consulta
@@ -144,6 +150,12 @@ def count_asesores(search=None, estados_civiles=None, niveles_estudios=None, gen
         query += " AND genero IN (" + \
             ",".join(["%s"] * len(generos)) + ")"
         params.extend(generos)
+
+    # Si hay areas de experiencia seleccionados, añadir condiciones para area_experiencia
+    if areas_experiencia:
+        query += " AND area_experiencia IN (" + \
+            ",".join(["%s"] * len(areas_experiencia)) + ")"
+        params.extend(areas_experiencia)
 
     try:
         with conexion.cursor() as cursor:

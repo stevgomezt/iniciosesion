@@ -71,79 +71,127 @@
                     <p>Registro de colaborador</p>
                 </div>
                 <form action="{{ url_for('asesores') }}" method="GET" class="mb-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search"
-                            placeholder="Buscar por número de documento" value="{{ request.args.get('search', '') }}">
-
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Estado Civil
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {% for estado in ['soltero', 'casado', 'divorciado', 'viudo'] %}
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="estado_civil"
-                                            value="{{ estado }}" id="{{ estado }}" {% if
-                                            request.args.getlist('estado_civil') and estado in
-                                            request.args.getlist('estado_civil') %}checked{% endif %}>
-                                        <label class="form-check-label" for="{{ estado }}">
-                                            {{ estado.capitalize() }}
-                                        </label>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
+                    <div class="row align-items-center"
+                        style="border: solid 1px;color: #a5a5a5;border-radius: 10px;padding: 15px;">
+                        <!-- Campo de búsqueda -->
+                        <div class="col-lg-4 col-md-6">
+                            <input type="text" class="form-control" name="search"
+                                placeholder="Buscar por nombre o número de documento"
+                                value="{{ request.args.get('search', '') }}">
                         </div>
 
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                nivel_estudios
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {% for estudios in ['bachillerato', 'tecnico', 'tecnologo', 'universitario'] %}
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="nivel_estudios"
-                                            value="{{ estudios }}" id="{{ estudios }}" {% if
-                                            request.args.getlist('nivel_estudios') and estudios in
-                                            request.args.getlist('nivel_estudios') %}checked{% endif %}>
-                                        <label class="form-check-label" for="{{ estudios }}">
-                                            {{ estudios.capitalize() }}
-                                        </label>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
+                        <!-- Dropdown Género -->
+                        <div class="col-lg-2 col-md-2">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
+                                    id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Género
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton3">
+                                    {% for generos in ['masculino', 'femenino', 'otro'] %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="genero"
+                                                value="{{ generos }}" id="{{ generos }}" {% if generos in
+                                                request.args.getlist('genero') %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ generos }}">
+                                                {{ generos.capitalize() }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                genero
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                {% for generos in ['masculino', 'femenino', 'otro'] %}
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="genero"
-                                            value="{{ generos }}" id="{{ generos }}" {% if generos in
-                                            request.args.getlist('genero') %}checked{% endif %}>
-                                        <label class="form-check-label" for="{{ generos }}">
-                                            {{ generos.capitalize() }}
-                                        </label>
-                                    </div>
-                                </li>
-                                {% endfor %}
-                            </ul>
+                        <!-- Dropdown Estado Civil -->
+                        <div class="col-lg-2 col-md-2">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
+                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Estado Civil
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                    {% for estado in ['soltero', 'casado', 'divorciado', 'viudo'] %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="estado_civil"
+                                                value="{{ estado }}" id="{{ estado }}" {% if
+                                                request.args.getlist('estado_civil') and estado in
+                                                request.args.getlist('estado_civil') %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ estado }}">
+                                                {{ estado.capitalize() }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         </div>
 
+                        <!-- Dropdown Nivel de Estudios -->
+                        <div class="col-lg-2 col-md-2">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
+                                    id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Nivel de Estudios
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton2">
+                                    {% for estudios in ['bachillerato', 'tecnico', 'tecnologo', 'universitario'] %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="nivel_estudios"
+                                                value="{{ estudios }}" id="{{ estudios }}" {% if
+                                                request.args.getlist('nivel_estudios') and estudios in
+                                                request.args.getlist('nivel_estudios') %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ estudios }}">
+                                                {{ estudios.capitalize() }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
 
-                        <button type="submit" class="btn btn-primary">Buscar</button>
+                        <!-- Dropdown Área de Experiencia -->
+                        <div class="col-lg-2 col-md-2">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
+                                    id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Área de Experiencia
+                                </button>
+                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton4">
+                                    {% for area in ['bo', 'cobranza', 'retencion', 'servicio al cliente','venta cruzada','ventas'] %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="area_experiencia"
+                                                value="{{ area }}" id="{{ area }}" {% if
+                                                request.args.getlist('area_experiencia') and area in
+                                                request.args.getlist('area_experiencia') %}checked{% endif %}>
+                                            <label class="form-check-label" for="{{ area }}">
+                                                {{ area.capitalize() }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Botón de búsqueda -->
+                        <div class="col-lg-1 col-md-12 mt-3 mt-lg-0">
+                            <button type="submit"
+                                class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
+                                style="margin: 15px 0 0 0; padding: 10px 20px;">
+                                <i class="bi bi-funnel" style="margin-right: 5px;"></i>
+                                <span>Filtrar</span>
+                            </button>
+                        </div>
+
                     </div>
                 </form>
+
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
                     <table class="table">
                         <thead>
@@ -191,23 +239,23 @@
                 {% if total_pages > 1 %}
                 <div class="pagination">
                     <a
-                        href="{{ url_for('asesores', page=1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero')) }}">Primera</a>
+                        href="{{ url_for('asesores', page=1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Primera</a>
 
                     {% if page > 1 %}
                     <a
-                        href="{{ url_for('asesores', page=page-1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero')) }}">Anterior</a>
+                        href="{{ url_for('asesores', page=page-1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Anterior</a>
                     {% endif %}
 
                     <span class="current-page">Página {{ page }} de {{ total_pages }}, mostrando registros del {{
                         start_record }} al {{ end_record }}</span>
 
                     {% if page < total_pages %} <a
-                        href="{{ url_for('asesores', page=page+1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero')) }}">
+                        href="{{ url_for('asesores', page=page+1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">
                         Siguiente</a>
                         {% endif %}
 
                         {% if page < total_pages %} <a
-                            href="{{ url_for('asesores', page=total_pages, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero')) }}">
+                            href="{{ url_for('asesores', page=total_pages, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">
                             Última</a>
                             {% endif %}
                 </div>
