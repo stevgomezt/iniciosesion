@@ -225,23 +225,34 @@ def guardar_asesor():
 def asesores():
     page = int(request.args.get('page', 1))
     search = request.args.get('search', None)
+    # Recuperar los estados civiles seleccionados
+    estados_civiles = request.args.getlist('estado_civil')
+    # Recuperar los niveles de estudios seleccionados
+    niveles_estudios = request.args.getlist('nivel_estudios')
+    # Recuperar los generos seleccionados
+    generos = request.args.getlist('genero')
     per_page = 7
 
-    total_asesores = basedatos.count_asesores(search)
+    total_asesores = basedatos.count_asesores(
+        search, estados_civiles, niveles_estudios, generos)  # Pasar estados_civiles, niveles_estudios y generos como argumentos
     total_pages = math.ceil(total_asesores / per_page)
 
     if page > total_pages:
-        # Pasar el término de búsqueda como argumento
-        return redirect(url_for('asesores', page=total_pages, search=search))
+        # Pasar el término de búsqueda, estados civiles, niveles de estudios y generos como argumentos
+        return redirect(url_for('asesores', page=total_pages, search=search,
+                        **{'estado_civil': estados_civiles, 'nivel_estudios': niveles_estudios, 'genero': generos}))
 
-    asesores = basedatos.listar_asesores_pages(page, per_page, search)
+    asesores = basedatos.listar_asesores_pages(
+        page, per_page, search, estados_civiles, niveles_estudios, generos)  # Pasar estados_civiles, niveles_estudios y generos como argumentos
 
     start_record = ((page - 1) * per_page) + 1
     end_record = min(page * per_page, total_asesores)
-    total_records = count_asesores(search)
+    # Pasar estados_civiles, niveles_estudios y generos como argumentos
+    total_records = count_asesores(
+        search, estados_civiles, niveles_estudios, generos)
 
-    # Pasar el término de búsqueda a la plantilla
-    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records, search=search)
+    # Pasar el término de búsqueda, estados civiles y niveles de estudios a la plantilla
+    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records, search=search, estados_civiles=estados_civiles, niveles_estudios=niveles_estudios, generos=generos)
 
 
 @app.route("/editar_asesor/<int:id>")

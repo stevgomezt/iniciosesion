@@ -61,19 +61,45 @@ def actualizar_asesor(id, numero_documento, nombre, edad, genero, estado_civil, 
     conexion.close()
 
 
-def listar_asesores_pages(page, per_page, search=None):
+def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niveles_estudios=None, generos=None):
     conexion = dame_conexion()
     start = (page - 1) * per_page
     end = start + per_page
+
+    # Lista para almacenar los parámetros de la consulta
+    params = []
+
+    # Comenzar la construcción de la consulta
+    query = "SELECT * FROM asesores WHERE 1=1"
+
+    # Si hay un término de búsqueda, añadir condiciones para numero_documento y nombre
     if search:
-        query = """SELECT * FROM asesores 
-                   WHERE numero_documento LIKE %s OR nombre LIKE %s
-                   LIMIT %s, %s"""
+        query += " AND (numero_documento LIKE %s OR nombre LIKE %s)"
         search_pattern = "%" + search + "%"
-        params = (search_pattern, search_pattern, start, per_page)
-    else:
-        query = "SELECT * FROM asesores LIMIT %s, %s"
-        params = (start, per_page)
+        params.extend([search_pattern, search_pattern])
+
+    # Si hay estados civiles seleccionados, añadir condiciones para estado_civil
+    if estados_civiles:
+        query += " AND estado_civil IN (" + \
+            ",".join(["%s"] * len(estados_civiles)) + ")"
+        params.extend(estados_civiles)
+
+    # Si hay niveles de estudios seleccionados, añadir condiciones para nivel_estudios
+    if niveles_estudios:
+        query += " AND nivel_estudios IN (" + \
+            ",".join(["%s"] * len(niveles_estudios)) + ")"
+        params.extend(niveles_estudios)
+
+    # Si hay generos seleccionados, añadir condiciones para genero
+    if generos:
+        query += " AND genero IN (" + \
+            ",".join(["%s"] * len(generos)) + ")"
+        params.extend(generos)
+
+    # Añadir la cláusula LIMIT para la paginación
+    query += " LIMIT %s, %s"
+    params.extend([start, per_page])
+
     asesores = []
     try:
         with conexion.cursor() as cursor:
@@ -86,16 +112,39 @@ def listar_asesores_pages(page, per_page, search=None):
         return asesores
 
 
-def count_asesores(search=None):
+def count_asesores(search=None, estados_civiles=None, niveles_estudios=None, generos=None):
     conexion = dame_conexion()
+
+    # Lista para almacenar los parámetros de la consulta
+    params = []
+
+    # Comenzar la construcción de la consulta
+    query = "SELECT COUNT(*) FROM asesores WHERE 1=1"
+
+    # Si hay un término de búsqueda, añadir condiciones para numero_documento y nombre
     if search:
-        query = """SELECT COUNT(*) FROM asesores 
-                   WHERE numero_documento LIKE %s OR nombre LIKE %s"""
+        query += " AND (numero_documento LIKE %s OR nombre LIKE %s)"
         search_pattern = "%" + search + "%"
-        params = (search_pattern, search_pattern)
-    else:
-        query = "SELECT COUNT(*) FROM asesores"
-        params = ()
+        params.extend([search_pattern, search_pattern])
+
+    # Si hay estados civiles seleccionados, añadir condiciones para estado_civil
+    if estados_civiles:
+        query += " AND estado_civil IN (" + \
+            ",".join(["%s"] * len(estados_civiles)) + ")"
+        params.extend(estados_civiles)
+
+    # Si hay niveles de estudios seleccionados, añadir condiciones para nivel_estudios
+    if niveles_estudios:
+        query += " AND nivel_estudios IN (" + \
+            ",".join(["%s"] * len(niveles_estudios)) + ")"
+        params.extend(niveles_estudios)
+
+    # Si hay generos seleccionados, añadir condiciones para genero
+    if generos:
+        query += " AND genero IN (" + \
+            ",".join(["%s"] * len(generos)) + ")"
+        params.extend(generos)
+
     try:
         with conexion.cursor() as cursor:
             cursor.execute(query, params)
@@ -105,10 +154,6 @@ def count_asesores(search=None):
     finally:
         conexion.close()
         return total_records
-    
-    
-    
-
 
 
 if __name__ == '__main__':
