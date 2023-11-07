@@ -267,15 +267,18 @@ document.getElementById("uploadBtn").onchange = function () {
     document.getElementById("uploadFile").value = this.value;
 };
 
-// Visualizar boton resultados al elegir un archivo para procesar
+// Visualizar sectionResultados al elegir un archivo para procesar
 document.getElementById("uploadBtn").addEventListener("change", function () {
-    var btnResultados = document.getElementById("btn-resultados");
+    console.log("Evento change detectado"); // Esto debería aparecer en la consola cuando seleccionas un archivo
+    var sectionResultados = document.getElementById("sectionResultados");
     if (this.files.length > 0) {
-        btnResultados.style.display = "block"; // Mostrar el botón si se seleccionó un archivo
+        console.log("Archivo seleccionado"); // Esto confirmará que realmente se seleccionó un archivo
+        sectionResultados.style.display = "block";
     } else {
-        btnResultados.style.display = "none"; // Ocultar el botón si no hay archivos seleccionados
+        sectionResultados.style.display = "none";
     }
 });
+
 
 // Validaciones en template editar
 document

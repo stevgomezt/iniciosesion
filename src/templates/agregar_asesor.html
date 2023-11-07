@@ -72,7 +72,12 @@
                 <div class="section-title">
                     <span>PAC</span>
                     <h2>PAC</h2>
-                    <p>Registro de colaborador</p>
+                    <h2 style="
+                    font-size: 15PX;
+                    margin: 0;
+                    padding: 0;
+                ">PERFILAMIENTO ANALITICO DEL COLABORADOR</h2>
+                    <!-- <h5>Perfilamiento analitico del colaborador</h5> -->
                 </div>
 
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
@@ -87,13 +92,15 @@
 
                                 <div class="form-group">
                                     <label for="numero_documento">Documento de identificación:</label>
-                                    {{ form.numero_documento (class="form-control", type="text", oninput="this.value =
+                                    {{ form.numero_documento (class="form-control", type="text", oninput="this.value
+                                    =
                                     this.value.replace(/[^0-9]/g, '')") }}
                                 </div>
 
                                 <div class="form-group">
                                     <label for="nombre">Nombre del asesor:</label>
-                                    {{ form.nombre (class="form-control", pattern="[A-Za-z\s]+", oninput="this.value =
+                                    {{ form.nombre (class="form-control", pattern="[A-Za-z\s]+", oninput="this.value
+                                    =
                                     this.value.replace(/[\d]/g, '')") }}
                                 </div>
 
@@ -163,12 +170,18 @@
                                     <div class="input-container">
                                         <select class="form-control" name="estrato" id="estrato" required>
                                             <option value="" disabled selected>Seleccionar</option>
-                                            <option value="1" {% if form.estrato=='1' %}selected{% endif %}>1</option>
-                                            <option value="2" {% if form.estrato=='2' %}selected{% endif %}>2</option>
-                                            <option value="3" {% if form.estrato=='3' %}selected{% endif %}>3</option>
-                                            <option value="4" {% if form.estrato=='4' %}selected{% endif %}>4</option>
-                                            <option value="5" {% if form.estrato=='5' %}selected{% endif %}>5</option>
-                                            <option value="6" {% if form.estrato=='6' %}selected{% endif %}>6</option>
+                                            <option value="1" {% if form.estrato=='1' %}selected{% endif %}>1
+                                            </option>
+                                            <option value="2" {% if form.estrato=='2' %}selected{% endif %}>2
+                                            </option>
+                                            <option value="3" {% if form.estrato=='3' %}selected{% endif %}>3
+                                            </option>
+                                            <option value="4" {% if form.estrato=='4' %}selected{% endif %}>4
+                                            </option>
+                                            <option value="5" {% if form.estrato=='5' %}selected{% endif %}>5
+                                            </option>
+                                            <option value="6" {% if form.estrato=='6' %}selected{% endif %}>6
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -204,7 +217,8 @@
                                         Laboral</strong>
                                 </h6>
                                 <div class="form-group">
-                                    <label class="label-titles" for="experiencia_general">Experiencia general:</label>
+                                    <label class="label-titles" for="experiencia_general">Experiencia
+                                        general:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="experiencia_general" id="experiencia_general"
                                             required>
@@ -243,7 +257,8 @@
                                                 Servicio
                                                 al cliente</option>
                                             <option value="venta cruzada" {% if form.area_experiencia=='venta cruzada'
-                                                %}selected{% endif %}>Venta cruzada</option>
+                                                %}selected{% endif %}>Venta
+                                                cruzada</option>
                                             <option value="ventas" {% if form.area_experiencia=='ventas' %}selected{%
                                                 endif %}>Ventas</option>
                                         </select>
@@ -278,17 +293,23 @@
                                         <div class="input-container">
                                             <select class="form-control" name="experiencia" id="experiencia" required>
                                                 <option value="" disabled selected>Seleccionar</option>
-                                                <option value="0" {% if form.experiencia=='0' %}selected{% endif %}>0
+                                                <option value="0" {% if form.experiencia=='0' %}selected{% endif %}>
+                                                    0
                                                 </option>
-                                                <option value="1" {% if form.experiencia=='1' %}selected{% endif %}>1
+                                                <option value="1" {% if form.experiencia=='1' %}selected{% endif %}>
+                                                    1
                                                 </option>
-                                                <option value="2" {% if form.experiencia=='2' %}selected{% endif %}>2
+                                                <option value="2" {% if form.experiencia=='2' %}selected{% endif %}>
+                                                    2
                                                 </option>
-                                                <option value="3" {% if form.experiencia=='3' %}selected{% endif %}>3
+                                                <option value="3" {% if form.experiencia=='3' %}selected{% endif %}>
+                                                    3
                                                 </option>
-                                                <option value="4" {% if form.experiencia=='4' %}selected{% endif %}>4
+                                                <option value="4" {% if form.experiencia=='4' %}selected{% endif %}>
+                                                    4
                                                 </option>
-                                                <option value="5" {% if form.experiencia=='5' %}selected{% endif %}>5
+                                                <option value="5" {% if form.experiencia=='5' %}selected{% endif %}>
+                                                    5
                                                 </option>
                                             </select>
                                         </div>
@@ -524,38 +545,40 @@
                                     this.value.replace(/[^0-9]/g, '')") }}
                                 </div>
                             </div>
-
                         </div>
-                        <h6 style="margin-bottom: 15px; margin-top: 15px;">
-                            <strong>Categoria 4: Perfil PDA</strong>
-                        </h6>
-                        <div class="container-button">
-                            <div class="fileUpload btn button-30">
-                                <span>Adjuntar perfil</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                                    class="bi bi-paperclip" viewBox="0 0 16 16">
-                                    <path
-                                        d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
-                                </svg>
-                                <input id="uploadBtn" type="file" class="upload" accept="application/pdf"
-                                    onchange="onloader()" />
+                        <section class="section-categoria4">
+                            <h6 style="margin-bottom: 15px; margin-top: 15px;">
+                                <strong>Categoria 4: Perfil PDA</strong>
+                            </h6>
+                            <div class="container-button">
+                                <div class="fileUpload btn button-30">
+                                    <span>Adjuntar perfil</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                        class="bi bi-paperclip" viewBox="0 0 16 16">
+                                        <path
+                                            d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+                                    </svg>
+                                    <input id="uploadBtn" type="file" class="upload" accept="application/pdf"
+                                        onchange="onloader()" />
+                                </div>
+                                <input class="fileUploadRuta" id="uploadFile" placeholder="Ningún archivo seleccionado"
+                                    readonly disabled />
                             </div>
-                            <input class="fileUploadRuta" id="uploadFile" placeholder="Ningún archivo seleccionado"
-                                readonly disabled />
-                        </div>
-                        <br />
-
-                        <!-- <button type="submit" id="btn-resultados" class="button-30" style="display: none;"> -->
-                        <button type="submit" id="btn-resultados" class="button-30" >
-                            <span>Ver resultados</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                                class="bi bi-bookmark-check bi-paperclip" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
-                                <path
-                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                            </svg>
-                        </button>
+                            <br />
+                        </section>
+                        <section class="section-resultados" id="sectionResultados" style="display: none;">
+                            <button type="submit" id="btn-resultados" class="button-30">
+                                <!-- <button type="submit" id="btn-resultados" class="button-30"> -->
+                                <span>Ver resultados</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                    class="bi bi-bookmark-check bi-paperclip" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                                    <path
+                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+                                </svg>
+                            </button>
+                        </section>
                     </form>
                 </div>
             </div>
@@ -593,14 +616,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
     <!-- swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    <!-- purecounter -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <!-- isotope -->
     <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
     <!-- purecounterjs -->
     <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
 </body>
 
 <!-- bootstrap -->
@@ -613,14 +632,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
 <!-- swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<!-- purecounter -->
-<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 <!-- isotope -->
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <!-- purecounterjs -->
 <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

@@ -163,6 +163,8 @@ h6 {
 #uploadFile {
     flex: 1;
     margin-left: 10px; /* Opcional: añade un margen izquierdo para separar el input de archivo del texto */
+    padding-left: 10px;
+    background-color: #ffffff;
 }
 
 .fileUploadRuta {
@@ -685,6 +687,20 @@ section {
     overflow: hidden;
 }
 
+.section-resultados {
+    padding: 25px 15px 25px 15px;
+    overflow: hidden;
+    background-color: #522db2a8;
+}
+
+.section-categoria4 {
+    margin-top: 15px;
+    padding: 15px;
+    overflow: hidden;
+    background-color: #522db23b;
+    /* border-top: 3px solid #522db2;
+    border-bottom: 3px solid #522db2; */
+}
 .section-bg {
     background-color: #f9f9fa;
 }
@@ -1293,7 +1309,7 @@ section {
     border-top: 3px solid #522db2;
     border-bottom: 3px solid #522db2;
     padding: 30px;
-    background-color: #f9f9fa;
+    background-color: #e8e8ff;
 }
 
 .contact .php-email-form .form-group {
