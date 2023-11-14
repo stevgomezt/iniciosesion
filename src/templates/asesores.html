@@ -189,52 +189,178 @@
                                 <span>Filtrar</span>
                             </button>
                         </div>
-
+                        <div class="col-lg-1 col-md-12 mt-3 mt-lg-0">
+                            <a href="asesores"
+                                class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
+                                style="margin: 15px 0 0 0; padding: 10px 20px;">
+                                <i class="bi bi-arrow-clockwise" style="margin-right: 5px;"></i>
+                                <span>Limpiar</span>
+                            </a>
+                        </div>
                     </div>
                 </form>
 
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <table class="table">
-                        <thead>
+
+                    <table class="table table-bordered table-hover">
+                        <!-- Cabecera de la tabla -->
+                        <thead class="thead-dark">
+                            <!-- Primera fila de la cabecera -->
                             <tr>
-                                <th style="display: none;">Codigo</th>
-                                <th>numero_documento</th>
-                                <th>nombre</th>
-                                <th>edad</th>
-                                <th>genero</th>
-                                <th>estado_civil</th>
-                                <th>correo</th>
-                                <th>telefono</th>
-                                <th>nivel_estudios</th>
+                                <th colspan="2" class="asesor">Asesor</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th colspan="4" class="ventas">Ventas</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th colspan="4" class="atc">ATC</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th colspan="4" class="ryr">RyR</th>
+                            </tr>
+                            <!-- Segunda fila de la cabecera -->
+                            <tr>
+                                <th class="asesor">Identificacion</th>
+                                <th class="asesor">Nombre</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th class="ventas">Banca&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="ventas">Telco&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="ventas">Utilities</th>
+                                <th class="ventas">Seguros&nbsp;&nbsp;</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th class="atc">Banca&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="atc">Telco&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="atc">Utilities</th>
+                                <th class="atc">Seguros&nbsp;&nbsp;</th>
+                                <th class="invisible-col"></th> <!-- Columna invisible para separación -->
+                                <th class="ryr">Banca&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="ryr">Telco&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th class="ryr">Utilities</th>
+                                <th class="ryr">Seguros&nbsp;&nbsp;</th>
                             </tr>
                         </thead>
+
+                        <!-- Cuerpo de la tabla -->
                         <tbody>
                             {% for asesor in asesores %}
+                            <!-- Primera fila del cuerpo de la tabla -->
                             <tr>
-                                <td style="display: none;">{{ asesor[0] }}</td>
-                                <td>{{ asesor[1] }}</td>
-                                <td>{{ asesor[2] }}</td>
-                                <td>{{ asesor[3] }}</td>
-                                <td>{{ asesor[4] }}</td>
-                                <td>{{ asesor[5] }}</td>
-                                <td>{{ asesor[6] }}</td>
-                                <td>{{ asesor[7] }}</td>
-                                <td>{{ asesor[8] }}</td>
-                                <td>
-                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
-                                        class="btn btn-editar">Editar</a>
+                                <td class="espacio-porcentajes">{{ asesor[1] }}</td>
+                                <td class="espacio-porcentajes">{{ asesor[2] }}</td>
+                                <td class="invisible-col-data"></td> <!-- Columna invisible para separación -->
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </td>
-                                <td>
-                                    <form action="{{ url_for('eliminar_articulo', id=asesor[0]) }}" method="POST">
-                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                        <input type="hidden" name="id" value="{{ asesor[0] }}" />
-                                        <button class="btn btn-outline-danger">Eliminar</button>
-                                    </form>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invisible-col-data"></td> <!-- Columna invisible para separación -->
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invisible-col-data"></td> <!-- Columna invisible para separación -->
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="espacio-porcentajes">
+                                    <div class="skill-box">
+                                        <div class="skill-bar">
+                                            <span class="skill-per css">
+                                                <span class="tooltipsg"></span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
+                            <!-- Agrega más filas según sea necesario -->
                             {% endfor %}
                         </tbody>
                     </table>
+
                 </div>
 
                 {% if total_pages > 1 %}
@@ -296,4 +422,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- Animacion %  -->
+<script src="{{ url_for('static', filename='js/resultados/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados/browser.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados/jquery.scrollex.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados/jquery.scrolly.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/resultados/result.js') }}"></script>
 {% endblock %}
