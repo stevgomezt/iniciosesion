@@ -27,6 +27,65 @@ h6 {
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
+
+td {
+    text-align: center; /* Centra el contenido horizontalmente */
+    vertical-align: middle; /* Centra el contenido verticalmente */
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    margin-block-end: 0em !important;
+    padding-left: 0em !important;
+}
+
+/* Titulos-filas */
+
+.titulos-filas {
+    background-color: #d8ecff !important;
+}
+/* Fin Titulos-filas */
+
+/* Paginador */
+.page-item:not(:first-child) .page-link {
+    margin-left: calc(var(--bs-border-width) * -1);
+}
+
+.active > .page-link,
+.page-link.active {
+    z-index: 3;
+    color: white !important;
+    background-color: #522db2 !important;
+    border-color: transparent !important;
+}
+
+.page-link {
+    position: relative;
+    display: block;
+    padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+    font-size: var(--bs-pagination-font-size);
+    color: #522db2 !important;
+    text-decoration: none;
+    background-color: var(--bs-pagination-bg);
+    border: var(--bs-pagination-border-width) solid
+        var(--bs-pagination-border-color);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.page-link:hover {
+    z-index: 2;
+    color: var(--bs-pagination-hover-color);
+    background-color: #d8ecff !important;
+    border-color: var(--bs-pagination-hover-border-color);
+}
+
+a:hover {
+    --bs-link-color-rgb: var(--bs-link-hover-color-rgb);
+}
+/* Fin Paginador */
+
 /* Animaciones % */
 
 .espacio-porcentajes {

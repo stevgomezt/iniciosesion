@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
@@ -10,6 +10,8 @@ from math import ceil
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
+import pandas as pd
+from io import BytesIO
 
 # Models:
 from models.ModelUser import ModelUser
@@ -225,36 +227,51 @@ def guardar_asesor():
 def asesores():
     page = int(request.args.get('page', 1))
     search = request.args.get('search', None)
-    # Recuperar los estados civiles seleccionados
     estados_civiles = request.args.getlist('estado_civil')
-    # Recuperar los niveles de estudios seleccionados
     niveles_estudios = request.args.getlist('nivel_estudios')
-    # Recuperar los generos seleccionados
     generos = request.args.getlist('genero')
-    # Recuperar los area de experiencia seleccionados
     areas_experiencia = request.args.getlist('area_experiencia')
-    per_page = 7
+    export = request.args.get('export', None)
+    per_page = 5
+
+    if export:
+        return export_asesores(search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
     total_asesores = basedatos.count_asesores(
-        search, estados_civiles, niveles_estudios, generos, areas_experiencia)  # Pasar estados_civiles, niveles_estudios,areas_experiencia y generos como argumentos
+        search, estados_civiles, niveles_estudios, generos, areas_experiencia)
     total_pages = math.ceil(total_asesores / per_page)
 
     if page > total_pages:
-        # Pasar el término de búsqueda, estados civiles, niveles de estudios,areas_experiencia y generos como argumentos
-        return redirect(url_for('asesores', page=total_pages, search=search,
-                        **{'estado_civil': estados_civiles, 'nivel_estudios': niveles_estudios, 'genero': generos, 'area_experiencia': areas_experiencia}))
+        return redirect(url_for('asesores', page=total_pages, search=search, estado_civil=estados_civiles, nivel_estudios=niveles_estudios, genero=generos, area_experiencia=areas_experiencia))
 
     asesores = basedatos.listar_asesores_pages(
-        page, per_page, search, estados_civiles, niveles_estudios, generos, areas_experiencia)  # Pasar estados_civiles, niveles_estudios,areas_experiencia y generos como argumentos
+        page, per_page, search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
     start_record = ((page - 1) * per_page) + 1
     end_record = min(page * per_page, total_asesores)
-    # Pasar estados_civiles, niveles_estudios, areas_experiencia y generos como argumentos
-    total_records = count_asesores(
+
+    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_asesores, search=search, estados_civiles=estados_civiles, niveles_estudios=niveles_estudios, generos=generos, areas_experiencia=areas_experiencia)
+
+
+def export_asesores(search, estados_civiles, niveles_estudios, generos, areas_experiencia):
+    # Obtener todos los asesores según los filtros, sin paginación
+    asesores = basedatos.listar_asesores_excel(
         search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
-    # Pasar el término de búsqueda, estados civiles y niveles de estudios a la plantilla
-    return render_template('asesores.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records, search=search, estados_civiles=estados_civiles, niveles_estudios=niveles_estudios, generos=generos, areas_experiencia=areas_experiencia)
+    # Convertir a DataFrame de Pandas
+    df = pd.DataFrame(asesores)
+
+    # Aquí puedes personalizar las columnas o el formato del DataFrame según tus necesidades
+    
+
+    # Crear un archivo Excel en memoria
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Asesores')
+
+    output.seek(0)
+
+    return send_file(output, attachment_filename="asesores.xlsx", as_attachment=True)
 
 
 @app.route('/asesores_info')
@@ -262,36 +279,30 @@ def asesores():
 def asesores_info():
     page = int(request.args.get('page', 1))
     search = request.args.get('search', None)
-    # Recuperar los estados civiles seleccionados
     estados_civiles = request.args.getlist('estado_civil')
-    # Recuperar los niveles de estudios seleccionados
     niveles_estudios = request.args.getlist('nivel_estudios')
-    # Recuperar los generos seleccionados
     generos = request.args.getlist('genero')
-    # Recuperar los area de experiencia seleccionados
     areas_experiencia = request.args.getlist('area_experiencia')
-    per_page = 7
+    export = request.args.get('export', None)
+    per_page = 5
+
+    if export:
+        return export_asesores(search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
     total_asesores = basedatos.count_asesores(
-        search, estados_civiles, niveles_estudios, generos, areas_experiencia)  # Pasar estados_civiles, niveles_estudios,areas_experiencia y generos como argumentos
+        search, estados_civiles, niveles_estudios, generos, areas_experiencia)
     total_pages = math.ceil(total_asesores / per_page)
 
     if page > total_pages:
-        # Pasar el término de búsqueda, estados civiles, niveles de estudios,areas_experiencia y generos como argumentos
-        return redirect(url_for('asesores', page=total_pages, search=search,
-                        **{'estado_civil': estados_civiles, 'nivel_estudios': niveles_estudios, 'genero': generos, 'area_experiencia': areas_experiencia}))
+        return redirect(url_for('asesores', page=total_pages, search=search, estado_civil=estados_civiles, nivel_estudios=niveles_estudios, genero=generos, area_experiencia=areas_experiencia))
 
     asesores = basedatos.listar_asesores_pages(
-        page, per_page, search, estados_civiles, niveles_estudios, generos, areas_experiencia)  # Pasar estados_civiles, niveles_estudios,areas_experiencia y generos como argumentos
+        page, per_page, search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
     start_record = ((page - 1) * per_page) + 1
     end_record = min(page * per_page, total_asesores)
-    # Pasar estados_civiles, niveles_estudios, areas_experiencia y generos como argumentos
-    total_records = count_asesores(
-        search, estados_civiles, niveles_estudios, generos, areas_experiencia)
 
-    # Pasar el término de búsqueda, estados civiles y niveles de estudios a la plantilla
-    return render_template('asesores_info.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_records, search=search, estados_civiles=estados_civiles, niveles_estudios=niveles_estudios, generos=generos, areas_experiencia=areas_experiencia)
+    return render_template('asesores_info.html', asesores=asesores, page=page, total_pages=total_pages, per_page=per_page, start_record=start_record, end_record=end_record, total_records=total_asesores, search=search, estados_civiles=estados_civiles, niveles_estudios=niveles_estudios, generos=generos, areas_experiencia=areas_experiencia)
 
 
 @app.route("/editar_asesor/<int:id>")
@@ -333,14 +344,14 @@ def actualizar_asesor():
         return redirect("/asesores")
 
 
-@app.route("/eliminar_articulo", methods=['POST'])
-def eliminar_articulo():
+@app.route("/eliminar_asesor", methods=['POST'])
+def eliminar_asesor():
     try:
-        basedatos.eliminar_articulo(request.form['id'])
+        basedatos.eliminar_asesor(request.form['id'])
     except Exception as e:
         print(f"Ha ocurrido el error {e}")
     finally:
-        return redirect("/asesores")
+        return redirect("/asesores_info")
 
 
 def status_401(error):

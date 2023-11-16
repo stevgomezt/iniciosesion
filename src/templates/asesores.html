@@ -364,30 +364,30 @@
                 </div>
 
                 {% if total_pages > 1 %}
-                <div class="pagination">
-                    <a
-                        href="{{ url_for('asesores', page=1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Primera</a>
-
-                    {% if page > 1 %}
-                    <a
-                        href="{{ url_for('asesores', page=page-1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Anterior</a>
-                    {% endif %}
-
-                    <span class="current-page">Página {{ page }} de {{ total_pages }}, mostrando registros del {{
-                        start_record }} al {{ end_record }}</span>
-
-                    {% if page < total_pages %} <a
-                        href="{{ url_for('asesores', page=page+1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">
-                        Siguiente</a>
-                        {% endif %}
-
-                        {% if page < total_pages %} <a
-                            href="{{ url_for('asesores', page=total_pages, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">
-                            Última</a>
-                            {% endif %}
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                                <a class="page-link" href="{{ url_for('asesores', page=1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Primera</a>
+                            </li>
+                            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                                <a class="page-link" href="{{ url_for('asesores', page=page-1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Anterior</a>
+                            </li>
+                            <li class="page-item active">
+                                <span class="page-link">Página {{ page }} de {{ total_pages }}</span>
+                            </li>
+                            <li class="page-item {% if page == total_pages %}disabled{% endif %}">
+                                <a class="page-link" href="{{ url_for('asesores', page=page+1, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Siguiente</a>
+                            </li>
+                            <li class="page-item {% if page == total_pages %}disabled{% endif %}">
+                                <a class="page-link" href="{{ url_for('asesores', page=total_pages, search=request.args.get('search', ''), estado_civil=request.args.getlist('estado_civil'), nivel_estudios=request.args.getlist('nivel_estudios'), genero=request.args.getlist('genero'), area_experiencia=request.args.getlist('area_experiencia')) }}">Última</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <p>Total de registros: {{ total_records }}</p>
+                <p class="text-center">Total de registros: {{ total_records }}</p>
                 {% endif %}
+                
 
 
 
