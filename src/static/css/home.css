@@ -1470,7 +1470,7 @@ section {
     width: 100%;
     border-top: 3px solid #522db2;
     border-bottom: 3px solid #522db2;
-    padding: 30px;
+    padding: 30px !important;
     background-color: #e8e8ff;
 }
 

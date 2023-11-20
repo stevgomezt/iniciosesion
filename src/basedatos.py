@@ -27,10 +27,11 @@ def listar_asesores():
     conexion = dame_conexion()
     asesores = []
     with conexion.cursor() as cursor:
-        cursor.execute("SELECT id, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia FROM asesores")
+        cursor.execute("SELECT id, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia FROM asesores order by id desc")
         asesores = cursor.fetchall()
     conexion.close()
     return asesores
+
 
 def listar_asesores_excel(search=None, estados_civiles=None, niveles_estudios=None, generos=None, areas_experiencia=None):
     conexion = dame_conexion()
@@ -49,11 +50,13 @@ def listar_asesores_excel(search=None, estados_civiles=None, niveles_estudios=No
         params.extend([search_pattern, search_pattern])
 
     if estados_civiles:
-        query += " AND estado_civil IN (" + ",".join(["%s"] * len(estados_civiles)) + ")"
+        query += " AND estado_civil IN (" + \
+            ",".join(["%s"] * len(estados_civiles)) + ")"
         params.extend(estados_civiles)
 
     if niveles_estudios:
-        query += " AND nivel_estudios IN (" + ",".join(["%s"] * len(niveles_estudios)) + ")"
+        query += " AND nivel_estudios IN (" + \
+            ",".join(["%s"] * len(niveles_estudios)) + ")"
         params.extend(niveles_estudios)
 
     if generos:
@@ -61,7 +64,8 @@ def listar_asesores_excel(search=None, estados_civiles=None, niveles_estudios=No
         params.extend(generos)
 
     if areas_experiencia:
-        query += " AND area_experiencia IN (" + ",".join(["%s"] * len(areas_experiencia)) + ")"
+        query += " AND area_experiencia IN (" + \
+            ",".join(["%s"] * len(areas_experiencia)) + ")"
         params.extend(areas_experiencia)
 
     try:
@@ -73,8 +77,8 @@ def listar_asesores_excel(search=None, estados_civiles=None, niveles_estudios=No
     finally:
         conexion.close()
         return asesores
-    
-    
+
+
 def eliminar_asesor(id):
     conexion = dame_conexion()
     with conexion.cursor() as cursor:
@@ -143,6 +147,9 @@ def listar_asesores_pages(page, per_page, search=None, estados_civiles=None, niv
         query += " AND area_experiencia IN (" + \
             ",".join(["%s"] * len(areas_experiencia)) + ")"
         params.extend(areas_experiencia)
+
+    # Añadir Order by
+    query += " order by id desc"
 
     # Añadir la cláusula LIMIT para la paginación
     query += " LIMIT %s, %s"
