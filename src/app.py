@@ -1,3 +1,4 @@
+# Importaciones necesarias de Flask y otras librerías.
 from flask import Flask, render_template, request, redirect, url_for, flash, send_file
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
@@ -13,16 +14,20 @@ from wtforms.validators import DataRequired
 import pandas as pd
 from io import BytesIO
 
-# Models:
+# Importación de modelos y entidades para la gestión de usuarios.
 from models.ModelUser import ModelUser
-
-# Entities:
 from models.entities.User import User
 
+# Inicialización de la aplicación Flask.
 app = Flask(__name__)
 
+# Inicialización de la protección CSRF para la aplicación.
 csrf = CSRFProtect()
+
+# Configuración de MySQL para la aplicación Flask.
 db = MySQL(app)
+
+# Configuración del gestor de inicio de sesión para Flask.
 login_manager_app = LoginManager(app)
 
 
@@ -399,16 +404,25 @@ def asesores_info():
 
 
 def status_401(error):
+    # Redirecciona al usuario a la página de inicio de sesión cuando ocurre un error 401 (no autorizado).
     return redirect(url_for('login'))
 
 
 def status_404(error):
+    # Devuelve un mensaje personalizado cuando se encuentra un error 404 (página no encontrada).
     return "<h1>Página no encontrada</h1>", 404
 
 
 if __name__ == '__main__':
+    # Configura la aplicación con la configuración de 'development'.
     app.config.from_object(config['development'])
+
+    # Inicializa CSRF (Cross-Site Request Forgery) protection para la aplicación.
     csrf.init_app(app)
+
+    # Registra manejadores de errores personalizados para errores 401 y 404.
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
+
+    # Ejecuta la aplicación.
     app.run()
