@@ -990,3 +990,75 @@ VALUES
         0,
         'otros'
     );
+
+
+
+
+    INSERT INTO asesores (numero_documento, nombre, edad, genero, estado_civil, nivel_estudios, estrato, num_hijos, personas_cargo, correo, telefono, experiencia_general, area_experiencia, tiempo_ventas, experiencia, otra_area_experiencia) 
+VALUES
+('123456789', 'Juan Perez', 35, 'masculino', 'casado', 'bachillerato', 3, 2, 1, 'juan@example.com', '1234567890', 4, 'cobranza', 2, 5, 'otros'),
+('987654321', 'Maria Lopez', 28, 'femenino', 'soltero', 'tecnico', 2, 0, 0, 'maria@example.com', '9876543210', 1, 'ventas', 3, 4, 'otros'),
+('55555555', 'Carlos Rodriguez', 40, 'masculino', 'casado', 'tecnologo', 4, 3, 2, 'carlos@example.com', '5555555555', 5, 'servicio al cliente', 0, 5, 'servicio al cliente presencial'),
+('111111111', 'Laura Gomez', 22, 'femenino', 'soltero', 'universitario', 2, 1, 0, 'laura@example.com', '1111111111', 3, 'venta cruzada', 4, 2, 'venta al cliente presencial'),
+('999999999', 'Pedro Fernandez', 50, 'masculino', 'casado', 'bachillerato', 2, 3, 4, 'pedro@example.com', '9999999999', 2, 'ventas', 1, 3, 'otros'),
+('888888888', 'Ana Silva', 33, 'femenino', 'casado', 'tecnico', 3, 1, 2, 'ana@example.com', '8888888888', 0, 'retencion', 5, 0, 'otros'),
+('777777777', 'Diego Martinez', 29, 'masculino', 'soltero', 'universitario', 1, 0, 0, 'diego@example.com', '7777777777', 4, 'cobranza', 4, 5, 'otros'),
+('444444444', 'Sofia Garcia', 27, 'femenino', 'soltero', 'tecnologo', 2, 2, 1, 'sofia@example.com', '4444444444', 3, 'servicio al cliente', 0, 2, 'areas administrativas'),
+('222222222', 'Luis Ramirez', 45, 'masculino', 'casado', 'universitario', 3, 3, 4, 'luis@example.com', '2222222222', 1, 'venta cruzada', 3, 0, 'otros'),
+('666666666', 'Elena Torres', 31, 'femenino', 'soltero', 'tecnico', 1, 0, 0, 'elena@example.com', '6666666666', 5, 'cobranza', 2, 4, 'otros');
+
+INSERT INTO asesores (numero_documento, nombre, edad, genero, estado_civil, nivel_estudios, estrato, num_hijos, personas_cargo, correo, telefono, experiencia_general, area_experiencia, tiempo_ventas, experiencia, otra_area_experiencia) 
+VALUES
+('444433322', 'Andrés González', 42, 'masculino', 'casado', 'universitario', 2, 3, 1, 'andres@example.com', '4444333222', 4, 'cobranza', 3, 5, 'otros'),
+('555566677', 'Marta Sánchez', 29, 'femenino', 'casado', 'tecnologo', 3, 2, 1, 'marta@example.com', '5555666777', 2, 'ventas', 1, 2, 'otros'),
+('888877766', 'Javier Torres', 31, 'masculino', 'soltero', 'bachillerato', 2, 0, 0, 'javier@example.com', '8888777666', 0, 'retencion', 5, 0, 'otros'),
+('111122233', 'Carolina Rodríguez', 38, 'femenino', 'casado', 'universitario', 4, 2, 1, 'carolina@example.com', '1111222333', 3, 'venta cruzada', 3, 1, 'servicio al cliente presencial'),
+('123443211', 'Pablo López', 25, 'masculino', 'soltero', 'tecnico', 2, 1, 0, 'pablo@example.com', '1234432111', 0, 'ventas', 2, 0, 'otros'),
+('999900099', 'Lorena Martínez', 35, 'femenino', 'casado', 'tecnologo', 3, 2, 3, 'lorena@example.com', '9999000999', 5, 'servicio al cliente', 2, 3, 'areas administrativas'),
+('666655544', 'Sergio Pérez', 48, 'masculino', 'casado', 'bachillerato', 4, 2, 2, 'sergio@example.com', '6666555444', 4, 'cobranza', 4, 4, 'otros'),
+('888833322', 'Eva Ramírez', 28, 'femenino', 'soltero', 'tecnologo', 2, 0, 0, 'eva@example.com', '8888333222', 1, 'venta cruzada', 0, 0, 'otros'),
+('5552511199', 'Luisa Fernández', 37, 'femenino', 'casado', 'universitario', 3, 2, 1, 'luisa@example.com', '5555111999', 3, 'retencion', 5, 2, 'otros'),
+('123488888', 'Carlos González', 30, 'masculino', 'soltero', 'bachillerato', 1, 0, 0, 'carlos@example.com', '1234888888', 0, 'cobranza', 1, 0, 'otros');
+
+INSERT INTO asesores (numero_documento, nombre, edad, genero, estado_civil, nivel_estudios, estrato, num_hijos, personas_cargo, correo, telefono, experiencia_general, area_experiencia, tiempo_ventas, experiencia, otra_area_experiencia) 
+VALUES
+('7654321109', 'Isabel Martínez', 29, 'femenino', 'soltero', 'universitario', 2, 0, 0, 'isabel@example.com', '7654321098', 4, 'ventas', 2, 4, 'otros'),
+('9876454321', 'Jorge Gómez', 34, 'masculino', 'casado', 'tecnico', 3, 2, 1, 'jorge@example.com', '9876543212', 1, 'cobranza', 3, 0, 'otros'),
+('5515544489', 'María López', 41, 'femenino', 'casado', 'tecnologo', 4, 2, 2, 'maria@example.com', '5555444891', 3, 'servicio al cliente', 4, 2, 'servicio al cliente presencial'),
+('22233344', 'Roberto Rodríguez', 27, 'masculino', 'soltero', 'bachillerato', 2, 0, 0, 'roberto@example.com', '2222333440', 0, 'venta cruzada', 1, 1, 'otros'),
+('777766655', 'Laura Ramírez', 35, 'femenino', 'casado', 'universitario', 3, 2, 1, 'laura@example.com', '7777666555', 2, 'retencion', 2, 0, 'otros'),
+('333333333', 'Pedro Pérez', 46, 'masculino', 'casado', 'bachillerato', 3, 3, 3, 'pedro@example.com', '3333333333', 5, 'cobranza', 5, 5, 'otros'),
+('11111111', 'Sofía Fernández', 32, 'femenino', 'casado', 'tecnologo', 2, 1, 0, 'sofia@example.com', '1111111111', 1, 'venta cruzada', 0, 0, 'otros'),
+('666677788', 'Diego González', 30, 'masculino', 'soltero', 'tecnico', 2, 0, 0, 'diego@example.com', '6666777888', 3, 'servicio al cliente', 4, 0, 'otros'),
+('999988877', 'Elena Martínez', 37, 'femenino', 'casado', 'tecnologo', 3, 2, 1, 'elena@example.com', '9999888777', 4, 'cobranza', 3, 3, 'servicio al cliente presencial'),
+('444455566', 'Carlos Sánchez', 28, 'masculino', 'soltero', 'universitario', 2, 0, 0, 'carlos@example.com', '4444555666', 2, 'venta cruzada', 1, 1, 'otros');
+
+INSERT INTO asesores (numero_documento, nombre, edad, genero, estado_civil, nivel_estudios, estrato, num_hijos, personas_cargo, correo, telefono, experiencia_general, area_experiencia, tiempo_ventas, experiencia, otra_area_experiencia) 
+VALUES
+('98754321', 'Luis Pérez', 36, 'masculino', 'casado', 'tecnologo', 3, 2, 1, 'luis@example.com', '9876543210', 3, 'venta cruzada', 2, 3, 'otros'),
+('12456789', 'Ana Martínez', 28, 'femenino', 'soltero', 'universitario', 2, 0, 0, 'ana@example.com', '1234567890', 2, 'cobranza', 1, 0, 'otros'),
+('555544488', 'Javier Rodríguez', 31, 'masculino', 'casado', 'bachillerato', 2, 1, 0, 'javier@example.com', '5555444888', 1, 'ventas', 0, 0, 'otros'),
+('777766654', 'Laura López', 40, 'femenino', 'casado', 'tecnico', 3, 2, 1, 'laura@example.com', '7777666544', 4, 'servicio al cliente', 3, 2, 'servicio al cliente presencial'),
+('222233343', 'Carlos Ramírez', 33, 'masculino', 'casado', 'universitario', 3, 2, 2, 'carlos@example.com', '2222333433', 2, 'venta cruzada', 2, 1, 'otros'),
+('444433321', 'María González', 29, 'femenino', 'soltero', 'bachillerato', 2, 0, 0, 'maria@example.com', '4444333211', 0, 'retencion', 4, 0, 'otros'),
+('666655543', 'Sergio Martínez', 27, 'masculino', 'soltero', 'tecnico', 1, 0, 0, 'sergio@example.com', '6666555433', 3, 'ventas', 1, 0, 'otros'),
+('111122232', 'Isabel Rodríguez', 38, 'femenino', 'casado', 'tecnologo', 2, 1, 0, 'isabel@example.com', '1111222322', 5, 'cobranza', 5, 5, 'otros'),
+('999988876', 'Diego Sánchez', 34, 'masculino', 'casado', 'universitario', 4, 2, 3, 'diego@example.com', '9999888766', 2, 'servicio al cliente', 1, 3, 'servicio al cliente presencial'),
+('555511198', 'Eva López', 25, 'femenino', 'soltero', 'tecnologo', 2, 0, 0, 'eva@example.com', '5555111988', 1, 'cobranza', 2, 0, 'otros');
+
+INSERT INTO asesores (numero_documento, nombre, edad, genero, estado_civil, nivel_estudios, estrato, num_hijos, personas_cargo, correo, telefono, experiencia_general, area_experiencia, tiempo_ventas, experiencia, otra_area_experiencia) 
+VALUES
+('123443210', 'Miguel González', 38, 'masculino', 'casado', 'tecnologo', 3, 2, 1, 'miguel@example.com', '1234432108', 2, 'ventas', 2, 1, 'otros'),
+('555533322', 'Paola Martínez', 27, 'femenino', 'soltero', 'universitario', 2, 0, 0, 'paola@example.com', '5555333220', 1, 'cobranza', 3, 0, 'otros'),
+('987766655', 'Javier Ramírez', 32, 'masculino', 'casado', 'bachillerato', 2, 1, 0, 'javier@example.com', '9877666554', 1, 'ventas', 0, 0, 'otros'),
+('222233344', 'Laura López', 36, 'femenino', 'casado', 'tecnico', 3, 2, 1, 'laura@example.com', '2222333443', 3, 'servicio al cliente', 3, 2, 'servicio al cliente presencial'),
+('777755544', 'Carlos Rodríguez', 30, 'masculino', 'casado', 'universitario', 3, 2, 2, 'carlos@example.com', '7777555443', 2, 'venta cruzada', 2, 1, 'otros'),
+('444433332', 'María Pérez', 28, 'femenino', 'soltero', 'bachillerato', 2, 0, 0, 'maria@example.com', '4444333321', 0, 'retencion', 4, 0, 'otros'),
+('666644499', 'Sergio Martínez', 35, 'masculino', 'soltero', 'tecnico', 1, 0, 0, 'sergio@example.com', '6666444991', 4, 'ventas', 1, 0, 'otros'),
+('111122222', 'Isabel González', 33, 'femenino', 'casado', 'tecnologo', 2, 1, 0, 'isabel@example.com', '1111222222', 4, 'cobranza', 4, 4, 'otros'),
+('999977766', 'Diego Sánchez', 29, 'masculino', 'casado', 'universitario', 4, 2, 3, 'diego@example.com', '9999777666', 2, 'servicio al cliente', 1, 3, 'servicio al cliente presencial'),
+('555511199', 'Eva Martínez', 26, 'femenino', 'soltero', 'tecnologo', 2, 0, 0, 'eva@example.com', '5555111998', 1, 'cobranza', 2, 0, 'otros'),
+('444411112', 'Luis Pérez', 37, 'masculino', 'casado', 'tecnologo', 3, 2, 1, 'luis@example.com', '4444111122', 2, 'ventas', 1, 1, 'otros'),
+('888866665', 'Ana Ramírez', 31, 'femenino', 'soltero', 'universitario', 2, 0, 0, 'ana@example.com', '8888666652', 3, 'servicio al cliente', 4, 0, 'otros'),
+('777744433', 'Pedro González', 39, 'masculino', 'casado', 'bachillerato', 3, 2, 3, 'pedro@example.com', '7777444333', 3, 'venta cruzada', 3, 3, 'otros'),
+('999922221', 'Sofía Martínez', 25, 'femenino', 'soltero', 'tecnico', 1, 0, 0, 'sofia@example.com', '9999222211', 0, 'retencion', 2, 0, 'otros');
