@@ -439,7 +439,13 @@ a:hover {
     background: #fff;
     transition: all 0.5s;
     z-index: 997;
-    padding: 20px 0;
+    padding: 10px 0 0 0;
+}
+
+.img-fluid {
+    margin-top: 100px !important;
+    max-width: 100%;
+    height: auto;
 }
 
 #header.header-scrolled {
@@ -731,7 +737,7 @@ a:hover {
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
-    color: #3e4450;
+    color: #5f6675;
 }
 
 #hero h2 {

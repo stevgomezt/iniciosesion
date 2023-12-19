@@ -31,8 +31,8 @@
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
                 <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
-                    <h6 style="color: #522db2; font-weight: bold">
-                        Sesión activa, admin
+                    <h6 style="color: #3bd100; font-weight: bold">
+                        Usuario activo {{ current_user.fullname }}
                     </h6>
                 </a>
             </h1>
