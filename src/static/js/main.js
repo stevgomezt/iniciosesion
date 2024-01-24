@@ -290,3 +290,4 @@ document
 document.getElementById("nombre").addEventListener("input", function () {
     this.value = this.value.replace(/[^A-Za-z\s]+/g, "");
 });
+

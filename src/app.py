@@ -13,6 +13,7 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 import pandas as pd
 from io import BytesIO
+import requests
 
 # Importación de modelos y entidades para la gestión de usuarios.
 from models.ModelUser import ModelUser
@@ -170,6 +171,21 @@ class FormAdd(FlaskForm):
     nombre_perfil = IntegerField('nombre_perfil', validators=[DataRequired()])
     eje_dominante = IntegerField('eje_dominante', validators=[DataRequired()])
     perfil = IntegerField('perfil', validators=[DataRequired()])
+
+
+@app.route('/llamar_api')
+def llamar_api():
+    # Llamada al endpoint https://jsonplaceholder.typicode.com/posts
+    response = requests.get('https://jsonplaceholder.typicode.com/posts')
+    
+    # Obtener los datos de la respuesta
+    data = response.json()
+    
+    # Puedes hacer algo con los datos aquí, por ejemplo, imprimirlos en la consola
+    print(data)
+    
+    # Devolver una respuesta simple para este ejemplo
+    return "Llamada a la API exitosa. Revisa la consola para ver los datos."
 
 
 # Define una ruta para '/agregar_asesor' que requiere que el usuario esté autenticado.
