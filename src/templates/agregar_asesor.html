@@ -89,6 +89,19 @@
                                 </h6>
 
                                 <div class="form-group">
+                                    <label class="label-titles" for="tipo_documento">Tipo de documento:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="tipo_documento" id="tipo_documento" required>
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="CC" {% if form.tipo_documento=='ciudadania' %}selected{%
+                                                endif %}>Cédula de ciudadanía (CC)</option>
+                                            <option value="CE" {% if form.tipo_documento=='extranjera' %}selected{%
+                                                endif %}>Cédula de extranjera (CE)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="numero_documento">Documento de identificación:</label>
                                     {{ form.numero_documento (class="form-control", type="text", oninput="this.value
                                     =
@@ -105,9 +118,9 @@
 
                                 <div class="form-group">
                                     <label for="edad">Edad:</label>
-                                    {{ form.edad(class="form-control", type="text", oninput="this.value =
-                                    this.value.replace(/[^0-9]/g, '')", maxlength="2") }}
+                                    {{ form.edad(class="form-control", type="date", value="1990-01-01" ) }}
                                 </div>
+
 
                                 <div class="form-group">
                                     <label class="label-titles" for="genero">Género:</label>
@@ -118,6 +131,8 @@
                                                 %}>Masculino</option>
                                             <option value="femenino" {% if form.genero=='femenino' %}selected{% endif
                                                 %}>Femenino</option>
+                                            <option value="prefiero_no_decirlo" {% if form.genero=='prefiero_no_decirlo'
+                                                %}selected{% endif %}>Prefiero no decirlo</option>
                                         </select>
                                     </div>
                                 </div>
@@ -131,27 +146,12 @@
                                                 endif %}>Soltero/a</option>
                                             <option value="casado" {% if form.estado_civil=='casado' %}selected{% endif
                                                 %}>Casado/a</option>
-                                            <option value="divorciado" {% if form.estado_civil=='divorciado'
-                                                %}selected{% endif %}>Divorciado/a</option>
-                                            <option value="viudo" {% if form.estado_civil=='viudo' %}selected{% endif
-                                                %}>Viudo/a</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="label-titles" for="nivel_estudios">Nivel de estudios:</label>
-                                    <div class="input-container">
-                                        <select class="form-control" name="nivel_estudios" id="nivel_estudios" required>
-                                            <option value="" disabled selected>Seleccionar</option>
-                                            <option value="bachillerato" {% if form.nivel_estudios=='bachillerato'
-                                                %}selected{% endif %}>Bachillerato</option>
-                                            <option value="tecnico" {% if form.nivel_estudios=='tecnico' %}selected{%
-                                                endif %}>Técnico</option>
-                                            <option value="tecnologo" {% if form.nivel_estudios=='tecnologo'
-                                                %}selected{% endif %}>Tecnólogo</option>
-                                            <option value="universitario" {% if form.nivel_estudios=='universitario'
-                                                %}selected{% endif %}>Universitario</option>
+                                            <option value="union_libre" {% if form.estado_civil=='union_libre'
+                                                %}selected{% endif %}>Union libre</option>
+                                            <option value="separado" {% if form.estado_civil=='separado' %}selected{%
+                                                endif %}>Separado/a</option>
+                                            <option value="divorsiado" {% if form.estado_civil=='divorsiado'
+                                                %}selected{% endif %}>Divorsiado/a</option>
                                         </select>
                                     </div>
                                 </div>
@@ -162,6 +162,21 @@
                                 <h6>
                                     <strong>Categoría 2: Datos de Contacto y Familiares</strong>
                                 </h6>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="tipo_vivienda">Tipo de vivienda:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="tipo_vivienda" id="tipo_vivienda" required>
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="familiar" {% if form.tipo_vivienda=='familiar' %}selected{%
+                                                endif %}>Familiar</option>
+                                            <option value="propia" {% if form.tipo_vivienda=='propia' %}selected{% endif
+                                                %}>Propia</option>
+                                            <option value="alquilada" {% if form.tipo_vivienda=='alquilada' %}selected{%
+                                                endif %}>Alquilada</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label class="label-titles" for="estrato">Estrato:</label>
@@ -198,7 +213,7 @@
 
                                 <div class="form-group">
                                     <label for="correo">Correo electrónico:</label>
-                                    {{ form.correo (class="form-control", type="email") }}
+                                    {{ form.correo (class="form-control", type="email", value="ejemplo@gmail.com") }}
                                 </div>
 
                                 <div class="form-group">
@@ -214,6 +229,26 @@
                                     <strong>Categoría 3: Experiencia
                                         Laboral</strong>
                                 </h6>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="nivel_estudios">Nivel de estudios:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="nivel_estudios" id="nivel_estudios" required>
+                                            <option value="" disabled selected>Seleccionar</option>
+                                            <option value="bachillerato" {% if form.nivel_estudios=='bachillerato'
+                                                %}selected{% endif %}>Bachillerato</option>
+                                            <option value="tecnica_tecnologo" {% if
+                                                form.nivel_estudios=='tecnica_tecnologo' %}selected{% endif %}>Formación
+                                                Técnica/Tecnologo</option>
+                                            <option value="profesional_pregrado" {% if
+                                                form.nivel_estudios=='profesional_pregrado' %}selected{% endif %}>
+                                                Formación profesional - Pregrado</option>
+                                            <option value="posgrado" {% if form.nivel_estudios=='posgrado' %}selected{%
+                                                endif %}>Posgrado</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="experiencia_general">Experiencia
                                         general:</label>
@@ -221,18 +256,21 @@
                                         <select class="form-control" name="experiencia_general" id="experiencia_general"
                                             required>
                                             <option value="" disabled selected>Seleccionar</option>
-                                            <option value="0" {% if form.experiencia_general=='0' %}selected{% endif %}>
-                                                0</option>
-                                            <option value="1" {% if form.experiencia_general=='1' %}selected{% endif %}>
-                                                1</option>
-                                            <option value="2" {% if form.experiencia_general=='2' %}selected{% endif %}>
-                                                2</option>
-                                            <option value="3" {% if form.experiencia_general=='3' %}selected{% endif %}>
-                                                3</option>
-                                            <option value="4" {% if form.experiencia_general=='4' %}selected{% endif %}>
-                                                4</option>
-                                            <option value="5" {% if form.experiencia_general=='5' %}selected{% endif %}>
-                                                5</option>
+                                            <option value="sin_experiencia" {% if
+                                                form.experiencia_general=='sin_experiencia' %}selected{% endif %}>
+                                                Sin experiencia</option>
+                                            <option value="menor_1" {% if form.experiencia_general=='menor_1'
+                                                %}selected{% endif %}>
+                                                Menor a 1 año</option>
+                                            <option value="entre_1_2" {% if form.experiencia_general=='entre_1_2'
+                                                %}selected{% endif %}>
+                                                Entre 1 y 2 años</option>
+                                            <option value="entre_2_4" {% if form.experiencia_general=='entre_2_4'
+                                                %}selected{% endif %}>
+                                                Entre 2 y 4 años</option>
+                                            <option value="mayor_5" {% if form.experiencia_general=='mayor_5'
+                                                %}selected{% endif %}>
+                                                Mayor a 5 años</option>
                                         </select>
                                     </div>
                                 </div>
@@ -243,44 +281,44 @@
                                         <select class="form-control" name="area_experiencia" id="area_experiencia"
                                             required>
                                             <option value="" disabled selected>Seleccionar</option>
-                                            <option value="bo" {% if form.area_experiencia=='bo' %}selected{% endif %}>
-                                                BO
-                                            </option>
-                                            <option value="cobranza" {% if form.area_experiencia=='cobranza'
-                                                %}selected{% endif %}>Cobranza</option>
-                                            <option value="retencion" {% if form.area_experiencia=='retencion'
-                                                %}selected{% endif %}>Retención</option>
-                                            <option value="servicio al cliente" {% if
-                                                form.area_experiencia=='servicio al cliente' %}selected{% endif %}>
-                                                Servicio
-                                                al cliente</option>
-                                            <option value="venta cruzada" {% if form.area_experiencia=='venta cruzada'
-                                                %}selected{% endif %}>Venta
-                                                cruzada</option>
+                                            <option value="sin_experiencia" {% if
+                                                form.area_experiencia=='sin_experiencia' %}selected{% endif %}>
+                                                Sin experiencia</option>
                                             <option value="ventas" {% if form.area_experiencia=='ventas' %}selected{%
                                                 endif %}>Ventas</option>
+                                            <option value="servicio_atencion" {% if
+                                                form.area_experiencia=='servicio_atencion' %}selected{% endif %}>
+                                                Servicios de atención</option>
+                                            <option value="recuperacion_recobro" {% if
+                                                form.area_experiencia=='recuperacion_recobro' %}selected{% endif %}>
+                                                Recuperación y recobro</option>
+                                            <option value="back_office" {% if form.area_experiencia=='back_office'
+                                                %}selected{% endif %}>Back Office (BO)</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="label-titles" for="tiempo_ventas">Tiempo de experiencia en
-                                        ventas:</label>
+                                    <label class="label-titles" for="tiempo_ventas">Experiencia en
+                                        Contact Center:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="tiempo_ventas" id="tiempo_ventas" required>
                                             <option value="" disabled selected>Seleccionar</option>
-                                            <option value="0" {% if form.tiempo_ventas=='0' %}selected{% endif %}>0
-                                            </option>
-                                            <option value="1" {% if form.tiempo_ventas=='1' %}selected{% endif %}>1
-                                            </option>
-                                            <option value="2" {% if form.tiempo_ventas=='2' %}selected{% endif %}>2
-                                            </option>
-                                            <option value="3" {% if form.tiempo_ventas=='3' %}selected{% endif %}>3
-                                            </option>
-                                            <option value="4" {% if form.tiempo_ventas=='4' %}selected{% endif %}>4
-                                            </option>
-                                            <option value="5" {% if form.tiempo_ventas=='5' %}selected{% endif %}>5
-                                            </option>
+                                            <option value="sin_experiencia" {% if form.tiempo_ventas=='sin_experiencia'
+                                                %}selected{% endif %}>
+                                                Sin experiencia</option>
+                                            <option value="menor_1" {% if form.tiempo_ventas=='menor_1' %}selected{%
+                                                endif %}>
+                                                Menor a 1 año</option>
+                                            <option value="entre_1_2" {% if form.tiempo_ventas=='entre_1_2' %}selected{%
+                                                endif %}>
+                                                Entre 1 y 2 años</option>
+                                            <option value="entre_2_4" {% if form.tiempo_ventas=='entre_2_4' %}selected{%
+                                                endif %}>
+                                                Entre 2 y 4 años</option>
+                                            <option value="mayor_5" {% if form.tiempo_ventas=='mayor_5' %}selected{%
+                                                endif %}>
+                                                Mayor a 5 años</option>
                                         </select>
                                     </div>
                                 </div>
@@ -291,24 +329,21 @@
                                         <div class="input-container">
                                             <select class="form-control" name="experiencia" id="experiencia" required>
                                                 <option value="" disabled selected>Seleccionar</option>
-                                                <option value="0" {% if form.experiencia=='0' %}selected{% endif %}>
-                                                    0
-                                                </option>
-                                                <option value="1" {% if form.experiencia=='1' %}selected{% endif %}>
-                                                    1
-                                                </option>
-                                                <option value="2" {% if form.experiencia=='2' %}selected{% endif %}>
-                                                    2
-                                                </option>
-                                                <option value="3" {% if form.experiencia=='3' %}selected{% endif %}>
-                                                    3
-                                                </option>
-                                                <option value="4" {% if form.experiencia=='4' %}selected{% endif %}>
-                                                    4
-                                                </option>
-                                                <option value="5" {% if form.experiencia=='5' %}selected{% endif %}>
-                                                    5
-                                                </option>
+                                                <option value="sin_experiencia" {% if
+                                                    form.experiencia=='sin_experiencia' %}selected{% endif %}>
+                                                    Sin experiencia</option>
+                                                <option value="menor_1" {% if form.experiencia=='menor_1' %}selected{%
+                                                    endif %}>
+                                                    Menor a 1 año</option>
+                                                <option value="entre_1_2" {% if form.experiencia=='entre_1_2'
+                                                    %}selected{% endif %}>
+                                                    Entre 1 y 2 años</option>
+                                                <option value="entre_2_4" {% if form.experiencia=='entre_2_4'
+                                                    %}selected{% endif %}>
+                                                    Entre 2 y 4 años</option>
+                                                <option value="mayor_5" {% if form.experiencia=='mayor_5' %}selected{%
+                                                    endif %}>
+                                                    Mayor a 5 años</option>
                                             </select>
                                         </div>
                                     </div>
