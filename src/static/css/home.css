@@ -1,6 +1,13 @@
 /*--------------------------------------------------------------
 # General
+
 --------------------------------------------------------------*/
+
+td {
+    text-align: left !important;
+    vertical-align: middle;
+}
+
 body {
     font-family: "Open Sans", sans-serif;
     color: #444444;

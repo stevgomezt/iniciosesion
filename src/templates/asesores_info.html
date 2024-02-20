@@ -218,14 +218,9 @@
                                 <th class="titulos-filas">Tipo de documento</th>
                                 <th class="titulos-filas">Documento</th>
                                 <th class="titulos-filas">Nombre</th>
-                                <th class="titulos-filas">Edad</th>
-                                <th class="titulos-filas">Genero</th>
-                                <th class="titulos-filas">Estado civil</th>
                                 <th class="titulos-filas">Correo</th>
-                                <th class="titulos-filas">Telefono</th>
-                                <th class="titulos-filas">Academico</th>
-                                <!-- <th class="titulos-filas"></th> -->
-                                <!-- <th class="titulos-filas"></th> -->
+                                <th class="titulos-filas"></th>
+                                <th class="titulos-filas"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -236,14 +231,9 @@
                                 <td>{{ asesor[1] }}</td>
                                 <td>{{ asesor[2] }}</td>
                                 <td>{{ asesor[3] }}</td>
-                                <td>{{ asesor[4] }}</td>
-                                <td>{{ asesor[5] }}</td>
-                                <td>{{ asesor[6] }}</td>
                                 <td>{{ asesor[7] }}</td>
-                                <td>{{ asesor[8] }}</td>
                                 <td>
-                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
-                                        class="btn btn-editar">Editar</a>
+                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}" class="btn btn-editar">Editar</a>
                                 </td>
                                 <td>
                                     <form action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
