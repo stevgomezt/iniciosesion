@@ -90,7 +90,8 @@ def home():
 # Define la clase FormAdd
 class FormAdd(FlaskForm):
     tipo_documento = StringField('tipo_documento', validators=[DataRequired()])
-    numero_documento = StringField('numero_documento', validators=[DataRequired()])
+    numero_documento = StringField(
+        'numero_documento', validators=[DataRequired()])
     nombre = StringField('nombre', validators=[DataRequired()])
     edad = StringField('edad', validators=[DataRequired()])
     genero = StringField('genero', validators=[DataRequired()])
@@ -101,61 +102,78 @@ class FormAdd(FlaskForm):
     nivel_estudios = StringField('nivel_estudios', validators=[DataRequired()])
     estrato = IntegerField('estrato', validators=[DataRequired()])
     num_hijos = IntegerField('num_hijos', validators=[DataRequired()])
-    personas_cargo = IntegerField('personas_cargo', validators=[DataRequired()])
+    personas_cargo = IntegerField(
+        'personas_cargo', validators=[DataRequired()])
     experiencia = StringField('experiencia', validators=[DataRequired()])
-    area_experiencia = StringField('area_experiencia', validators=[DataRequired()])
+    area_experiencia = StringField(
+        'area_experiencia', validators=[DataRequired()])
     tiempo_ventas = StringField('tiempo_ventas', validators=[DataRequired()])
-    experiencia_general = StringField('experiencia_general', validators=[DataRequired()])
-    otra_area_experiencia = StringField('otra_area_experiencia', validators=[DataRequired()])
+    experiencia_general = StringField(
+        'experiencia_general', validators=[DataRequired()])
+    otra_area_experiencia = StringField(
+        'otra_area_experiencia', validators=[DataRequired()])
     # Define OCR
-    perfil_natural_r = IntegerField('perfil_natural_r', validators=[DataRequired()])
-    perfil_natural_e = IntegerField('perfil_natural_e', validators=[DataRequired()])
-    perfil_natural_p = IntegerField('perfil_natural_p', validators=[DataRequired()])
-    perfil_natural_n = IntegerField('perfil_natural_n', validators=[DataRequired()])
-    perfil_natural_a = IntegerField('perfil_natural_a', validators=[DataRequired()])
-    perfil_natural_r_ie = IntegerField('perfil_natural_r_ie', validators=[DataRequired()])
-    perfil_natural_e_ie = IntegerField('perfil_natural_e_ie', validators=[DataRequired()])
-    perfil_natural_p_ie = IntegerField('perfil_natural_p_ie', validators=[DataRequired()])
-    perfil_natural_n_ie = IntegerField('perfil_natural_n_ie', validators=[DataRequired()])
-    perfil_natural_a_ie = IntegerField('perfil_natural_a_ie', validators=[DataRequired()])
-    intensidad_perfil_natural = IntegerField('intensidad_perfil_natural', validators=[DataRequired()])
-    energia_natural = IntegerField('energia_natural', validators=[DataRequired()])
-    perfil_adaptado_r = IntegerField('perfil_adaptado_r', validators=[DataRequired()])
-    perfil_adaptado_e = IntegerField('perfil_adaptado_e', validators=[DataRequired()])
-    perfil_adaptado_p = IntegerField('perfil_adaptado_p', validators=[DataRequired()])
-    perfil_adaptado_n = IntegerField('perfil_adaptado_n', validators=[DataRequired()])
-    perfil_adaptado_a = IntegerField('perfil_adaptado_a', validators=[DataRequired()])
-    perfil_adaptado_r_ie = IntegerField('perfil_adaptado_r_ie', validators=[DataRequired()])
-    perfil_adaptado_e_ie = IntegerField('perfil_adaptado_e_ie', validators=[DataRequired()])
-    perfil_adaptado_p_ie = IntegerField('perfil_adaptado_p_ie', validators=[DataRequired()])
-    perfil_adaptado_n_ie = IntegerField('perfil_adaptado_n_ie', validators=[DataRequired()])
-    perfil_adaptado_a_ie = IntegerField('perfil_adaptado_a_ie', validators=[DataRequired()])
-    toma_decisiones_adaptado = IntegerField('toma_decisiones_adaptado', validators=[DataRequired()])
-    intensidad_perfil_adaptado = IntegerField('intensidad_perfil_adaptado', validators=[DataRequired()])
-    energia_adaptado = IntegerField('energia_adaptado', validators=[DataRequired()])
-    equilibrio_de_energia = IntegerField('equilibrio_de_energia', validators=[DataRequired()])
-    modificacion_perfil = IntegerField('modificacion_perfil', validators=[DataRequired()])
-    tiempo_formulario = IntegerField('tiempo_formulario', validators=[DataRequired()])
+    perfil_natural_r = IntegerField(
+        'perfil_natural_r', validators=[DataRequired()])
+    perfil_natural_e = IntegerField(
+        'perfil_natural_e', validators=[DataRequired()])
+    perfil_natural_p = IntegerField(
+        'perfil_natural_p', validators=[DataRequired()])
+    perfil_natural_n = IntegerField(
+        'perfil_natural_n', validators=[DataRequired()])
+    perfil_natural_a = IntegerField(
+        'perfil_natural_a', validators=[DataRequired()])
+    perfil_natural_r_ie = IntegerField(
+        'perfil_natural_r_ie', validators=[DataRequired()])
+    perfil_natural_e_ie = IntegerField(
+        'perfil_natural_e_ie', validators=[DataRequired()])
+    perfil_natural_p_ie = IntegerField(
+        'perfil_natural_p_ie', validators=[DataRequired()])
+    perfil_natural_n_ie = IntegerField(
+        'perfil_natural_n_ie', validators=[DataRequired()])
+    perfil_natural_a_ie = IntegerField(
+        'perfil_natural_a_ie', validators=[DataRequired()])
+    intensidad_perfil_natural = IntegerField(
+        'intensidad_perfil_natural', validators=[DataRequired()])
+    energia_natural = IntegerField(
+        'energia_natural', validators=[DataRequired()])
+    perfil_adaptado_r = IntegerField(
+        'perfil_adaptado_r', validators=[DataRequired()])
+    perfil_adaptado_e = IntegerField(
+        'perfil_adaptado_e', validators=[DataRequired()])
+    perfil_adaptado_p = IntegerField(
+        'perfil_adaptado_p', validators=[DataRequired()])
+    perfil_adaptado_n = IntegerField(
+        'perfil_adaptado_n', validators=[DataRequired()])
+    perfil_adaptado_a = IntegerField(
+        'perfil_adaptado_a', validators=[DataRequired()])
+    perfil_adaptado_r_ie = IntegerField(
+        'perfil_adaptado_r_ie', validators=[DataRequired()])
+    perfil_adaptado_e_ie = IntegerField(
+        'perfil_adaptado_e_ie', validators=[DataRequired()])
+    perfil_adaptado_p_ie = IntegerField(
+        'perfil_adaptado_p_ie', validators=[DataRequired()])
+    perfil_adaptado_n_ie = IntegerField(
+        'perfil_adaptado_n_ie', validators=[DataRequired()])
+    perfil_adaptado_a_ie = IntegerField(
+        'perfil_adaptado_a_ie', validators=[DataRequired()])
+    toma_decisiones_adaptado = IntegerField(
+        'toma_decisiones_adaptado', validators=[DataRequired()])
+    intensidad_perfil_adaptado = IntegerField(
+        'intensidad_perfil_adaptado', validators=[DataRequired()])
+    energia_adaptado = IntegerField(
+        'energia_adaptado', validators=[DataRequired()])
+    equilibrio_de_energia = IntegerField(
+        'equilibrio_de_energia', validators=[DataRequired()])
+    modificacion_perfil = IntegerField(
+        'modificacion_perfil', validators=[DataRequired()])
+    tiempo_formulario = IntegerField(
+        'tiempo_formulario', validators=[DataRequired()])
     unidad_tiempo = IntegerField('unidad_tiempo', validators=[DataRequired()])
     color = IntegerField('color', validators=[DataRequired()])
     nombre_perfil = IntegerField('nombre_perfil', validators=[DataRequired()])
     eje_dominante = IntegerField('eje_dominante', validators=[DataRequired()])
     perfil = IntegerField('perfil', validators=[DataRequired()])
-
-
-@app.route('/llamar_api')
-def llamar_api():
-    # Llamada al endpoint https://jsonplaceholder.typicode.com/posts
-    response = requests.get('https://jsonplaceholder.typicode.com/posts')
-    
-    # Obtener los datos de la respuesta
-    data = response.json()
-    
-    # Puedes hacer algo con los datos aquí, por ejemplo, imprimirlos en la consola
-    print(data)
-    
-    # Devolver una respuesta simple para este ejemplo
-    return "Llamada a la API exitosa. Revisa la consola para ver los datos."
 
 
 # Define una ruta para '/agregar_asesor' que requiere que el usuario esté autenticado.
