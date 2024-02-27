@@ -18,7 +18,7 @@ def dame_conexion():
     )
 
 
-def insertar_asesor(tipo_documento, numero_documento, nombre, edad, genero, estado_civil, tipo_vivienda, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, perfil_natural_r, perfil_natural_e, perfil_natural_p, perfil_natural_n, perfil_natural_a, perfil_natural_r_ie, perfil_natural_e_ie, perfil_natural_p_ie, perfil_natural_n_ie, perfil_natural_a_ie, intensidad_perfil_natural, energia_natural, perfil_adaptado_r, perfil_adaptado_e, perfil_adaptado_p, perfil_adaptado_n, perfil_adaptado_a, perfil_adaptado_r_ie, perfil_adaptado_e_ie, perfil_adaptado_p_ie, perfil_adaptado_n_ie, perfil_adaptado_a_ie, toma_decisiones_adaptado, intensidad_perfil_adaptado, energia_adaptado, equilibrio_de_energia, modificacion_perfil, tiempo_formulario, unidad_tiempo, color, nombre_perfil, eje_dominante, perfil):
+def insertar_asesor(tipo_documento, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, tipo_vivienda, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, json_data):
     # Establece una conexión con la base de datos.
     conexion = dame_conexion()
 
@@ -26,9 +26,67 @@ def insertar_asesor(tipo_documento, numero_documento, nombre, edad, genero, esta
     with conexion.cursor() as cursor:
         # Ejecuta una consulta SQL para insertar un nuevo asesor con los datos proporcionados.
         cursor.execute(
-            "INSERT INTO asesores (tipo_documento, numero_documento, nombre, edad, genero, estado_civil, tipo_vivienda, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, perfil_natural_r, perfil_natural_e, perfil_natural_p, perfil_natural_n, perfil_natural_a, perfil_natural_r_ie, perfil_natural_e_ie, perfil_natural_p_ie, perfil_natural_n_ie, perfil_natural_a_ie, intensidad_perfil_natural, energia_natural, perfil_adaptado_r, perfil_adaptado_e, perfil_adaptado_p, perfil_adaptado_n, perfil_adaptado_a, perfil_adaptado_r_ie, perfil_adaptado_e_ie, perfil_adaptado_p_ie, perfil_adaptado_n_ie, perfil_adaptado_a_ie, toma_decisiones_adaptado, intensidad_perfil_adaptado, energia_adaptado, equilibrio_de_energia, modificacion_perfil, tiempo_formulario, unidad_tiempo, color, nombre_perfil, eje_dominante, perfil) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+            "INSERT INTO asesores (tipo_documento, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, tipo_vivienda, estrato, num_hijos, personas_cargo, experiencia , area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, Energia_Adaptado,Energia_Natural,Equilibrio_de_Energia,Intensidad_Perfil_Adaptado,Intensidad_Perfil_Natural,Modificacion_perfil,Nombre_Asesor,Perfil_Adaptado_A,Perfil_Adaptado_A_num,Perfil_Adaptado_A_IE,Perfil_Adaptado_E,Perfil_Adaptado_E_num,Perfil_Adaptado_E_IE,Perfil_Adaptado_N,Perfil_Adaptado_N_num,Perfil_Adaptado_N_IE,Perfil_Adaptado_P,Perfil_Adaptado_P_num,Perfil_Adaptado_P_IE,Perfil_Adaptado_R,Perfil_Adaptado_R_num,Perfil_Adaptado_R_IE,Perfil_Natural_A,Perfil_Natural_A_num,Perfil_Natural_A_IE,Perfil_Natural_E,Perfil_Natural_E_num,Perfil_Natural_E_IE,Perfil_Natural_N,Perfil_Natural_N_num,Perfil_Natural_N_IE,Perfil_Natural_P,Perfil_Natural_P_num,Perfil_Natural_P_IE,Perfil_Natural_R,Perfil_Natural_R_num,Perfil_Natural_R_IE,Tiempo_Formulario,Toma_decisiones_Adaptado,Toma_decisiones_Natural,Unidad_tiempo) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
             # Parámetros que se pasan a la consulta SQL.
-            (tipo_documento, numero_documento, nombre, edad, genero, estado_civil, tipo_vivienda, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, perfil_natural_r, perfil_natural_e, perfil_natural_p, perfil_natural_n, perfil_natural_a, perfil_natural_r_ie, perfil_natural_e_ie, perfil_natural_p_ie, perfil_natural_n_ie, perfil_natural_a_ie, intensidad_perfil_natural, energia_natural, perfil_adaptado_r, perfil_adaptado_e, perfil_adaptado_p, perfil_adaptado_n, perfil_adaptado_a, perfil_adaptado_r_ie, perfil_adaptado_e_ie, perfil_adaptado_p_ie, perfil_adaptado_n_ie, perfil_adaptado_a_ie, toma_decisiones_adaptado, intensidad_perfil_adaptado, energia_adaptado, equilibrio_de_energia, modificacion_perfil, tiempo_formulario, unidad_tiempo, color, nombre_perfil, eje_dominante, perfil))
+            (tipo_documento,
+             numero_documento,
+             nombre,
+             edad,
+             genero,
+             estado_civil,
+             correo,
+             telefono,
+             nivel_estudios,
+             tipo_vivienda,
+             estrato,
+             num_hijos,
+             personas_cargo,
+             experiencia,
+             area_experiencia,
+             tiempo_ventas,
+             experiencia_general,
+             otra_area_experiencia,
+             json_data.get("Energia Adaptado"),
+             json_data.get("Energia Natural"),
+             json_data.get("Equilibrio de Energia"),
+             json_data.get("Intensidad Perfil Adaptado"),
+             json_data.get("Intensidad Perfil Natural"),
+             json_data.get("Modificacion perfil"),
+             json_data.get("Nombre Asesor"),
+             json_data.get("Perfil Adaptado A"),
+             json_data.get("Perfil Adaptado A#"),
+             json_data.get("Perfil Adaptado A_IE"),
+             json_data.get("Perfil Adaptado E"),
+             json_data.get("Perfil Adaptado E#"),
+             json_data.get("Perfil Adaptado E_IE"),
+             json_data.get("Perfil Adaptado N"),
+             json_data.get("Perfil Adaptado N#"),
+             json_data.get("Perfil Adaptado N_IE"),
+             json_data.get("Perfil Adaptado P"),
+             json_data.get("Perfil Adaptado P#"),
+             json_data.get("Perfil Adaptado P_IE"),
+             json_data.get("Perfil Adaptado R"),
+             json_data.get("Perfil Adaptado R#"),
+             json_data.get("Perfil Adaptado R_IE"),
+             json_data.get("Perfil Natural A"),
+             json_data.get("Perfil Natural A#"),
+             json_data.get("Perfil Natural A_IE"),
+             json_data.get("Perfil Natural E"),
+             json_data.get("Perfil Natural E#"),
+             json_data.get("Perfil Natural E_IE"),
+             json_data.get("Perfil Natural N"),
+             json_data.get("Perfil Natural N#"),
+             json_data.get("Perfil Natural N_IE"),
+             json_data.get("Perfil Natural P"),
+             json_data.get("Perfil Natural P#"),
+             json_data.get("Perfil Natural P_IE"),
+             json_data.get("Perfil Natural R"),
+             json_data.get("Perfil Natural R#"),
+             json_data.get("Perfil Natural R_IE"),
+             json_data.get("Tiempo Formulario"),
+             json_data.get("Toma decisiones Adaptado"),
+             json_data.get("Toma decisiones Natural"),
+             json_data.get("Unidad tiempo")))
         # Confirma la transacción.
         conexion.commit()
         # Cierra la conexión a la base de datos.
@@ -44,7 +102,8 @@ def listar_asesores():
 
     # Utiliza un manejador de contexto para asegurar que los recursos se liberen después de la operación.
     with conexion.cursor() as cursor:
-        # Ejecuta una consulta SQL para obtener todos los asesores, ordenados por ID de forma descendente.
+        # Ejecuta una consulta SQL para obtener todos los asesores,
+        #  ordenados por ID de forma descendente.
         cursor.execute("SELECT id, tipo_documento, numero_documento, nombre, edad, genero, estado_civil, tipo_vivienda, correo, telefono, nivel_estudios, estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia FROM asesores order by id desc")
 
         # Recupera todos los registros resultantes de la consulta.

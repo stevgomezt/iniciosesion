@@ -279,7 +279,6 @@ document.getElementById("uploadBtn").addEventListener("change", function () {
     }
 });
 
-
 // Validaciones en template editar
 document
     .getElementById("numero_documento")
@@ -291,3 +290,88 @@ document.getElementById("nombre").addEventListener("input", function () {
     this.value = this.value.replace(/[^A-Za-z\s]+/g, "");
 });
 
+// Nuevas funciones
+
+function showProcessingModal() {
+    document.getElementById("processing-modal").style.display = "block";
+    document.getElementById("overlay").style.display = "block"; // Mostrar el overlay
+
+    // Agregar un evento de escucha de teclado para bloquear la tecla "Escape"
+    window.addEventListener("keydown", blockEscapeKey);
+}
+
+// Función para ocultar el modal de procesamiento
+function hideProcessingModal() {
+    document.getElementById("processing-modal").style.display = "none";
+    document.getElementById("overlay").style.display = "none"; // Ocultar el overlay
+
+    // Remover el evento de escucha de teclado para la tecla "Escape"
+    window.removeEventListener("keydown", blockEscapeKey);
+}
+
+// Función para bloquear la tecla "Escape"
+function blockEscapeKey(event) {
+    if (event.key === "Escape") {
+        event.preventDefault(); // Evitar la acción predeterminada de la tecla "Escape"
+    }
+}
+
+// Verificar si hay un mensaje en la URL y mostrarlo en un popup de alerta
+const urlParams = new URLSearchParams(window.location.search);
+const message = urlParams.get("message");
+if (message) {
+    alert(message);
+    // Eliminar el parámetro de consulta de la URL
+    history.replaceState({}, document.title, window.location.pathname);
+}
+
+function checkFile() {
+    var fileInput = document.getElementById("file-input");
+    var tipo_documento = document.getElementById("tipo_documento");
+    var numero_documento = document.getElementById("numero_documento");
+    var nombre = document.getElementById("nombre");
+    var edad = document.getElementById("edad");
+    var genero = document.getElementById("genero");
+    var estado_civil = document.getElementById("estado_civil");
+    var correo = document.getElementById("correo");
+    var telefono = document.getElementById("telefono");
+    var nivel_estudios = document.getElementById("nivel_estudios");
+    var tipo_vivienda = document.getElementById("tipo_vivienda");
+    var estrato = document.getElementById("estrato");
+    var num_hijos = document.getElementById("num_hijos");
+    var personas_cargo = document.getElementById("personas_cargo");
+    var experiencia = document.getElementById("experiencia");
+    var area_experiencia = document.getElementById("area_experiencia");
+    var tiempo_ventas = document.getElementById("tiempo_ventas");
+    var experiencia_general = document.getElementById("experiencia_general");
+    var otra_area_experiencia = document.getElementById(
+        "otra_area_experiencia"
+    );
+    var uploadBtn = document.getElementById("upload-btn");
+
+    if (
+        fileInput.files.length > 0 &&
+        tipo_documento.value.trim() !== "" &&
+        numero_documento.value.trim() !== "" &&
+        nombre.value.trim() !== "" &&
+        edad.value.trim() !== "" &&
+        genero.value.trim() !== "" &&
+        estado_civil.value.trim() !== "" &&
+        correo.value.trim() !== "" &&
+        telefono.value.trim() !== "" &&
+        nivel_estudios.value.trim() !== "" &&
+        tipo_vivienda.value.trim() !== "" &&
+        estrato.value.trim() !== "" &&
+        num_hijos.value.trim() !== "" &&
+        personas_cargo.value.trim() !== "" &&
+        experiencia.value.trim() !== "" &&
+        area_experiencia.value.trim() !== "" &&
+        tiempo_ventas.value.trim() !== "" &&
+        experiencia_general.value.trim() !== "" &&
+        otra_area_experiencia.value.trim() !== ""
+    ) {
+        uploadBtn.disabled = false;
+    } else {
+        uploadBtn.disabled = true;
+    }
+}

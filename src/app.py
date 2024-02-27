@@ -5,7 +5,7 @@ from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required
 from config import config
 import basedatos
-from basedatos import count_asesores, listar_asesores_pages
+from basedatos import count_asesores, listar_asesores_pages, insertar_asesor
 import math
 from math import ceil
 from flask_wtf import FlaskForm
@@ -21,6 +21,9 @@ from models.entities.User import User
 
 # Inicialización de la aplicación Flask.
 app = Flask(__name__)
+
+# URL de Docker donde se debe enviar la solicitud
+DOCKER_URL = 'http://localhost:8000/ocr/api/v1/read_pdf/'
 
 # Inicialización de la protección CSRF para la aplicación.
 csrf = CSRFProtect()
@@ -96,14 +99,13 @@ class FormAdd(FlaskForm):
     edad = StringField('edad', validators=[DataRequired()])
     genero = StringField('genero', validators=[DataRequired()])
     estado_civil = StringField('estado_civil', validators=[DataRequired()])
-    tipo_vivienda = StringField('tipo_vivienda', validators=[DataRequired()])
     correo = StringField('correo', validators=[DataRequired()])
     telefono = StringField('telefono', validators=[DataRequired()])
     nivel_estudios = StringField('nivel_estudios', validators=[DataRequired()])
-    estrato = IntegerField('estrato', validators=[DataRequired()])
-    num_hijos = IntegerField('num_hijos', validators=[DataRequired()])
-    personas_cargo = IntegerField(
-        'personas_cargo', validators=[DataRequired()])
+    tipo_vivienda = StringField('tipo_vivienda', validators=[DataRequired()])
+    estrato = StringField('estrato', validators=[DataRequired()])
+    num_hijos = StringField('num_hijos', validators=[DataRequired()])
+    personas_cargo = StringField('personas_cargo', validators=[DataRequired()])
     experiencia = StringField('experiencia', validators=[DataRequired()])
     area_experiencia = StringField(
         'area_experiencia', validators=[DataRequired()])
@@ -112,68 +114,6 @@ class FormAdd(FlaskForm):
         'experiencia_general', validators=[DataRequired()])
     otra_area_experiencia = StringField(
         'otra_area_experiencia', validators=[DataRequired()])
-    # Define OCR
-    perfil_natural_r = IntegerField(
-        'perfil_natural_r', validators=[DataRequired()])
-    perfil_natural_e = IntegerField(
-        'perfil_natural_e', validators=[DataRequired()])
-    perfil_natural_p = IntegerField(
-        'perfil_natural_p', validators=[DataRequired()])
-    perfil_natural_n = IntegerField(
-        'perfil_natural_n', validators=[DataRequired()])
-    perfil_natural_a = IntegerField(
-        'perfil_natural_a', validators=[DataRequired()])
-    perfil_natural_r_ie = IntegerField(
-        'perfil_natural_r_ie', validators=[DataRequired()])
-    perfil_natural_e_ie = IntegerField(
-        'perfil_natural_e_ie', validators=[DataRequired()])
-    perfil_natural_p_ie = IntegerField(
-        'perfil_natural_p_ie', validators=[DataRequired()])
-    perfil_natural_n_ie = IntegerField(
-        'perfil_natural_n_ie', validators=[DataRequired()])
-    perfil_natural_a_ie = IntegerField(
-        'perfil_natural_a_ie', validators=[DataRequired()])
-    intensidad_perfil_natural = IntegerField(
-        'intensidad_perfil_natural', validators=[DataRequired()])
-    energia_natural = IntegerField(
-        'energia_natural', validators=[DataRequired()])
-    perfil_adaptado_r = IntegerField(
-        'perfil_adaptado_r', validators=[DataRequired()])
-    perfil_adaptado_e = IntegerField(
-        'perfil_adaptado_e', validators=[DataRequired()])
-    perfil_adaptado_p = IntegerField(
-        'perfil_adaptado_p', validators=[DataRequired()])
-    perfil_adaptado_n = IntegerField(
-        'perfil_adaptado_n', validators=[DataRequired()])
-    perfil_adaptado_a = IntegerField(
-        'perfil_adaptado_a', validators=[DataRequired()])
-    perfil_adaptado_r_ie = IntegerField(
-        'perfil_adaptado_r_ie', validators=[DataRequired()])
-    perfil_adaptado_e_ie = IntegerField(
-        'perfil_adaptado_e_ie', validators=[DataRequired()])
-    perfil_adaptado_p_ie = IntegerField(
-        'perfil_adaptado_p_ie', validators=[DataRequired()])
-    perfil_adaptado_n_ie = IntegerField(
-        'perfil_adaptado_n_ie', validators=[DataRequired()])
-    perfil_adaptado_a_ie = IntegerField(
-        'perfil_adaptado_a_ie', validators=[DataRequired()])
-    toma_decisiones_adaptado = IntegerField(
-        'toma_decisiones_adaptado', validators=[DataRequired()])
-    intensidad_perfil_adaptado = IntegerField(
-        'intensidad_perfil_adaptado', validators=[DataRequired()])
-    energia_adaptado = IntegerField(
-        'energia_adaptado', validators=[DataRequired()])
-    equilibrio_de_energia = IntegerField(
-        'equilibrio_de_energia', validators=[DataRequired()])
-    modificacion_perfil = IntegerField(
-        'modificacion_perfil', validators=[DataRequired()])
-    tiempo_formulario = IntegerField(
-        'tiempo_formulario', validators=[DataRequired()])
-    unidad_tiempo = IntegerField('unidad_tiempo', validators=[DataRequired()])
-    color = IntegerField('color', validators=[DataRequired()])
-    nombre_perfil = IntegerField('nombre_perfil', validators=[DataRequired()])
-    eje_dominante = IntegerField('eje_dominante', validators=[DataRequired()])
-    perfil = IntegerField('perfil', validators=[DataRequired()])
 
 
 # Define una ruta para '/agregar_asesor' que requiere que el usuario esté autenticado.
@@ -189,67 +129,64 @@ def agregar_asesor():
 # Define una ruta para '/guardar_asesor' que acepta solo métodos POST.
 @app.route('/guardar_asesor', methods=['POST'])
 def guardar_asesor():
-    try:
-        # Intenta insertar los datos del asesor en la base de datos.
-        basedatos.insertar_asesor(
-            request.form['tipo_documento'],
-            request.form['numero_documento'],
-            request.form['nombre'],
-            request.form['edad'],
-            request.form['genero'],
-            request.form['estado_civil'],
-            request.form['tipo_vivienda'],
-            request.form['correo'],
-            request.form['telefono'],
-            request.form['nivel_estudios'],
-            request.form['estrato'],
-            request.form['num_hijos'],
-            request.form['personas_cargo'],
-            request.form['experiencia'],
-            request.form['area_experiencia'],
-            request.form['tiempo_ventas'],
-            request.form['experiencia_general'],
-            request.form['otra_area_experiencia'],
-            request.form['perfil_natural_r'],
-            request.form['perfil_natural_e'],
-            request.form['perfil_natural_p'],
-            request.form['perfil_natural_n'],
-            request.form['perfil_natural_a'],
-            request.form['perfil_natural_r_ie'],
-            request.form['perfil_natural_e_ie'],
-            request.form['perfil_natural_p_ie'],
-            request.form['perfil_natural_n_ie'],
-            request.form['perfil_natural_a_ie'],
-            request.form['intensidad_perfil_natural'],
-            request.form['energia_natural'],
-            request.form['perfil_adaptado_r'],
-            request.form['perfil_adaptado_e'],
-            request.form['perfil_adaptado_p'],
-            request.form['perfil_adaptado_n'],
-            request.form['perfil_adaptado_a'],
-            request.form['perfil_adaptado_r_ie'],
-            request.form['perfil_adaptado_e_ie'],
-            request.form['perfil_adaptado_p_ie'],
-            request.form['perfil_adaptado_n_ie'],
-            request.form['perfil_adaptado_a_ie'],
-            request.form['toma_decisiones_adaptado'],
-            request.form['intensidad_perfil_adaptado'],
-            request.form['energia_adaptado'],
-            request.form['equilibrio_de_energia'],
-            request.form['modificacion_perfil'],
-            request.form['tiempo_formulario'],
-            request.form['unidad_tiempo'],
-            request.form['color'],
-            request.form['nombre_perfil'],
-            request.form['eje_dominante'],
-            request.form['perfil']
-        )
-    except Exception as e:
-        # Imprime el error si ocurre alguno durante la inserción.
-        print(f"Ha ocurrido el error {e}")
-    finally:
-        # Redirige a la página de asesores después de intentar la inserción.
-        return redirect('/asesores')
+    if 'file' not in request.files:
+        return 'No file part'
+
+    file = request.files['file']
+    if file.filename == '':
+        return 'No selected file'
+
+    if file:
+        # Obtener los datos adicionales del formulario
+        tipo_documento = request.form['tipo_documento']
+        numero_documento = request.form['numero_documento']
+        nombre = request.form['nombre']
+        edad = request.form['edad']
+        genero = request.form['genero']
+        estado_civil = request.form['estado_civil']
+        correo = request.form['correo']
+        telefono = request.form['telefono']
+        nivel_estudios = request.form['nivel_estudios']
+        tipo_vivienda = request.form['tipo_vivienda']
+        estrato = request.form['estrato']
+        num_hijos = request.form['num_hijos']
+        personas_cargo = request.form['personas_cargo']
+        experiencia = request.form['experiencia']
+        area_experiencia = request.form['area_experiencia']
+        tiempo_ventas = request.form['tiempo_ventas']
+        experiencia_general = request.form['experiencia_general']
+        otra_area_experiencia = request.form['otra_area_experiencia']
+
+        # Definir los encabezados
+        headers = {
+            'accept': 'application/json',
+        }
+
+        # Definir los datos del formulario
+        files = {
+            'file': (file.filename, file.stream, 'application/pdf')
+        }
+
+        # Realizar la solicitud POST a la URL de Docker
+        response = requests.post(DOCKER_URL, headers=headers, files=files)
+
+        # Guardar la respuesta en la base de datos MySQL
+        if response.status_code == 200:
+            # Obtener el JSON de la respuesta
+            json_data = response.json()
+
+            if json_data:  # Verificar si la lista no está vacía
+                # Extraer el primer elemento del JSON (la respuesta es una lista con un solo diccionario)
+                data = json_data[0]
+
+                # Insertar los datos en la tabla MySQL
+                insertar_asesor(tipo_documento, numero_documento, nombre, edad, genero, estado_civil, correo, telefono, nivel_estudios, tipo_vivienda,
+                                estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, data)
+
+            message = 'Información guardada en la base de datos'
+            return redirect(url_for('asesores', message=message))
+        else:
+            return 'Error al procesar el archivo: {}'.format(response.text)
 
 
 @app.route("/editar_asesor/<int:id>")
