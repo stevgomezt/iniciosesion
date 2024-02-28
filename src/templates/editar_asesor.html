@@ -67,7 +67,9 @@
     <main id="main">
         <!-- Form Section -->
         <section id="contact" class="contact">
+
             <div class="container">
+
                 <div class="section-title">
                     <span>PAC</span>
                     <h2>PAC</h2>
@@ -79,15 +81,16 @@
                 </div>
 
                 <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
+
                     <form action="{{url_for('actualizar_asesor')}}" method="post" class="php-email-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <input type="hidden" name="id" value="{{asesor[0]}}">
 
                         <div class="row">
                             <!-- Columna 1 -->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <h6>
-                                    <strong>Categoría 1: Perfil Personal y Académico</strong>
+                                    <strong>Categoría 1: Datos Personales</strong>
                                 </h6>
 
                                 <div class="form-group">
@@ -95,29 +98,35 @@
                                     <div class="input-container">
                                         <select class="form-control" name="tipo_documento" id="tipo_documento" required>
                                             <option value="{{ asesor[1] }}" selected>{{ asesor[1] }}</option>
-                                            <option value="CC" {% if asesor[1]=='CC' %}selected{% endif %}>Cédula de
+                                            <option value="Cédula de ciudadanía (CC)" {% if asesor[1]=='CC' %}selected{%
+                                                endif %}>Cédula de
                                                 ciudadanía (CC)</option>
-                                            <option value="CE" {% if asesor[1]=='CE' %}selected{% endif %}>Cédula de
+                                            <option value="Cédula de extranjera (CE)" {% if asesor[1]=='CE' %}selected{%
+                                                endif %}>Cédula de
                                                 extranjera (CE)</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="numero_documento">Documento de identificación:</label>
+                                    <label for="numero_documento">Numero de identificación:</label>
                                     <input type="text" name="numero_documento" id="numero_documento"
                                         value="{{ asesor[2] }}" class="form-control"
-                                        placeholder="Documento de identificación" />
+                                        oninput="checkFile(); this.value = this.value.replace(/[^0-9]/g, '')" required>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="nombre">Nombre del asesor:</label>
                                     <input type="text" name="nombre" id="nombre" value="{{ asesor[3] }}"
-                                        class="form-control" placeholder="Nombre del asesor" required />
+                                        class="form-control" maxlength="30"
+                                        oninput="checkFile(); this.value=this.value.replace(/[^a-zA-Z\s]/g, '')"
+                                        required>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="edad">Edad:</label>
                                     <input type="date" name="edad" id="edad" value="{{ asesor[4] }}"
-                                        class="form-control" placeholder="Edad" required />
+                                        class="form-control" maxlength="10" required oninput="checkFile()">
                                 </div>
 
                                 <div class="form-group">
@@ -125,31 +134,12 @@
                                     <div class="input-container">
                                         <select class="form-control" name="genero" id="genero" required>
                                             <option value="{{ asesor[5] }}" selected>{{ asesor[5] }}</option>
-                                            <option value="masculino" {% if asesor[5]=='masculino' %}selected{% endif
+                                            <option value="Masculino" {% if asesor[5]=='Masculino' %}selected{% endif
                                                 %}>Masculino</option>
-                                            <option value="femenino" {% if asesor[5]=='femenino' %}selected{% endif %}>
+                                            <option value="Femenino" {% if asesor[5]=='Femenino' %}selected{% endif %}>
                                                 Femenino</option>
-                                            <option value="prefiero_no_decirlo" {% if asesor[5]=='prefiero_no_decirlo'
+                                            <option value="Prefiero no decirlo" {% if asesor[5]=='Prefiero no decirlo'
                                                 %}selected{% endif %}>Prefiero no decirlo</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="label-titles" for="estado_civil">Estado civil:</label>
-                                    <div class="input-container">
-                                        <select class="form-control" name="estado_civil" id="estado_civil" required>
-                                            <option value="{{ asesor[6] }}" selected>{{ asesor[6] }}</option>
-                                            <option value="soltero" {% if asesor[6]=='soltero' %}selected{% endif %}>
-                                                Soltero/a</option>
-                                            <option value="casado" {% if asesor[6]=='casado' %}selected{% endif %}>
-                                                Casado/a</option>
-                                            <option value="union_libre" {% if asesor[6]=='union_libre' %}selected{%
-                                                endif %}>Unión libre</option>
-                                            <option value="separado" {% if asesor[6]=='separado' %}selected{% endif %}>
-                                                Separado/a</option>
-                                            <option value="divorciado" {% if asesor[6]=='divorciado' %}selected{% endif
-                                                %}>Divorciado/a</option>
                                         </select>
                                     </div>
                                 </div>
@@ -157,149 +147,255 @@
                             </div>
 
                             <!-- Columna 2 -->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <h6>
-                                    <strong>Categoría 2: Datos Personales</strong>
+                                    <strong>Categoría 2: Estado Civil y Contacto</strong>
                                 </h6>
-                            
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="tipo_vivienda">Tipo de vivienda:</label>
+                                    <label class="label-titles" for="estado_civil">Estado civil:</label>
                                     <div class="input-container">
-                                        <select class="form-control" name="tipo_vivienda" id="tipo_vivienda" required>
-                                            <option value="{{ asesor[7] }}" selected>{{ asesor[7] }}</option>
-                                            <option value="familiar" {% if asesor[7] == 'familiar' %}selected{% endif %}>Familiar</option>
-                                            <option value="propia" {% if asesor[7] == 'propia' %}selected{% endif %}>Propia</option>
-                                            <option value="alquilada" {% if asesor[7] == 'alquilada' %}selected{% endif %}>Alquilada</option>
+                                        <select class="form-control" name="estado_civil" id="estado_civil" required>
+                                            <option value="{{ asesor[6] }}" selected>{{ asesor[6] }}</option>
+                                            <option value="Soltero/a" {% if asesor[6]=='Soltero/a' %}selected{% endif
+                                                %}>
+                                                Soltero/a</option>
+                                            <option value="Casado/a" {% if asesor[6]=='Casado/a' %}selected{% endif %}>
+                                                Casado/a</option>
+                                            <option value="Unión libre" {% if asesor[6]=='Unión libre' %}selected{%
+                                                endif %}>Unión libre</option>
+                                            <option value="Separado/a" {% if asesor[6]=='Separado/a' %}selected{% endif
+                                                %}>
+                                                Separado/a</option>
+                                            <option value="Divorciado/a" {% if asesor[6]=='Divorciado/a' %}selected{%
+                                                endif %}>Divorciado/a</option>
                                         </select>
                                     </div>
                                 </div>
-                            
-                                <div class="form-group">
-                                    <label class="label-titles" for="estrato">Estrato:</label>
-                                    <div class="input-container">
-                                        <select class="form-control" name="estrato" id="estrato" required>
-                                            <option value="{{ asesor[11] }}" selected>{{ asesor[11] }}</option>
-                                            <option value="1" {% if asesor[11] == '1' %}selected{% endif %}>1</option>
-                                            <option value="2" {% if asesor[11] == '2' %}selected{% endif %}>2</option>
-                                            <option value="3" {% if asesor[11] == '3' %}selected{% endif %}>3</option>
-                                            <option value="4" {% if asesor[11] == '4' %}selected{% endif %}>4</option>
-                                            <option value="5" {% if asesor[11] == '5' %}selected{% endif %}>5</option>
-                                            <option value="6" {% if asesor[11] == '6' %}selected{% endif %}>6</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="num_hijos" class="form-label">Número de hijos:</label>
-                                    <input type="text" name="num_hijos" id="num_hijos" value="{{ asesor[12] }}" class="form-control" placeholder="Número de hijos" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="personas_cargo" class="form-label">Personas a cargo:</label>
-                                    <input type="text" name="personas_cargo" id="personas_cargo" value="{{ asesor[13] }}" class="form-control" placeholder="Personas a cargo" />
-                                </div>
+
                                 <div class="form-group">
                                     <label for="correo" class="form-label">Correo electrónico:</label>
-                                    <input type="email" name="correo" id="correo" value="{{ asesor[8] }}" class="form-control" placeholder="Correo electrónico" />
+                                    <input type="email" name="correo" id="correo" value="{{ asesor[8] }}"
+                                        class="form-control" placeholder="Correo electrónico" oninput="checkFile()"
+                                        required />
                                 </div>
+
                                 <div class="form-group">
                                     <label for="telefono" class="form-label">Teléfono:</label>
-                                    <input type="tel" name="telefono" id="telefono" value="{{ asesor[9] }}" class="form-control" placeholder="Teléfono" required />
+                                    <input type="tel" name="telefono" id="telefono" value="{{ asesor[9] }}"
+                                        class="form-control" maxlength="10"
+                                        oninput="checkFile(); this.value = this.value.replace(/[^0-9]/g, '').substring(0, 10)"
+                                        required>
                                 </div>
+
+
                             </div>
-                            
+
                             <!-- Columna 3 -->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <h6>
-                                    <strong>Categoría 3: Experiencia Laboral</strong>
+                                    <strong>Categoría 3: Educación y Vivienda</strong>
                                 </h6>
+
                                 <div class="form-group">
                                     <label class="label-titles" for="nivel_estudios">Nivel de estudios:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="nivel_estudios" id="nivel_estudios" required>
                                             <option value="{{ asesor[13] }}" selected>{{ asesor[10] }}</option>
-                                            <option value="bachillerato" {% if asesor[13] == 'bachillerato' %}selected{% endif %}>Bachillerato</option>
-                                            <option value="tecnica_tecnologo" {% if asesor[13] == 'tecnica_tecnologo' %}selected{% endif %}>Formación Técnica/Tecnólogo</option>
-                                            <option value="profesional_pregrado" {% if asesor[13] == 'profesional_pregrado' %}selected{% endif %}>Formación profesional - Pregrado</option>
-                                            <option value="posgrado" {% if asesor[13] == 'posgrado' %}selected{% endif %}>Posgrado</option>
+                                            <option value="Bachillerato" {% if asesor[13]=='Bachillerato' %}selected{%
+                                                endif %}>Bachillerato</option>
+                                            <option value="Formación Técnica/Tecnologo" {% if
+                                                asesor[13]=='Formación Técnica/Tecnologo' %}selected{% endif %}>
+                                                Formación Técnica/Tecnólogo</option>
+                                            <option value="Formación profesional - Pregrado" {% if
+                                                asesor[13]=='Formación profesional - Pregrado' %}selected{% endif %}>
+                                                Formación
+                                                profesional - Pregrado</option>
+                                            <option value="Posgrado" {% if asesor[13]=='Posgrado' %}selected{% endif %}>
+                                                Posgrado</option>
                                         </select>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="experiencia_general">Experiencia general:</label>
+                                    <label class="label-titles" for="tipo_vivienda">Tipo de vivienda:</label>
                                     <div class="input-container">
-                                        <select class="form-control" name="experiencia_general" id="experiencia_general" required>
-                                            <option value="{{ asesor[17] }}" selected>{{ asesor[17] }}</option>
-                                            <option value="sin_experiencia" {% if asesor[17] == 'sin_experiencia' %}selected{% endif %}>Sin experiencia</option>
-                                            <option value="menor_1" {% if asesor[17] == 'menor_1' %}selected{% endif %}>Menor a 1 año</option>
-                                            <option value="entre_1_2" {% if asesor[17] == 'entre_1_2' %}selected{% endif %}>Entre 1 y 2 años</option>
-                                            <option value="entre_2_4" {% if asesor[17] == 'entre_2_4' %}selected{% endif %}>Entre 2 y 4 años</option>
-                                            <option value="mayor_5" {% if asesor[17] == 'mayor_5' %}selected{% endif %}>Mayor a 5 años</option>
+                                        <select class="form-control" name="tipo_vivienda" id="tipo_vivienda" required>
+                                            <option value="{{ asesor[7] }}" selected>{{ asesor[7] }}</option>
+                                            <option value="Familiar" {% if asesor[7]=='Familiar' %}selected{% endif %}>
+                                                Familiar</option>
+                                            <option value="Propia" {% if asesor[7]=='Propia' %}selected{% endif %}>
+                                                Propia</option>
+                                            <option value="Alquilada" {% if asesor[7]=='Alquilada' %}selected{% endif
+                                                %}>Alquilada</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="area_experiencia">Área de experiencia:</label>
+                                    <label class="label-titles" for="estrato">Estrato:</label>
                                     <div class="input-container">
-                                        <select class="form-control" name="area_experiencia" id="area_experiencia" required>
-                                            <option value="{{ asesor[15] }}" selected>{{ asesor[15] }}</option>
-                                            <option value="sin_experiencia" {% if asesor[15] == 'sin_experiencia' %}selected{% endif %}>Sin experiencia</option>
-                                            <option value="ventas" {% if asesor[15] == 'ventas' %}selected{% endif %}>Ventas</option>
-                                            <option value="servicio_atencion" {% if asesor[15] == 'servicio_atencion' %}selected{% endif %}>Servicios de atención</option>
-                                            <option value="recuperacion_recobro" {% if asesor[15] == 'recuperacion_recobro' %}selected{% endif %}>Recuperación y recobro</option>
-                                            <option value="back_office" {% if asesor[15] == 'back_office' %}selected{% endif %}>Back Office (BO)</option>
+                                        <select class="form-control" name="estrato" id="estrato" required>
+                                            <option value="{{ asesor[11] }}" selected>{{ asesor[11] }}</option>
+                                            <option value="1" {% if asesor[11]=='1' %}selected{% endif %}>1</option>
+                                            <option value="2" {% if asesor[11]=='2' %}selected{% endif %}>2</option>
+                                            <option value="3" {% if asesor[11]=='3' %}selected{% endif %}>3</option>
+                                            <option value="4" {% if asesor[11]=='4' %}selected{% endif %}>4</option>
+                                            <option value="5" {% if asesor[11]=='5' %}selected{% endif %}>5</option>
+                                            <option value="6" {% if asesor[11]=='6' %}selected{% endif %}>6</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="tiempo_ventas">Tiempo de experiencia en ventas:</label>
-                                    <div class="input-container">
-                                        <select class="form-control" name="tiempo_ventas" id="tiempo_ventas" required>
-                                            <option value="{{ asesor[16] }}" selected>{{ asesor[16] }}</option>
-                                            <option value="sin_experiencia" {% if asesor[16] == 'sin_experiencia' %}selected{% endif %}>Sin experiencia</option>
-                                            <option value="menor_1" {% if asesor[16] == 'menor_1' %}selected{% endif %}>Menor a 1 año</option>
-                                            <option value="entre_1_2" {% if asesor[16] == 'entre_1_2' %}selected{% endif %}>Entre 1 y 2 años</option>
-                                            <option value="entre_2_4" {% if asesor[16] == 'entre_2_4' %}selected{% endif %}>Entre 2 y 4 años</option>
-                                            <option value="mayor_5" {% if asesor[16] == 'mayor_5' %}selected{% endif %}>Mayor a 5 años</option>
-                                        </select>
-                                    </div>
+                                    <label for="num_hijos" class="form-label">Número de hijos:</label>
+                                    <input type="text" name="num_hijos" id="personas_cargo" value="{{ asesor[12] }}"
+                                        class="form-control" oninput="checkFile();this.value =
+                                        this.value.replace(/[^0-9]/g, '')" , maxlength="1" required>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="experiencia">Años de experiencia:</label>
+                                    <label for="personas_cargo" class="form-label">Personas a cargo:</label>
+                                    <input type="text" name="personas_cargo" id="personas_cargo"
+                                        value="{{ asesor[13] }}" class="form-control" oninput="checkFile();this.value =
+                                        this.value.replace(/[^0-9]/g, '')" , maxlength="1" required>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <h6>
+                                    <strong>Categoría 4: Experiencia Laboral</strong>
+                                </h6>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="experiencia">Experiencia Teletrabajo:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="experiencia" id="experiencia" required>
                                             <option value="{{ asesor[17] }}" selected>{{ asesor[14] }}</option>
-                                            <option value="sin_experiencia" {% if asesor[17] == 'sin_experiencia' %}selected{% endif %}>Sin experiencia</option>
-                                            <option value="menor_1" {% if asesor[17] == 'menor_1' %}selected{% endif %}>Menor a 1 año</option>
-                                            <option value="entre_1_2" {% if asesor[17] == 'entre_1_2' %}selected{% endif %}>Entre 1 y 2 años</option>
-                                            <option value="entre_2_4" {% if asesor[17] == 'entre_2_4' %}selected{% endif %}>Entre 2 y 4 años</option>
-                                            <option value="mayor_5" {% if asesor[17] == 'mayor_5' %}selected{% endif %}>Mayor a 5 años</option>
+                                            <option value="Sin experiencia" {% if asesor[17]=='Sin experiencia'
+                                                %}selected{% endif %}>Sin experiencia</option>
+                                            <option value="Menor a 1 año" {% if asesor[17]=='Menor a 1 año' %}selected{%
+                                                endif %}>
+                                                Menor a 1 año</option>
+                                            <option value="Entre 1 y 2 años" {% if asesor[17]=='Entre 1 y 2 años'
+                                                %}selected{% endif %}>Entre 1 y 2 años</option>
+                                            <option value="Entre 2 y 4 años" {% if asesor[17]=='Entre 2 y 4 años'
+                                                %}selected{% endif %}>Entre 2 y 4 años</option>
+                                            <option value="Mayor a 5 años" {% if asesor[17]=='Mayor a 5 años'
+                                                %}selected{% endif %}>
+                                                Mayor a 5 años</option>
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label class="label-titles" for="otra_area_experiencia">Otra área de experiencia:</label>
+                                    <label class="label-titles" for="area_experiencia">Área de experiencia:</label>
                                     <div class="input-container">
-                                        <select class="form-control" name="otra_area_experiencia" id="otra_area_experiencia" required>
-                                            <option value="{{ asesor[18] }}" selected>{{ asesor[18] }}</option>
-                                            <option value="areas_administrativas" {% if asesor[18] == 'areas_administrativas' %}selected{% endif %}>Áreas administrativas</option>
-                                            <option value="servicio_al_cliente_presencial" {% if asesor[18] == 'servicio_al_cliente_presencial' %}selected{% endif %}>Servicio al cliente presencial</option>
-                                            <option value="venta_al_cliente_presencial" {% if asesor[18] == 'venta_al_cliente_presencial' %}selected{% endif %}>Venta al cliente presencial</option>
-                                            <option value="otros" {% if asesor[18] == 'otros' %}selected{% endif %}>Otros</option>
+                                        <select class="form-control" name="area_experiencia" id="area_experiencia"
+                                            required>
+                                            <option value="{{ asesor[15] }}" selected>{{ asesor[15] }}</option>
+                                            <option value="Sin experiencia" {% if asesor[15]=='Sin experiencia'
+                                                %}selected{% endif %}>Sin experiencia</option>
+                                            <option value="Ventas" {% if asesor[15]=='Ventas' %}selected{% endif %}>
+                                                Ventas</option>
+                                            <option value="Servicios de atención" {% if
+                                                asesor[15]=='Servicios de atención' %}selected{% endif %}>Servicios de
+                                                atención</option>
+                                            <option value="Recuperación y recobro" {% if
+                                                asesor[15]=='Recuperación y recobro' %}selected{% endif %}>Recuperación
+                                                y recobro</option>
+                                            <option value="Back Office (BO)" {% if asesor[15]=='Back Office (BO)'
+                                                %}selected{% endif %}>Back Office (BO)</option>
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="tiempo_ventas">Experiencia en
+                                        ventas:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="tiempo_ventas" id="tiempo_ventas" required>
+                                            <option value="{{ asesor[16] }}" selected>{{ asesor[16] }}</option>
+                                            <option value="Sin experiencia" {% if asesor[16]=='Sin experiencia'
+                                                %}selected{% endif %}>Sin experiencia</option>
+                                            <option value="Menor a 1 año" {% if asesor[16]=='Menor a 1 año' %}selected{%
+                                                endif %}>
+                                                Menor a 1 año</option>
+                                            <option value="Entre 1 y 2 años" {% if asesor[16]=='Entre 1 y 2 años'
+                                                %}selected{% endif %}>Entre 1 y 2 años</option>
+                                            <option value="Entre 2 y 4 años" {% if asesor[16]=='Entre 2 y 4 años'
+                                                %}selected{% endif %}>Entre 2 y 4 años</option>
+                                            <option value="Mayor a 5 años" {% if asesor[16]=='Mayor a 5 años'
+                                                %}selected{% endif %}>
+                                                Mayor a 5 años</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="experiencia_general">Experiencia general:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="experiencia_general" id="experiencia_general"
+                                            required>
+                                            <option value="{{ asesor[17] }}" selected>{{ asesor[17] }}</option>
+                                            <option value="Sin experiencia" {% if asesor[17]=='Sin experiencia'
+                                                %}selected{% endif %}>Sin experiencia</option>
+                                            <option value="Menor a 1 año" {% if asesor[17]=='Menor a 1 año' %}selected{%
+                                                endif %}>
+                                                Menor a 1 año</option>
+                                            <option value="Entre 1 y 2 años" {% if asesor[17]=='Entre 1 y 2 años'
+                                                %}selected{% endif %}>Entre 1 y 2 años</option>
+                                            <option value="Entre 2 y 4 años" {% if asesor[17]=='Entre 2 y 4 años'
+                                                %}selected{% endif %}>Entre 2 y 4 años</option>
+                                            <option value="Mayor a 5 años" {% if asesor[17]=='Mayor a 5 años'
+                                                %}selected{% endif %}>
+                                                Mayor a 5 años</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="label-titles" for="otra_area_experiencia">Otra área de
+                                        experiencia:</label>
+                                    <div class="input-container">
+                                        <select class="form-control" name="otra_area_experiencia"
+                                            id="otra_area_experiencia" required>
+                                            <option value="{{ asesor[18] }}" selected>{{ asesor[18] }}</option>
+                                            <option value="Áreas administrativas" {% if
+                                                asesor[18]=='Áreas administrativas' %}selected{% endif %}>Áreas
+                                                administrativas</option>
+                                            <option value="Servicio al cliente presencial" {% if
+                                                asesor[18]=='Servicio al cliente presencial' %}selected{% endif %}>
+                                                Servicio al cliente presencial</option>
+                                            <option value="Venta al cliente presencial" {% if
+                                                asesor[18]=='Venta al cliente presencial' %}selected{% endif %}>Venta al
+                                                cliente presencial</option>
+                                            <option value="Otros" {% if asesor[18]=='Otros' %}selected{% endif %}>Otros
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
-                            
+
                         </div>
                         <!-- Submit Button -->
-                        <div class="mb-3">
-                            <button class="btn btn-outline-primary" type="submit">
-                                Guardar
-                            </button>
+                        <div style="
+                        background-color: #d3d3ff;padding: 15px 5px;">
+                            <div>
+                                <button class="btn btn-outline-primary" type="submit">
+                                    Guardar
+                                </button>
+                            </div>
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
+
         </section>
         <!-- End Form Section -->
     </main>
@@ -339,21 +435,6 @@
     <!-- purecounterjs -->
     <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
 </body>
-
-<!-- bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-<!-- boxicons -->
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<!-- glightbox -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
-<!-- swiper -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<!-- isotope -->
-<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-<!-- purecounterjs -->
-<script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}
