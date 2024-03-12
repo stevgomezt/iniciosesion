@@ -69,6 +69,7 @@
                     <h2>INFO ASESORES</h2>
                     <!-- <p>Registro de colaborador</p> -->
                 </div>
+                
                 <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
                     <div class="row align-items-center"
                         style="border: solid 1px;color: #a5a5a5;border-radius: 10px;padding: 15px;">
@@ -87,7 +88,7 @@
                                     Género
                                 </button>
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton3">
-                                    {% for generos in ['masculino', 'femenino', 'otro'] %}
+                                    {% for generos in ['Masculino', 'Femenino', 'Prefiero no decirlo'] %}
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="genero"
@@ -111,7 +112,8 @@
                                     Estado Civil
                                 </button>
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                    {% for estado in ['soltero', 'casado', 'divorciado', 'viudo'] %}
+                                    {% for estado in ['Soltero/a', 'Casado/a', 'Union libre', 'Separado/a',
+                                    'Divorsiado/a'] %}
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="estado_civil"
@@ -136,7 +138,8 @@
                                     Nivel de Estudios
                                 </button>
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton2">
-                                    {% for estudios in ['bachillerato', 'tecnico', 'tecnologo', 'universitario'] %}
+                                    {% for estudios in ['Bachillerato', 'Formación Técnica/Tecnologo', 'Formación
+                                    profesional - Pregrado', 'Posgrado'] %}
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="nivel_estudios"
@@ -161,8 +164,8 @@
                                     Área de Experiencia
                                 </button>
                                 <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton4">
-                                    {% for area in ['bo', 'cobranza', 'retencion', 'servicio al cliente','venta
-                                    cruzada','ventas'] %}
+                                    {% for area in ['Sin experiencia', 'Ventas', 'retencion', 'Servicios de
+                                    atención','Recuperación y recobro','Back Office (BO)'] %}
                                     <li>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="area_experiencia"
@@ -233,7 +236,8 @@
                                 <td>{{ asesor[3] }}</td>
                                 <td>{{ asesor[7] }}</td>
                                 <td>
-                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}" class="btn btn-editar">Editar</a>
+                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
+                                        class="btn btn-editar">Editar</a>
                                 </td>
                                 <td>
                                     <form action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
