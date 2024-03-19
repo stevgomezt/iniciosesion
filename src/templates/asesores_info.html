@@ -63,193 +63,125 @@
 
     <main id="main">
         <section id="contact" class="contact">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="section-title">
                     <span>INFO ASESORES</span>
                     <h2>INFO ASESORES</h2>
                     <!-- <p>Registro de colaborador</p> -->
                 </div>
-                
-                <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
-                    <div class="row align-items-center"
-                        style="border: solid 1px;color: #a5a5a5;border-radius: 10px;padding: 15px;">
-                        <!-- Campo de búsqueda -->
-                        <div class="col-lg-4 col-md-6">
-                            <input type="text" class="form-control" name="search"
-                                placeholder="Buscar por nombre o número de documento"
-                                value="{{ request.args.get('search', '') }}">
-                        </div>
 
-                        <!-- Dropdown Género -->
-                        <div class="col-lg-2 col-md-2">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Género
-                                </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton3">
-                                    {% for generos in ['Masculino', 'Femenino', 'Prefiero no decirlo'] %}
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="genero"
-                                                value="{{ generos }}" id="{{ generos }}" {% if generos in
-                                                request.args.getlist('genero') %}checked{% endif %}>
-                                            <label class="form-check-label" for="{{ generos }}">
-                                                {{ generos.capitalize() }}
-                                            </label>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
+                <div style="display: flex;">
+                    <div id="filtros"
+                        style="margin-top: 50px; background-color: #522DB2; padding: 0 25px; border-radius: 25px; color: white;">
+                        <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
+
+                            <div class="mb-3 search-box" id="search">
+                                <input type="text" class="form-control search-input" name="search"
+                                    placeholder="Buscar por nombre o # de doc"
+                                    value="{{ request.args.get('search', '') }}">
+                                <i class='bx bx-search-alt-2 search-icon'></i>
                             </div>
-                        </div>
 
-                        <!-- Dropdown Estado Civil -->
-                        <div class="col-lg-2 col-md-2">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Estado Civil
-                                </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                                    {% for estado in ['Soltero/a', 'Casado/a', 'Union libre', 'Separado/a',
-                                    'Divorsiado/a'] %}
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="estado_civil"
-                                                value="{{ estado }}" id="{{ estado }}" {% if
-                                                request.args.getlist('estado_civil') and estado in
-                                                request.args.getlist('estado_civil') %}checked{% endif %}>
-                                            <label class="form-check-label" for="{{ estado }}">
-                                                {{ estado.capitalize() }}
-                                            </label>
-                                        </div>
-                                    </li>
+                            {% for field in [{'name': 'genero', 'options': ['Masculino', 'Femenino', 'Prefiero no
+                            decirlo']},
+                            {'name': 'estado_civil', 'options': ['Soltero/a', 'Casado/a', 'Unión libre', 'Separado/a',
+                            'Divorciado/a']},
+                            {'name': 'nivel_estudios', 'options': ['Bachillerato', 'Formación Técnica/Tecnólogo',
+                            'Formación Profesional - Pregrado', 'Posgrado']},
+                            {'name': 'area_experiencia', 'options': ['Sin experiencia', 'Ventas', 'Retención',
+                            'Servicios de atención', 'Recuperación y recobro', 'Back Office (BO)']}] %}
+                            <fieldset class="mb-3">
+                                <legend class="form-label">{{ field.name.replace('_', ' ') | capitalize }}</legend>
+                                <div>
+                                    {% for option in field.options %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="{{ field.name }}"
+                                            value="{{ option }}" id="{{ option }}" {% if option in
+                                            request.args.getlist(field.name) %}checked{% endif %}>
+                                        <label class="form-check-label" for="{{ option }}">
+                                            {{ option }}
+                                        </label>
+                                    </div>
                                     {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown Nivel de Estudios -->
-                        <div class="col-lg-2 col-md-2">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Nivel de Estudios
-                                </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton2">
-                                    {% for estudios in ['Bachillerato', 'Formación Técnica/Tecnologo', 'Formación
-                                    profesional - Pregrado', 'Posgrado'] %}
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="nivel_estudios"
-                                                value="{{ estudios }}" id="{{ estudios }}" {% if
-                                                request.args.getlist('nivel_estudios') and estudios in
-                                                request.args.getlist('nivel_estudios') %}checked{% endif %}>
-                                            <label class="form-check-label" for="{{ estudios }}">
-                                                {{ estudios.capitalize() }}
-                                            </label>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Dropdown Área de Experiencia -->
-                        <div class="col-lg-2 col-md-2">
-                            <div class="dropdown">
-                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Área de Experiencia
-                                </button>
-                                <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton4">
-                                    {% for area in ['Sin experiencia', 'Ventas', 'retencion', 'Servicios de
-                                    atención','Recuperación y recobro','Back Office (BO)'] %}
-                                    <li>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="area_experiencia"
-                                                value="{{ area }}" id="{{ area }}" {% if
-                                                request.args.getlist('area_experiencia') and area in
-                                                request.args.getlist('area_experiencia') %}checked{% endif %}>
-                                            <label class="form-check-label" for="{{ area }}">
-                                                {{ area.capitalize() }}
-                                            </label>
-                                        </div>
-                                    </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Botón de búsqueda -->
-                        <div class="col-lg-1 col-md-12 mt-3 mt-lg-0">
-                            <button type="submit"
-                                class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
-                                style="margin: 15px 0 0 0; padding: 10px 20px;">
-                                <i class="bi bi-funnel" style="margin-right: 5px;"></i>
-                                <span>Filtrar</span>
-                            </button>
-                        </div>
-                        <div class="col-lg-1 col-md-12 mt-3 mt-lg-0">
-                            <a href="asesores_info"
-                                class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
-                                style="margin: 15px 0 0 0; padding: 10px 20px;">
-                                <i class="bi bi-arrow-clockwise" style="margin-right: 5px;"></i>
-                                <span>Limpiar</span>
-                            </a>
-                        </div>
-                        <div class="col-lg-1 col-md-12 mt-3 mt-lg-0">
-                            <!-- Botón para exportar a Excel -->
-                            <button type="submit" name="export" value="excel" class="btn btn-success"
-                                style="margin: 15px 0 0 0; padding: 10px 20px;">
-                                <span>Excel</span>
-                            </button>
-                        </div>
-
-
-
-                    </div>
-                </form>
-
-                <div class="mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th style="display: none;">Codigo</th>
-                                <th class="titulos-filas">#</th>
-                                <th class="titulos-filas">Tipo de documento</th>
-                                <th class="titulos-filas">Documento</th>
-                                <th class="titulos-filas">Nombre</th>
-                                <th class="titulos-filas">Correo</th>
-                                <th class="titulos-filas"></th>
-                                <th class="titulos-filas"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for asesor in asesores %}
-                            <tr>
-                                <td style="display: none;">{{ asesor[0] }}</td>
-                                <td class="titulos-filas">{{ loop.index + (page - 1) * per_page }}</td>
-                                <td>{{ asesor[1] }}</td>
-                                <td>{{ asesor[2] }}</td>
-                                <td>{{ asesor[3] }}</td>
-                                <td>{{ asesor[7] }}</td>
-                                <td>
-                                    <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
-                                        class="btn btn-editar">Editar</a>
-                                </td>
-                                <td>
-                                    <form action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
-                                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                        <input type="hidden" name="id" value="{{ asesor[0] }}" />
-                                        <button class="btn btn-outline-danger">Eliminar</button>
-                                    </form>
-                                </td>
-                            </tr>
+                                </div>
+                            </fieldset>
                             {% endfor %}
-                        </tbody>
-                    </table>
+
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-filtrar w-10">Filtrar</button>
+                            </div>
+
+                            <div class="mb-3">
+                                <a href="{{ url_for('asesores_info') }}"
+                                    class="btn btn-limpiar w-10">Limpiar</a>
+                            </div>
+
+                            <div class="mb-3">
+                                <button type="submit" name="export" value="excel"
+                                    class="btn btn-excel w-10">Excel</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="flex-grow-1" style="margin-top: 50px;">
+                        <table class="table table-hover" style="margin-left: 10px;">
+                            <thead>
+                                <tr>
+                                    <th style="display: none;">Codigo</th>
+                                    <th class="titulos-filas">#</th>
+                                    <th class="titulos-filas">Documento</th>
+                                    <th class="titulos-filas">Nombre</th>
+                                    <th class="titulos-filas">Correo</th>
+                                    <th class="titulos-filas">Género</th>
+                                    <th class="titulos-filas">Estado Civil</th>
+                                    <th class="titulos-filas">Nivel de Estudios</th>
+                                    <th class="titulos-filas">Área de Experiencia</th>
+                                    <th class="titulos-filas"></th>
+                                    <th class="titulos-filas"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for asesor in asesores %}
+                                <tr>
+                                    <td style="display: none;">{{ asesor[0] }}</td>
+                                    <td class="titulos-filas">{{ loop.index + (page - 1) * per_page }}</td>
+                                    <td>
+                                        {% if asesor[1] == 'Cédula de ciudadanía (CC)' %}
+                                        CC
+                                        {% elif asesor[1] == 'Cédula de extranjera (CE)' %}
+                                        CE
+                                        {% else %}
+                                        {{ asesor[1] }}
+                                        {% endif %}
+                                        {{ asesor[2] }}
+                                    </td>
+                                    <td>{{ asesor[3] }}</td>
+                                    <td>{{ asesor[7] }}</td>
+                                    <td>{{ asesor[5] }}</td>
+                                    <td>{{ asesor[6] }}</td>
+                                    <td>{{ asesor[9] }}</td>
+                                    <td>{{ asesor[15] }}</td>
+                                    <td>
+                                        <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
+                                            class="btn btn-editar">Editar</a>
+                                    </td>
+                                    <td>
+                                        <!-- <form id="eliminarForm" action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" -->
+                                        <form id="eliminarForm{{ asesor[0] }}"
+                                            action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
+                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                            <input type="hidden" name="id" value="{{ asesor[0] }}" />
+                                            <!-- <button type="button" class="btn btn-eliminar" onclick="confirmarEliminar(this)">Eliminar</button> -->
+                                            <button type="button" class="btn btn-eliminar"
+                                                onclick="confirmarEliminar('{{ asesor[0] }}', '{{ asesor[3] }}')">Eliminar</button>
+
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 {% if total_pages > 1 %}
@@ -301,17 +233,27 @@
             </div>
         </div>
     </footer>
+    <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- boxicons -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <!-- glightbox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
+    <!-- swiper -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <!-- isotope -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <!-- purecounterjs -->
+    <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

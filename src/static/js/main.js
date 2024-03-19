@@ -375,3 +375,37 @@ function checkFile() {
         uploadBtn.disabled = true;
     }
 }
+
+// Validacion en acciones
+function confirmarEliminar(id, nombre) {
+    if (confirm("¿Estás seguro de que quieres eliminar el registro de " + nombre + "?")) {
+        document.getElementById("eliminarForm" + id).submit();
+    }
+}
+
+
+function mostrarAlerta() {
+    alert("Registro actualizado");
+}
+
+// Calcular edad
+function calcularEdad(fechaNacimiento) {
+    // Parsear la fecha de nacimiento a un objeto Date
+    const dob = new Date(fechaNacimiento);
+    // Obtener la fecha actual
+    const today = new Date();
+    // Calcular la diferencia de años
+    let edad = today.getFullYear() - dob.getFullYear();
+    // Corregir la edad si el cumpleaños aún no ha pasado este año
+    const mesActual = today.getMonth();
+    const diaActual = today.getDate();
+    const mesNacimiento = dob.getMonth();
+    const diaNacimiento = dob.getDate();
+    if (
+        mesActual < mesNacimiento ||
+        (mesActual === mesNacimiento && diaActual < diaNacimiento)
+    ) {
+        edad--;
+    }
+    return edad;
+}

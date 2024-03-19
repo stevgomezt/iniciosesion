@@ -184,7 +184,8 @@ def guardar_asesor():
                                 estrato, num_hijos, personas_cargo, experiencia, area_experiencia, tiempo_ventas, experiencia_general, otra_area_experiencia, data)
 
             message = 'Información guardada en la base de datos'
-            return redirect(url_for('asesores', message=message))
+            flash(message=message)
+            return redirect(url_for('asesores'))
         else:
             return 'Error al procesar el archivo: {}'.format(response.text)
 
@@ -234,7 +235,10 @@ def actualizar_asesor():
         print(f"Ha ocurrido el error {e}")
     finally:
         # Redirige a la página de lista de asesores después de intentar la actualización.
-        return redirect("/asesores")
+        # return redirect("/asesores")
+        message = 'Información de asesor actualizada'
+        flash(message=message)
+        return redirect(url_for('asesores'))
 
 
 @app.route("/eliminar_asesor", methods=['POST'])
@@ -259,7 +263,7 @@ def asesores():
     generos = request.args.getlist('genero')
     areas_experiencia = request.args.getlist('area_experiencia')
     export = request.args.get('export', None)
-    per_page = 5  # Cantidad de registros por página.
+    per_page = 12  # Cantidad de registros por página.
 
     # Si se solicita exportar, llama a la función de exportación.
     if export:
@@ -321,7 +325,7 @@ def asesores_info():
     generos = request.args.getlist('genero')
     areas_experiencia = request.args.getlist('area_experiencia')
     export = request.args.get('export', None)
-    per_page = 5  # Cantidad de registros por página.
+    per_page = 12  # Cantidad de registros por página.
 
     # Si se solicita exportar, llama a la función de exportación.
     if export:
