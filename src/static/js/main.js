@@ -378,11 +378,16 @@ function checkFile() {
 
 // Validacion en acciones
 function confirmarEliminar(id, nombre) {
-    if (confirm("¿Estás seguro de que quieres eliminar el registro de " + nombre + "?")) {
+    if (
+        confirm(
+            "¿Estás seguro de que quieres eliminar el registro de " +
+                nombre +
+                "?"
+        )
+    ) {
         document.getElementById("eliminarForm" + id).submit();
     }
 }
-
 
 function mostrarAlerta() {
     alert("Registro actualizado");
@@ -408,4 +413,31 @@ function calcularEdad(fechaNacimiento) {
         edad--;
     }
     return edad;
+}
+
+// Descargar perfil
+async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Opciones para html2canvas, que ayudará a convertir el div en un canvas
+    const options = {
+        scale: 2,
+        logging: true,
+        useCORS: true, // Esto ayuda a manejar elementos de origen cruzado
+    };
+
+    // Selecciona el contenido del div 'resume-wrapper'
+    const content = document.querySelector(".resume-wrapper");
+
+    // Usa html2canvas para convertir el contenido en un canvas
+    const canvas = await html2canvas(content, options);
+
+    // Obtén la imagen del canvas y agrega al PDF
+    const imgData = canvas.toDataURL("image/jpeg", 1.0);
+    const imgProps = doc.getImageProperties(imgData);
+    const pdfWidth = doc.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+    doc.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+    doc.save("resume.pdf"); // Guarda el archivo PDF generado
 }

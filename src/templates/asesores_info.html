@@ -27,7 +27,7 @@
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
                 <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
-                    <h6 style="color: #3bd100; font-weight: bold">
+                    <h6 style="color: #522DB2; font-weight: bold">
                         Usuario activo {{ current_user.fullname }}
                     </h6>
                 </a>
@@ -70,117 +70,143 @@
                     <!-- <p>Registro de colaborador</p> -->
                 </div>
 
-                <div style="display: flex;">
-                    <div id="filtros"
-                        style="margin-top: 50px; background-color: #522DB2; padding: 0 25px; border-radius: 25px; color: white;">
-                        <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
-
-                            <div class="mb-3 search-box" id="search">
+                <div style="display: flex; flex-direction: column;">
+                    <div id="search" style="align-self: flex-start; margin-left: 275px;">
+                        <form action="{{ url_for('asesores_info') }}" method="GET">
+                            <div class="mb-3 search-box">
                                 <input type="text" class="form-control search-input" name="search"
-                                    placeholder="Buscar por nombre o # de doc"
+                                    placeholder="Busca por nombre, apellido o número de documento"
                                     value="{{ request.args.get('search', '') }}">
                                 <i class='bx bx-search-alt-2 search-icon'></i>
-                            </div>
-
-                            {% for field in [{'name': 'genero', 'options': ['Masculino', 'Femenino', 'Prefiero no
-                            decirlo']},
-                            {'name': 'estado_civil', 'options': ['Soltero/a', 'Casado/a', 'Unión libre', 'Separado/a',
-                            'Divorciado/a']},
-                            {'name': 'nivel_estudios', 'options': ['Bachillerato', 'Formación Técnica/Tecnólogo',
-                            'Formación Profesional - Pregrado', 'Posgrado']},
-                            {'name': 'area_experiencia', 'options': ['Sin experiencia', 'Ventas', 'Retención',
-                            'Servicios de atención', 'Recuperación y recobro', 'Back Office (BO)']}] %}
-                            <fieldset class="mb-3">
-                                <legend class="form-label">{{ field.name.replace('_', ' ') | capitalize }}</legend>
-                                <div>
-                                    {% for option in field.options %}
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="{{ field.name }}"
-                                            value="{{ option }}" id="{{ option }}" {% if option in
-                                            request.args.getlist(field.name) %}checked{% endif %}>
-                                        <label class="form-check-label" for="{{ option }}">
-                                            {{ option }}
-                                        </label>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                            </fieldset>
-                            {% endfor %}
-
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-filtrar w-10">Filtrar</button>
-                            </div>
-
-                            <div class="mb-3">
-                                <a href="{{ url_for('asesores_info') }}"
-                                    class="btn btn-limpiar w-10">Limpiar</a>
-                            </div>
-
-                            <div class="mb-3">
-                                <button type="submit" name="export" value="excel"
-                                    class="btn btn-excel w-10">Excel</button>
                             </div>
                         </form>
                     </div>
 
-                    <div class="flex-grow-1" style="margin-top: 50px;">
-                        <table class="table table-hover" style="margin-left: 10px;">
-                            <thead>
-                                <tr>
-                                    <th style="display: none;">Codigo</th>
-                                    <th class="titulos-filas">#</th>
-                                    <th class="titulos-filas">Documento</th>
-                                    <th class="titulos-filas">Nombre</th>
-                                    <th class="titulos-filas">Correo</th>
-                                    <th class="titulos-filas">Género</th>
-                                    <th class="titulos-filas">Estado Civil</th>
-                                    <th class="titulos-filas">Nivel de Estudios</th>
-                                    <th class="titulos-filas">Área de Experiencia</th>
-                                    <th class="titulos-filas"></th>
-                                    <th class="titulos-filas"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for asesor in asesores %}
-                                <tr>
-                                    <td style="display: none;">{{ asesor[0] }}</td>
-                                    <td class="titulos-filas">{{ loop.index + (page - 1) * per_page }}</td>
-                                    <td>
-                                        {% if asesor[1] == 'Cédula de ciudadanía (CC)' %}
-                                        CC
-                                        {% elif asesor[1] == 'Cédula de extranjera (CE)' %}
-                                        CE
-                                        {% else %}
-                                        {{ asesor[1] }}
-                                        {% endif %}
-                                        {{ asesor[2] }}
-                                    </td>
-                                    <td>{{ asesor[3] }}</td>
-                                    <td>{{ asesor[7] }}</td>
-                                    <td>{{ asesor[5] }}</td>
-                                    <td>{{ asesor[6] }}</td>
-                                    <td>{{ asesor[9] }}</td>
-                                    <td>{{ asesor[15] }}</td>
-                                    <td>
-                                        <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
-                                            class="btn btn-editar">Editar</a>
-                                    </td>
-                                    <td>
-                                        <!-- <form id="eliminarForm" action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" -->
-                                        <form id="eliminarForm{{ asesor[0] }}"
-                                            action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
-                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                            <input type="hidden" name="id" value="{{ asesor[0] }}" />
-                                            <!-- <button type="button" class="btn btn-eliminar" onclick="confirmarEliminar(this)">Eliminar</button> -->
-                                            <button type="button" class="btn btn-eliminar"
-                                                onclick="confirmarEliminar('{{ asesor[0] }}', '{{ asesor[3] }}')">Eliminar</button>
+                    <div style="display: flex;margin-top: -30px;">
+                        <div id="filtros"
+                            style="margin-top: -30px; background-color: #522DB2; padding: 0 25px; border-radius: 25px; color: white;">
+                            <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
+                                <form action="{{ url_for('asesores_info') }}" method="GET" class="mb-3">
+                                    {% for field in [{'name': 'genero', 'options': ['Masculino', 'Femenino', 'Prefiero
+                                    no decirlo']},
+                                    {'name': 'estado_civil', 'options': ['Soltero/a', 'Casado/a', 'Unión
+                                    libre','Separado/a', 'Divorciado/a']},
+                                    {'name': 'nivel_estudios', 'options': ['Bachillerato', 'FormaciónTécnica/Tecnólogo',
+                                    'Formación Profesional - Pregrado', 'Posgrado']},
+                                    {'name': 'area_experiencia', 'options': ['Sin experiencia', 'Ventas',
+                                    'Retención','Servicios de atención', 'Recuperación y recobro', 'Back Office (BO)']}]
+                                    %}
+                                    <fieldset class="mb-1 mt-2">
+                                        <!-- <fieldset class="mb-3"> -->
+                                        <legend class="form-label">{{ field.name.replace('_', ' ') | capitalize }}
+                                        </legend>
+                                        <div>
+                                            {% for option in field.options %}
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="{{ field.name }}"
+                                                    value="{{ option }}" id="{{ option }}" {% if option in
+                                                    request.args.getlist(field.name) %}checked{% endif %}>
+                                                <label class="form-check-label" for="{{ option }}">
+                                                    {{ option }}
+                                                </label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                    </fieldset>
+                                    {% endfor %}
 
-                                        </form>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                    <div class="buttons-container"
+                                        style="display: flex; justify-content: space-around;">
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-filtrar w-10"><i
+                                                    class='bx bx-filter'></i></button>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <a href="{{ url_for('asesores_info') }}" class="btn btn-limpiar w-10"><i
+                                                    class='bx bx-refresh'></i></a>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <button type="submit" name="export" value="excel"
+                                                class="btn btn-excel w-10"><i class='bx bx-download'></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                        </div>
+
+                        <div class="flex-grow-1" style="margin-top: 20px;margin-bottom: -15;">
+                            <table class="table table-hover" style="margin-left: 10px;">
+                                <!-- Encabezado de la tabla -->
+                                <thead>
+                                    <tr>
+                                        <th style="display: none;">Codigo</th>
+                                        <th class="titulos-filas">#</th>
+                                        <th class="titulos-filas">Documento</th>
+                                        <th class="titulos-filas">Nombre</th>
+                                        <th class="titulos-filas">Correo</th>
+                                        <th class="titulos-filas">Género</th>
+                                        <th class="titulos-filas">Estado Civil</th>
+                                        <th class="titulos-filas">Nivel de Estudios</th>
+                                        <th class="titulos-filas">Área de Experiencia</th>
+                                        <th class="titulos-filas"></th>
+                                        <th class="titulos-filas"></th>
+                                        <th class="titulos-filas"></th>
+                                    </tr>
+                                </thead>
+                                <!-- Cuerpo de la tabla -->
+                                <tbody>
+                                    {% for asesor in asesores %}
+                                    <tr>
+                                        <td style="display: none;">{{ asesor[0] }}</td>
+                                        <td class="titulos-filas">{{ loop.index + (page - 1) * per_page }}</td>
+                                        <td>
+                                            {% if asesor[1] == 'Cédula de ciudadanía (CC)' %}
+                                            CC
+                                            {% elif asesor[1] == 'Cédula de extranjera (CE)' %}
+                                            CE
+                                            {% else %}
+                                            {{ asesor[1] }}
+                                            {% endif %}
+                                            {{ asesor[2] }}
+                                        </td>
+                                        <td>{{ asesor[3] }}</td>
+                                        <td>{{ asesor[7] }}</td>
+                                        <td>{{ asesor[5] }}</td>
+                                        <td>{{ asesor[6] }}</td>
+                                        <td>{{ asesor[9] }}</td>
+                                        <td>{{ asesor[15] }}</td>
+                                        <td>
+                                            <a href="{{ url_for('ver_asesor', id=asesor[0]) }}"
+                                                class="btn btn-ver-mas">Ver</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url_for('editar_asesor', id=asesor[0]) }}"
+                                                class="btn btn-editar">Editar</a>
+                                        </td>
+                                        <td>
+                                            <!-- <form id="eliminarForm" action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" -->
+                                            <form id="eliminarForm{{ asesor[0] }}"
+                                                action="{{ url_for('eliminar_asesor', id=asesor[0]) }}" method="POST">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                                <input type="hidden" name="id" value="{{ asesor[0] }}" />
+                                                <!-- <button type="button" class="btn btn-eliminar" onclick="confirmarEliminar(this)">Eliminar</button> -->
+                                                <button type="button" class="btn btn-eliminar"
+                                                    onclick="confirmarEliminar('{{ asesor[0] }}', '{{ asesor[3] }}')">Eliminar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                            <script>
+                                alert("{{ messages[0] }}");
+                            </script>
+                            {% endif %}
+                            {% endwith %}
+                        </div>
                     </div>
                 </div>
 
@@ -210,10 +236,8 @@
                         </ul>
                     </nav>
                 </div>
-                <p class="text-center">Total de registros: {{ total_records }}</p>
+                <p class="page-total text-center">Total de registros: {{ total_records }}</p>
                 {% endif %}
-
-
 
             </div>
         </section>

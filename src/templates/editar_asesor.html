@@ -31,7 +31,7 @@
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="logo">
                 <a href="home"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="" />
-                    <h6 style="color: #3bd100; font-weight: bold">
+                    <h6 style="color: #522DB2; font-weight: bold">
                         Usuario activo {{ current_user.fullname }}
                     </h6>
                 </a>
@@ -201,17 +201,17 @@
                                     <label class="label-titles" for="nivel_estudios">Nivel de estudios:</label>
                                     <div class="input-container">
                                         <select class="form-control" name="nivel_estudios" id="nivel_estudios" required>
-                                            <option value="{{ asesor[13] }}" selected>{{ asesor[10] }}</option>
-                                            <option value="Bachillerato" {% if asesor[13]=='Bachillerato' %}selected{%
+                                            <option value="{{ asesor[10] }}" selected>{{ asesor[10] }}</option>
+                                            <option value="Bachillerato" {% if asesor[10]=='Bachillerato' %}selected{%
                                                 endif %}>Bachillerato</option>
                                             <option value="Formación Técnica/Tecnologo" {% if
-                                                asesor[13]=='Formación Técnica/Tecnologo' %}selected{% endif %}>
+                                                asesor[10]=='Formación Técnica/Tecnologo' %}selected{% endif %}>
                                                 Formación Técnica/Tecnólogo</option>
                                             <option value="Formación profesional - Pregrado" {% if
-                                                asesor[13]=='Formación profesional - Pregrado' %}selected{% endif %}>
+                                                asesor[10]=='Formación profesional - Pregrado' %}selected{% endif %}>
                                                 Formación
                                                 profesional - Pregrado</option>
-                                            <option value="Posgrado" {% if asesor[13]=='Posgrado' %}selected{% endif %}>
+                                            <option value="Posgrado" {% if asesor[10]=='Posgrado' %}selected{% endif %}>
                                                 Posgrado</option>
                                         </select>
                                     </div>
